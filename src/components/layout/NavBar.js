@@ -4,55 +4,28 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { PlusCircle, MoonFill, SunFill } from 'react-bootstrap-icons';
-import {useState} from "react";
-import {Dropdown} from "react-bootstrap";
+import {StyledNavbar} from "./StyledNavBar";
+import {StyledOffcanvas} from "./StyledOffcanvas";
 
 export default function NavBar(props) {
   const t = props.t;
-  const i18n = props.set_t;
-  const languages = ['English','Polski']
-  const [selectedLanguage, setSelectedLanguage]=useState(()=>{
-    if(localStorage.getItem('i18nextLng')==="pl"){
-      return languages[1]
-    }
-    return languages[0]
-  })
+  const set_t = props.set_t;
 
-  function setAppLanguage(e){
-    if(e==='English'){
-      localStorage.setItem('i18nextLng','eng');
-      i18n.changeLanguage(localStorage.getItem('i18nextLng')).then(r => {return true})
-    }
-    if(e==='Polski'){
-      localStorage.setItem('i18nextLng', 'pl');
-      i18n.changeLanguage(localStorage.getItem('i18nextLng')).then(r => {return true})
-    }
-    setSelectedLanguage(e);
-  }
+// set_t.changeLanguage('en');
 
   return(
     <header>
-      <Navbar expand={false} className='fixed-top' bg='primary'>
+      <StyledNavbar expand={false} className='fixed-top'>
         <Container fluid>
           <Navbar.Brand href='/'>{t('navbarName')}</Navbar.Brand>
-          <Dropdown onSelect={setAppLanguage}>
-            <Dropdown.Toggle>
-              {selectedLanguage}
-            </Dropdown.Toggle>
-
-            <Dropdown.Menu>
-              {languages.map(l =>
-                  <Dropdown.Item  eventKey={l} key={l} active={l===selectedLanguage}>{l}</Dropdown.Item>
-              )}
-            </Dropdown.Menu>
-          </Dropdown>
-
           <Navbar.Toggle aria-controls='offcanvasNavbar' />
+
           <Navbar.Offcanvas
             id='offcanvasNavbar'
             aria-labelledby='offcanvasNavbarLabel'
             placement='end'
           >
+
             <Offcanvas.Header closeButton>
               <Offcanvas.Title id='offcanvasNavbarLabel'>{t('navbarSettings')}</Offcanvas.Title>
             </Offcanvas.Header>
@@ -77,15 +50,14 @@ export default function NavBar(props) {
                   <NavDropdown.Item href=''>Polish</NavDropdown.Item>
                 </NavDropdown>
                 <Nav.Link href=''>
-                  <MoonFill className='me-2 text-dark' />
+                  <MoonFill className='me-2 text-dark' onClick={props.toggleTheme}/>
                   Dark theme
                 </Nav.Link>
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
-
         </Container>
-      </Navbar>
+      </StyledNavbar>
     </header>
   );
 }

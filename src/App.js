@@ -8,16 +8,32 @@ import Layout from './components/layout/Layout';
 import Main from './pages/Main';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
+import {useState} from "react";
+import {ThemeProvider} from "styled-components";
+import {darkTheme, lightTheme} from "./theme";
+import {GlobalStyles} from "./global";
 
 export default function App() {
   const [translation, set_translation] = useTranslation();
+  const [theme, setTheme] = useState('light');
+
+  const toggleTheme = () => {
+      if (theme === 'light') {
+          setTheme('dark');
+      } else {
+          setTheme('light');
+      }
+  }
 
   return (
-    <Layout t={translation} set_t={set_translation} >
-      <Routes>
-        <Route path='/' element={<Dashboard t={translation}  />} />
-        <Route path='/login' element={<Login t={translation}  />} />
-      </Routes>
-    </Layout>
+      <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+        <GlobalStyles/>
+        <Layout t={translation} set_t={set_translation} toggleTheme={toggleTheme} theme={theme} >
+          <Routes>
+            <Route path='/' element={<Dashboard t={translation}  />} />
+            <Route path='/login' element={<Login t={translation}  />} />
+          </Routes>
+        </Layout>
+      </ThemeProvider>
   );
 }

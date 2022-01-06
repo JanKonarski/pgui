@@ -1,9 +1,10 @@
 import Widget from './Widget';
+import {StyledSalesChart} from "./StyledSalesChart";
 
 export default function SalesChart() {
   return(
-    <Widget className='col-md-12'>
+    <StyledSalesChart className='col-md-12'>
       <div>blb</div>
-    </Widget>
+    </StyledSalesChart>
   );
 }
