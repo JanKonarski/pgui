@@ -10,7 +10,7 @@ const Main = styled.main`
 export default function Layout(props) {
   return (
     <div className='vh-100'>
-      <NavBar t={props.t} set_t={props.set_t} />
+      <NavBar t={props.t} set_t={props.set_t} toggleTheme={props.toggleTheme} theme={props.theme}/>
       <Main className='min-vh-100'>{props.children}</Main>
       <Footer t={props.t} />
     </div>

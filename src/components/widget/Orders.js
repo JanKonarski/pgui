@@ -1,11 +1,12 @@
 import Container from 'react-bootstrap/Container';
 
 import Widget from './Widget';
+import {StyledOrders} from "./StyledOrders";
 
 export default function Orders() {
   return(
-    <Widget className='col-md-4'>
-      <Container className='row justify-content-center fs-3 fw-bold m-0' fluid>
+    <StyledOrders className='col-md-4'>
+      <Container className='row justify-content-center fs-3 fw-bold m-0 title' fluid>
         Orders
       </Container>
       <Container className='row m-0 p-0' fluid>
@@ -28,6 +29,6 @@ export default function Orders() {
           <Container>All pending orders</Container>
         </Container>
       </Container>
-    </Widget>
+    </StyledOrders>
   );
 }

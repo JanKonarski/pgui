@@ -4,24 +4,28 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { PlusCircle, MoonFill, SunFill } from 'react-bootstrap-icons';
+import {StyledNavbar} from "./StyledNavBar";
+import {StyledOffcanvas} from "./StyledOffcanvas";
 
 export default function NavBar(props) {
   const t = props.t;
   const set_t = props.set_t;
 
-set_t.changeLanguage('en');
+// set_t.changeLanguage('en');
 
   return(
     <header>
-      <Navbar expand={false} className='fixed-top' bg='primary'>
+      <StyledNavbar expand={false} className='fixed-top'>
         <Container fluid>
           <Navbar.Brand href='/'>{t('navbarName')}</Navbar.Brand>
           <Navbar.Toggle aria-controls='offcanvasNavbar' />
+
           <Navbar.Offcanvas
             id='offcanvasNavbar'
             aria-labelledby='offcanvasNavbarLabel'
             placement='end'
           >
+
             <Offcanvas.Header closeButton>
               <Offcanvas.Title id='offcanvasNavbarLabel'>{t('navbarSettings')}</Offcanvas.Title>
             </Offcanvas.Header>
@@ -46,14 +50,14 @@ set_t.changeLanguage('en');
                   <NavDropdown.Item href=''>Polish</NavDropdown.Item>
                 </NavDropdown>
                 <Nav.Link href=''>
-                  <MoonFill className='me-2 text-dark' />
+                  <MoonFill className='me-2 text-dark' onClick={props.toggleTheme}/>
                   Dark theme
                 </Nav.Link>
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
         </Container>
-      </Navbar>
+      </StyledNavbar>
     </header>
   );
 }
