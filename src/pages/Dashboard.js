@@ -5,19 +5,20 @@ import DailyTips from '../components/widget/DailyTips';
 import Orders from '../components/widget/Orders';
 import SalesChart from '../components/widget/SalesChart';
 import Ranking from '../components/widget/Ranking';
+import {useTranslation} from "react-i18next";
 
 export default function Dashboard() {
-
+    const {t} = useTranslation();
 
   return (
     <div>
       <Container className='pt-4 px-0 row m-0' fluid>
-        <SalesQuality />
-        <DailyTips />
-        <Orders />
+        <SalesQuality t={t} />
+        <DailyTips t={t} />
+        <Orders t={t}/>
       </Container>
       <Container className='row px-0 m-0' fluid>
-        <SalesChart />
+        <SalesChart t={t} />
       </Container>
       <Container className='pb-4 px-0 row m-0' fluid>
         <Ranking />

@@ -4,18 +4,49 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { PlusCircle, MoonFill, SunFill } from 'react-bootstrap-icons';
+import {useState} from "react";
+import {Dropdown} from "react-bootstrap";
 
 export default function NavBar(props) {
   const t = props.t;
-  const set_t = props.set_t;
+  const i18n = props.set_t;
+  const languages = ['English','Polski']
+  const [selectedLanguage, setSelectedLanguage]=useState(()=>{
+    if(localStorage.getItem('i18nextLng')==="pl"){
+      return languages[1]
+    }
+    return languages[0]
+  })
 
-set_t.changeLanguage('en');
+  function setAppLanguage(e){
+    if(e==='English'){
+      localStorage.setItem('i18nextLng','eng');
+      i18n.changeLanguage(localStorage.getItem('i18nextLng')).then(r => {return true})
+    }
+    if(e==='Polski'){
+      localStorage.setItem('i18nextLng', 'pl');
+      i18n.changeLanguage(localStorage.getItem('i18nextLng')).then(r => {return true})
+    }
+    setSelectedLanguage(e);
+  }
 
   return(
     <header>
       <Navbar expand={false} className='fixed-top' bg='primary'>
         <Container fluid>
           <Navbar.Brand href='/'>{t('navbarName')}</Navbar.Brand>
+          <Dropdown onSelect={setAppLanguage}>
+            <Dropdown.Toggle>
+              {selectedLanguage}
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              {languages.map(l =>
+                  <Dropdown.Item  eventKey={l} key={l} active={l===selectedLanguage}>{l}</Dropdown.Item>
+              )}
+            </Dropdown.Menu>
+          </Dropdown>
+
           <Navbar.Toggle aria-controls='offcanvasNavbar' />
           <Navbar.Offcanvas
             id='offcanvasNavbar'
@@ -52,6 +83,7 @@ set_t.changeLanguage('en');
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
+
         </Container>
       </Navbar>
     </header>
