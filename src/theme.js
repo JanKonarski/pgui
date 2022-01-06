@@ -18,10 +18,11 @@ export const lightTheme = {
         backgroundColor: '#FFFFFF',
         borderColor: '#0D6EFD',
         title: '#0D6EFD',
-        rating: '#0D6EFD'
+        rating: '#0D6EFD',
+        buttonColor: '#0275d8',
+        buttonBorderColor: '#0275d8'
+
     },
-
-
 }
 
 export const darkTheme = {
@@ -41,7 +42,10 @@ export const darkTheme = {
         backgroundColor: '#495057',
         borderColor: '#FFFFFF',
         title: '#FFFFFF',
-        rating: '#FFFFFF'
+        rating: '#FFFFFF',
+        buttonColor: '#343A40',
+        buttonBorderColor: '#CED4DA',
+        dropDownBackgroundColor: '#343A40'
     },
 
     inputColor: '#5c5c5c',

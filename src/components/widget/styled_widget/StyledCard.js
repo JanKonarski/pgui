@@ -9,4 +9,13 @@ export const StyledCard = styled(Card) `
     .title {
       color: ${({ theme }) => theme.widget.title};
     }
+  
+    .card-title {
+      color: ${({ theme }) => theme.widget.title};
+    }
+  
+    .button, .button:focus  {
+      background-color: ${({ theme }) => theme.widget.buttonColor};
+      border-color: ${({ theme }) => theme.widget.buttonBorderColor};
+    }
 `
