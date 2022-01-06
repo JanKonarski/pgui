@@ -1,7 +1,7 @@
 import Container from 'react-bootstrap/Container';
 
 import Widget from './Widget';
-import {StyledSalesQuality} from "./StyledSalesQuality";
+import {StyledSalesQuality} from "./styled_widget/StyledSalesQuality";
 
 export default function SalesQuality() {
   return(

@@ -1,5 +1,5 @@
 const TRANSLATION_EN = {
-  navbarName: 'Sales dashboard',
+  navbarName: 'Seller dashboard',
   navbarSettings: 'Settings',
   navbarAccountDetails: 'Account details',
   navbarSwitchAccount: 'Switch account',

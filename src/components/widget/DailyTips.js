@@ -1,7 +1,7 @@
 import Container from 'react-bootstrap/Container';
 
 import Widget from './Widget';
-import {StyledDailyTips} from "./StyledDailyTips";
+import {StyledDailyTips} from "./styled_widget/StyledDailyTips";
 
 export default function DailyTips() {
   return(

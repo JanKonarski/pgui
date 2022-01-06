@@ -1,5 +1,5 @@
 import Widget from './Widget';
-import {StyledSalesChart} from "./StyledSalesChart";
+import {StyledSalesChart} from "./styled_widget/StyledSalesChart";
 
 export default function SalesChart() {
   return(

@@ -11,7 +11,9 @@ export default function NavBar(props) {
   const t = props.t;
   const set_t = props.set_t;
 
-// set_t.changeLanguage('en');
+  let moon =  <MoonFill className='me-2 text-dark' size={15} onClick={props.toggleTheme}/>;
+  let sun =   <SunFill className='me-2 text-dark' size={15} onClick={props.toggleTheme}/>;
+  const icon = props.theme === "light" ? moon : sun;
 
   return(
     <header>
@@ -50,8 +52,7 @@ export default function NavBar(props) {
                   <NavDropdown.Item href=''>Polish</NavDropdown.Item>
                 </NavDropdown>
                 <Nav.Link href=''>
-                  <MoonFill className='me-2 text-dark' onClick={props.toggleTheme}/>
-                  Dark theme
+                  Theme - {icon}
                 </Nav.Link>
               </Nav>
             </Offcanvas.Body>

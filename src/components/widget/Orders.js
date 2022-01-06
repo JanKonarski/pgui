@@ -1,7 +1,7 @@
 import Container from 'react-bootstrap/Container';
 
 import Widget from './Widget';
-import {StyledOrders} from "./StyledOrders";
+import {StyledOrders} from "./styled_widget/StyledOrders";
 
 export default function Orders() {
   return(

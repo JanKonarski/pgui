@@ -1,5 +1,5 @@
 import Container from 'react-bootstrap/Container';
-import {StyledCard} from "./StyledCard";
+import {StyledCard} from "./styled_widget/StyledCard";
 
 export default function Widget(props) {
   return(
