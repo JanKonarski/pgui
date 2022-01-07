@@ -15,7 +15,7 @@ export const StyledOpinions = styled(Widget) `
   }
   
   .categoryButton {
-    margin-right: 20px;
+    margin-right: 25px;
   }
 
   .dropdown, .dropdown:focus  {

@@ -1,22 +1,15 @@
 import {Card, Col, Container, Dropdown, Row} from "react-bootstrap";
 import Opinion from "./Opinion";
 import {useTranslation} from "react-i18next";
-import {useEffect, useState} from "react";
+import {useEffect, useState, useRef} from "react";
 import {StyledOpinions} from "./styled_widget/StyledOpinions";
 
 function ClientsOpinionsWidget(){
     const t = useTranslation()[0]
-    const [opinionsType, setOpinionsType] = useState("all")
-    let opinion1 = "Produkty wystawione przez sprzedawcę takie sobie, ale za to cena nie jest taka wysoka. ";
-    let opinion2 = "";
-    let opinion3 = "Cóż napisać ... jestem bardzo zadowolony. Szukałem w sieci różnych rozwiązań i trafiłem przez przypadek na tego sprzedawcę. Po zapoznaniu się z możliwościami sklepu dokonałem zakupu - cena niewielka - w sumie dużo nie ryzykowałem - brak umów więc w razie czego tylko utopione kilka złotych. Jednak się nie zawiodłem. Zarówno możliwości sklepu jak i jego obsługa posprzedaży są na najwyższym poziomie. Właśnie kupuję kolejny towar i jak najbardziej mogę wszystkim polecić. Bardzo dobra cena w stosunku do jakości.";
-    let opinion4 = "O ile obsługa w sklepie jest ok, o tyle dział rat w arogancki i w ogóle nie wykazujący zainteresowania klientem, obsługa “z musu\", suma sumarum zrezygnowałem z zakupu produktu, który miałem na oku. A wielka szkoda, bo długo przymierzałem się...";
-    let opinion5 = "Jest okDDDDDDDDDDDDDDDDokDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDokDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDokDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDokDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDokDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDokDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD";
-    let date = "20.11.2021, 21:37";
-    let stars = [3, 4, 5, 1, 3];
-
+    const [opinionsType, setOpinionsType] = useState("all");
     const [isLoading, setIsLoading] = useState(true);
     const [loadedOpinions, setLoadedOpinions] = useState([]);
+    const [opinionsToDisplay, setOpinionsToDisplay] = useState([]);
 
     useEffect(() => {
         fetch(
@@ -31,17 +24,70 @@ function ClientsOpinionsWidget(){
                     id: key,
                     ...data[key]
                 };
+                // opinion['date'] = Date.parse(opinion['date']);
                 opinions.push(opinion);
             }
 
-
             setIsLoading(false);
             setLoadedOpinions(opinions);
+            setOpinionsToDisplay(opinions);
         });
     }, []);
 
+
     function selectHandler(e) {
-        setOpinionsType(e);
+        setOpinionsType(e.toString());
+        console.log(opinionsType)
+        filterAndSortOpinions(e);
+    }
+
+    function filterAndSortOpinions(opinionType) {
+        console.log(opinionsType)
+        const pivot = 3;
+        let opinions = [];
+        if (opinionType === "Positive") {
+            opinions = getPositiveOpinions(pivot);
+        } else if (opinionType === "Negative") {
+            opinions = getNegativeOpinions(pivot);
+        } else if (opinionType === "All") {
+            opinions = getAllOpinions();
+        }
+        sortOpinionsByDate(opinions)
+    }
+
+    function getPositiveOpinions(pivot) {
+        console.log(loadedOpinions)
+        const positiveOpinions = []
+        loadedOpinions.map(opinion => {
+            if (opinion['rating'] >= pivot) {
+                positiveOpinions.push(opinion)
+            }
+        })
+        return positiveOpinions;
+    }
+
+    function getNegativeOpinions(pivot) {
+        const negativeOpinions = []
+        loadedOpinions.map(opinion => {
+            if (opinion['rating'] < pivot) {
+                negativeOpinions.push(opinion)
+            }
+        })
+        return negativeOpinions;
+    }
+
+    function getAllOpinions() {
+        return loadedOpinions;
+    }
+
+    function sortOpinionsByDate(opinions) {
+        const opinionsToDisplayTmp = opinions.slice();
+        opinionsToDisplayTmp.sort(function(o1, o2) {
+            const firstDate = new Date(o1["date"])
+            const secondDate = new Date(o2["date"])
+            return secondDate - firstDate;
+        });
+        setOpinionsToDisplay(opinionsToDisplayTmp)
     }
 
     return(
@@ -51,21 +97,22 @@ function ClientsOpinionsWidget(){
                 <Row>
                     <Col className="text-end">
                         <Dropdown align={"end"} onSelect={selectHandler}>
-                            <Dropdown.Toggle className="button">
+                            <Dropdown.Toggle className="button categoryButton">
                                 {opinionsType}
                             </Dropdown.Toggle>
                             <Dropdown.Menu className="dropdown">
-                                <Dropdown.Item className="dropdownItem" eventKey={"All"} active={opinionsType==="all"}> {t("clientsOpinions.a")}</Dropdown.Item>
-                                <Dropdown.Item className="dropdownItem" eventKey={"Positive"} active={opinionsType==="positive"}> {t("clientsOpinions.p")}</Dropdown.Item>
-                                <Dropdown.Item className="dropdownItem" eventKey={"Negative"} active={opinionsType==="negative"}> {t("clientsOpinions.n")}</Dropdown.Item>
+                                <Dropdown.Item className="dropdownItem" eventKey={"All"} active={opinionsType==="All"}> {t("clientsOpinions.a")}</Dropdown.Item>
+                                <Dropdown.Item className="dropdownItem" eventKey={"Positive"} active={opinionsType==="Positive"}> {t("clientsOpinions.p")}</Dropdown.Item>
+                                <Dropdown.Item className="dropdownItem" eventKey={"Negative"} active={opinionsType==="Negative"}> {t("clientsOpinions.n")}</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                     </Col>
                 </Row>
                 <Row>
                     <div className="opinions-container">
-                        {loadedOpinions.map((opinion => (
+                        {opinionsToDisplay.map((opinion => (
                             <Opinion
+                                key={opinion.id}
                                 description={opinion.description}
                                 date={opinion.date}
                                 rating={opinion.rating}
