@@ -39,6 +39,8 @@ function ClientsOpinionsWidget(){
 
             setIsLoading(false);
             setOpinionsToDisplay(filteredOpinions);
+        }).catch((error) => {
+            setOpinionsToDisplay(error);
         });
     }, [opinionsType, isLoading]);
 
