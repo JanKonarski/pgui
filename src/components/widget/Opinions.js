@@ -1,14 +1,13 @@
-import {Card, Col, Container, Dropdown, Row} from "react-bootstrap";
+import {Card, Col, Dropdown, Row} from "react-bootstrap";
 import Opinion from "./Opinion";
 import {useTranslation} from "react-i18next";
-import {useEffect, useState, useRef} from "react";
+import {useEffect, useState} from "react";
 import {StyledOpinions} from "./styled_widget/StyledOpinions";
 
 function ClientsOpinionsWidget(){
     const t = useTranslation()[0]
-    const [opinionsType, setOpinionsType] = useState("all");
+    const [opinionsType, setOpinionsType] = useState("All");
     const [isLoading, setIsLoading] = useState(true);
-    const [loadedOpinions, setLoadedOpinions] = useState([]);
     const [opinionsToDisplay, setOpinionsToDisplay] = useState([]);
 
     useEffect(() => {
@@ -27,46 +26,44 @@ function ClientsOpinionsWidget(){
                 opinions.push(opinion);
             }
 
-            opinions.sort(function(o1, o2) {
+            let filteredOpinions = getFilteredOpinions(opinions);
+
+            filteredOpinions.sort(function(o1, o2) {
                 const firstDate = new Date(o1["date"])
                 const secondDate = new Date(o2["date"])
                 return secondDate - firstDate;
             });
 
             const opinionsToDisplay = 5;
-            opinions = opinions.slice(0, opinionsToDisplay);
+            filteredOpinions = filteredOpinions.slice(0, opinionsToDisplay);
 
             setIsLoading(false);
-            setLoadedOpinions(opinions);
-            setOpinionsToDisplay(opinions);
+            setOpinionsToDisplay(filteredOpinions);
         });
-    }, []);
+    }, [opinionsType, isLoading]);
 
 
     function selectHandler(e) {
-        setOpinionsType(e.toString());
-        console.log(opinionsType)
-        filterAndSortOpinions(e);
+        setOpinionsType(e);
+        setIsLoading(true);
     }
 
-    function filterAndSortOpinions(opinionType) {
-        console.log(opinionsType)
+    function getFilteredOpinions(opinions) {
         const pivot = 3;
-        let opinions = [];
-        if (opinionType === "Positive") {
-            opinions = getPositiveOpinions(pivot);
-        } else if (opinionType === "Negative") {
-            opinions = getNegativeOpinions(pivot);
-        } else if (opinionType === "All") {
-            opinions = getAllOpinions();
+        let filteredOpinions = [];
+        if (opinionsType === "Positive") {
+            filteredOpinions = getPositiveOpinions(pivot, opinions);
+        } else if (opinionsType === "Negative") {
+            filteredOpinions = getNegativeOpinions(pivot, opinions);
+        } else if (opinionsType === "All") {
+            filteredOpinions = opinions;
         }
-        setOpinionsToDisplay(opinions)
+        return filteredOpinions;
     }
 
-    function getPositiveOpinions(pivot) {
-        console.log(loadedOpinions)
+    function getPositiveOpinions(pivot, opinions) {
         const positiveOpinions = []
-        loadedOpinions.map(opinion => {
+        opinions.map(opinion => {
             if (opinion['rating'] >= pivot) {
                 positiveOpinions.push(opinion)
             }
@@ -74,18 +71,14 @@ function ClientsOpinionsWidget(){
         return positiveOpinions;
     }
 
-    function getNegativeOpinions(pivot) {
+    function getNegativeOpinions(pivot, opinions) {
         const negativeOpinions = []
-        loadedOpinions.map(opinion => {
+        opinions.map(opinion => {
             if (opinion['rating'] < pivot) {
                 negativeOpinions.push(opinion)
             }
         })
         return negativeOpinions;
-    }
-
-    function getAllOpinions() {
-        return loadedOpinions;
     }
 
     return(
