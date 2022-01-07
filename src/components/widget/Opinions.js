@@ -17,16 +17,24 @@ function ClientsOpinionsWidget(){
         ).then((response) => {
             return response.json();
         }).then((data) => {
-            const opinions = [];
+            let opinions = [];
 
             for (const key in data) {
                 const opinion = {
                     id: key,
                     ...data[key]
                 };
-                // opinion['date'] = Date.parse(opinion['date']);
                 opinions.push(opinion);
             }
+
+            opinions.sort(function(o1, o2) {
+                const firstDate = new Date(o1["date"])
+                const secondDate = new Date(o2["date"])
+                return secondDate - firstDate;
+            });
+
+            const opinionsToDisplay = 5;
+            opinions = opinions.slice(0, opinionsToDisplay);
 
             setIsLoading(false);
             setLoadedOpinions(opinions);
@@ -52,7 +60,7 @@ function ClientsOpinionsWidget(){
         } else if (opinionType === "All") {
             opinions = getAllOpinions();
         }
-        sortOpinionsByDate(opinions)
+        setOpinionsToDisplay(opinions)
     }
 
     function getPositiveOpinions(pivot) {
@@ -80,16 +88,6 @@ function ClientsOpinionsWidget(){
         return loadedOpinions;
     }
 
-    function sortOpinionsByDate(opinions) {
-        const opinionsToDisplayTmp = opinions.slice();
-        opinionsToDisplayTmp.sort(function(o1, o2) {
-            const firstDate = new Date(o1["date"])
-            const secondDate = new Date(o2["date"])
-            return secondDate - firstDate;
-        });
-        setOpinionsToDisplay(opinionsToDisplayTmp)
-    }
-
     return(
         <StyledOpinions className='col-md-6'>
             <Card.Body>
@@ -110,7 +108,7 @@ function ClientsOpinionsWidget(){
                 </Row>
                 <Row>
                     <div className="opinions-container">
-                        {opinionsToDisplay.map((opinion => (
+                        {!isLoading && opinionsToDisplay.map((opinion => (
                             <Opinion
                                 key={opinion.id}
                                 description={opinion.description}
@@ -119,6 +117,7 @@ function ClientsOpinionsWidget(){
                             />
 
                         )))}
+                        {isLoading && <div>Downloading comments...</div>}
                     </div>
                 </Row>
             </Card.Body>
