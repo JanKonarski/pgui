@@ -1,7 +1,7 @@
 import {Card, Col, Container, Dropdown, Row} from "react-bootstrap";
 import Opinion from "./Opinion";
 import {useTranslation} from "react-i18next";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {StyledOpinions} from "./styled_widget/StyledOpinions";
 
 function ClientsOpinionsWidget(){
@@ -14,6 +14,31 @@ function ClientsOpinionsWidget(){
     let opinion5 = "Jest okDDDDDDDDDDDDDDDDokDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDokDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDokDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDokDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDokDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDokDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD";
     let date = "20.11.2021, 21:37";
     let stars = [3, 4, 5, 1, 3];
+
+    const [isLoading, setIsLoading] = useState(true);
+    const [loadedOpinions, setLoadedOpinions] = useState([]);
+
+    useEffect(() => {
+        fetch(
+            'http://127.0.0.1:8000/opinions'
+        ).then((response) => {
+            return response.json();
+        }).then((data) => {
+            const opinions = [];
+
+            for (const key in data) {
+                const opinion = {
+                    id: key,
+                    ...data[key]
+                };
+                opinions.push(opinion);
+            }
+
+
+            setIsLoading(false);
+            setLoadedOpinions(opinions);
+        });
+    }, []);
 
     function selectHandler(e) {
         setOpinionsType(e);
@@ -39,11 +64,14 @@ function ClientsOpinionsWidget(){
                 </Row>
                 <Row>
                     <div className="opinions-container">
-                        <Opinion description={opinion1} date={date} stars={stars[0]}/>
-                        <Opinion description={opinion2} date={date} stars={stars[1]}/>
-                        <Opinion description={opinion3} date={date} stars={stars[2]}/>
-                        <Opinion description={opinion4} date={date} stars={stars[3]}/>
-                        <Opinion description={opinion5} date={date} stars={stars[4]}/>
+                        {loadedOpinions.map((opinion => (
+                            <Opinion
+                                description={opinion.description}
+                                date={opinion.date}
+                                rating={opinion.rating}
+                            />
+
+                        )))}
                     </div>
                 </Row>
             </Card.Body>
