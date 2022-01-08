@@ -19,13 +19,13 @@ function Opinion({description, rating, date}) {
         <StyledOpinion>
             <Row className="mx-0">
 
-                <Col className='col-6 px-0'>
+                <Col className='col-5 px-0'>
                     {starsFilledList}
                     {starsUnfilledList}
                     <span id="starsCount">{rating}/{maxRating}</span>
                 </Col>
 
-                <Col className="col-6 opinion-date text-end">
+                <Col className="col-7 opinion-date text-end">
                     {date}
                 </Col>
             </Row>
