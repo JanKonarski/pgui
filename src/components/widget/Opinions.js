@@ -3,18 +3,26 @@ import Opinion from "./Opinion";
 import {useTranslation} from "react-i18next";
 import {useEffect, useState} from "react";
 import {StyledOpinions} from "./styled_widget/StyledOpinions";
+import spinner from "../../image/spinner.gif"
 
 function ClientsOpinionsWidget(){
+    const errorMessage = "Something went wrong - could not load opinions.";
     const t = useTranslation()[0]
     const [opinionsType, setOpinionsType] = useState("All");
     const [isLoading, setIsLoading] = useState(true);
     const [opinionsToDisplay, setOpinionsToDisplay] = useState([]);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
+        setError(null);
         fetch(
             'http://127.0.0.1:8000/opinions'
         ).then((response) => {
-            return response.json();
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error(errorMessage)
+            }
         }).then((data) => {
             let opinions = [];
 
@@ -40,7 +48,8 @@ function ClientsOpinionsWidget(){
             setIsLoading(false);
             setOpinionsToDisplay(filteredOpinions);
         }).catch((error) => {
-            setOpinionsToDisplay(error);
+            setError(errorMessage);
+            setIsLoading(false);
         });
     }, [opinionsType, isLoading]);
 
@@ -112,7 +121,12 @@ function ClientsOpinionsWidget(){
                             />
 
                         )))}
-                        {isLoading && <div>Downloading comments...</div>}
+                        {isLoading && <div><img className='mx-auto d-block spinner' src={spinner} alt={''}/></div>}
+                        {!isLoading && error &&
+                        <Col className='text-center error'>
+                            <h2 className=''>{error}</h2>
+                        </Col>
+                        }
                     </div>
                 </Row>
             </Card.Body>

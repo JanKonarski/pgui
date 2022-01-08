@@ -15,5 +15,10 @@ export const StyledNavbar = styled(Navbar)`
   .home-link {
     text-decoration: none;
     color: #FFFFFF;
+    letter-spacing: 0.1em;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 28px;
   }
 `;

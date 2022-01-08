@@ -29,4 +29,8 @@ export const StyledOpinions = styled(Widget) `
   .dropdownItem {
     color: ${({ theme }) => theme.main.color};
   }
+
+  .error, .spinner {
+    margin-top: 140px;
+  }
 `

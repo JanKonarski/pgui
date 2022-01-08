@@ -6,6 +6,7 @@ export const lightTheme = {
         backgroundColor: '#FFFFFF',
         color: '#000000',
         toggleColor: '#FFFFFF',
+        error: '#ED4337',
     },
 
     navbar: {
@@ -29,7 +30,8 @@ export const darkTheme = {
     main: {
         backgroundColor: '#363537',
         color: '#FAFAFA',
-        toggleColor: '#FFFFFF'
+        toggleColor: '#FFFFFF',
+        error: '#ED4337'
     },
 
     navbar: {
@@ -46,7 +48,7 @@ export const darkTheme = {
         buttonColor: '#343A40',
         buttonBorderColor: '#CED4DA',
         dropDownBackgroundColor: '#343A40',
-        orderLink: '#FFFFFF'
+        orderLink: '#BB86FC'
     },
 
     inputColor: '#5c5c5c',

@@ -19,4 +19,14 @@ export const StyledCard = styled(Card) `
       background-color: ${({ theme }) => theme.widget.buttonColor};
       border-color: ${({ theme }) => theme.widget.buttonBorderColor};
     }
+
+    .error {
+      margin-top: 150px;
+      color: ${({ theme }) => theme.main.error};
+    }
+  
+    .spinner {
+      width: 80px;
+      height: auto;
+    }
 `

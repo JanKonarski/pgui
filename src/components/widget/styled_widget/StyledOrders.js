@@ -44,4 +44,8 @@ export const StyledOrders = styled(Widget) `
   .no-orders-links:hover {
     font-weight: bold;
   }
+
+  .error, .spinner {
+    margin-top: 50px;
+  }
 `
