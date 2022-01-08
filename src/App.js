@@ -12,6 +12,9 @@ import {useState} from "react";
 import {ThemeProvider} from "styled-components";
 import {darkTheme, lightTheme} from "./theme";
 import {GlobalStyles} from "./global";
+import NotPaid from "./pages/orders/NotPaid";
+import NotSent from "./pages/orders/NotSent";
+import Refunds from "./pages/orders/Refunds";
 
 export default function App() {
   const [translation, set_translation] = useTranslation();
@@ -32,6 +35,9 @@ export default function App() {
           <Routes>
             <Route path='/' element={<Dashboard t={translation}  />} />
             <Route path='/login' element={<Login t={translation}  />} />
+            <Route path='/not_paid' element={<NotPaid t={translation}  />} />
+            <Route path='/not_sent' element={<NotSent t={translation}  />} />
+            <Route path='/refunds' element={<Refunds t={translation}  />} />
           </Routes>
         </Layout>
       </ThemeProvider>

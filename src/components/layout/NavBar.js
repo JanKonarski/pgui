@@ -6,6 +6,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { PlusCircle, MoonFill, SunFill } from 'react-bootstrap-icons';
 import {StyledNavbar} from "./StyledNavBar";
 import {StyledOffcanvas} from "./StyledOffcanvas";
+import {Link} from "react-router-dom";
 
 export default function NavBar(props) {
   const t = props.t;
@@ -19,7 +20,7 @@ export default function NavBar(props) {
     <header>
       <StyledNavbar expand={false} className='fixed-top'>
         <Container fluid>
-          <Navbar.Brand href='/'>{t('navbarName')}</Navbar.Brand>
+          <Navbar.Brand><Link className='home-link' to="/">{t('navbarName')}</Link></Navbar.Brand>
           <Navbar.Toggle aria-controls='offcanvasNavbar' />
 
           <Navbar.Offcanvas

@@ -15,6 +15,15 @@ export const StyledOrders = styled(Widget) `
     bottom: 20px;
     left: 3px;
   }
+  
+  .order-link {
+    text-decoration: none;
+    color: ${({ theme }) => theme.widget.orderLink};
+  }
+
+  .order-link:hover {
+    font-weight: bold;
+  }
 
   .no-orders-header {
     margin-top: 20px;
@@ -25,14 +34,14 @@ export const StyledOrders = styled(Widget) `
     line-height: 30px;
   }
   
-  .orders-links {
+  .no-orders-links {
     font-size: 18px;
     line-height: 40px;
     text-decoration: none;
-    color: ${({ theme }) => theme.widget.rating};
+    color: ${({ theme }) => theme.widget.orderLink};
   }
 
-  .orders-links:hover {
+  .no-orders-links:hover {
     font-weight: bold;
   }
 `

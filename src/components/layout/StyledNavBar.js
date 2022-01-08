@@ -11,4 +11,9 @@ export const StyledNavbar = styled(Navbar)`
   .navbar-toggler {
     background-color: #FAFAFA;
   }
+  
+  .home-link {
+    text-decoration: none;
+    color: #FFFFFF;
+  }
 `;
