@@ -24,27 +24,31 @@ export default function Orders() {
       return Object.values(orders).every(orderType => orderType === 0);
     }
 
+    function twoLeadingZeros(num) {
+        return String(num).padStart(3, '0');
+    }
+
     const content = noOrders()
         ? <div>TODO</div>
         : <Card.Body>
-          <Container className='row m-0 p-0' fluid>
-            <Container className='col-6 p-0 fs-4'>
-              <Container className='row m-0 p-0' fluid>
-                <Container className='col-10'>Not paid</Container>
-                <Container className='col-2'>{orders['unpaid']}</Container>
+          <Container className="row content" fluid>
+            <Container className='col-md-6 col-xs-12 fs-4 text-center'>
+              <Container className='row p-0 orders' fluid>
+                <Container className='col-8 '>Not paid</Container>
+                <Container className='col-4 '>{orders['unpaid']}</Container>
               </Container>
               <Container className='row m-0 p-0' fluid>
-                <Container className='col-10'>Not send</Container>
-                <Container className='col-2'>{orders['unsent']}</Container>
+                <Container className='col-8'>Not sent</Container>
+                <Container className='col-4'>{orders['unsent']}</Container>
               </Container>
               <Container className='row m-0 p-0' fluid>
-                <Container className='col-10'>Returns</Container>
-                <Container className='col-2'>{orders['refunds']}</Container>
+                <Container className='col-8'>Refunds</Container>
+                <Container className='col-4'>{orders['refunds']}</Container>
               </Container>
             </Container>
-            <Container className='col-6 text-center'>
-              <Container className='fw-bold' style={{fontSize: '90px'}}>{orders['pending']}</Container>
-              <Container>All pending orders</Container>
+            <Container className='col-md-6 col-xs-12 text-center'>
+              <Container className='fw-bold pending-orders' style={{fontSize: '100px'}}>{twoLeadingZeros(orders['pending'])}</Container>
+              <Container className='pending-orders-text' style={{fontSize: '20px'}}>All pending orders</Container>
             </Container>
           </Container>
         </Card.Body>;
