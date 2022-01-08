@@ -4,6 +4,7 @@ import {useTranslation} from "react-i18next";
 import {useEffect, useState} from "react";
 import {StyledOpinions} from "./styled_widget/StyledOpinions";
 import spinner from "../../image/spinner.gif"
+import {Link} from "react-router-dom";
 
 function ClientsOpinionsWidget(){
     const errorMessage = "Something went wrong - could not load opinions.";
@@ -97,6 +98,9 @@ function ClientsOpinionsWidget(){
             <Card.Body>
                 <Card.Title className="row justify-content-center fs-3 fw-bold m-0">Clients Opinions</Card.Title>
                 <Row>
+                    <Col className='opinions-page-container'>
+                        <Link className='opinions-page' to='#'>Opinions page</Link>
+                    </Col>
                     <Col className="text-end">
                         <Dropdown align={"end"} onSelect={selectHandler}>
                             <Dropdown.Toggle className="button categoryButton">

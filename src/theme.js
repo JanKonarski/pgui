@@ -22,7 +22,7 @@ export const lightTheme = {
         rating: '#0D6EFD',
         buttonColor: '#0275d8',
         buttonBorderColor: '#0275d8',
-        orderLink: '#0D6EFD'
+        orderLink: '#BB86FC'
     },
 }
 

@@ -33,4 +33,18 @@ export const StyledOpinions = styled(Widget) `
   .error, .spinner {
     margin-top: 140px;
   }
+
+  .opinions-page-container {
+    margin-top: 25px;
+  }
+  
+  .opinions-page {
+    text-decoration: none;
+    font-size: 25px;
+    color: ${({ theme }) => theme.widget.orderLink};
+  }
+  
+  .opinions-page:hover {
+    color: #0D6EFD;
+  }
 `
