@@ -3,8 +3,9 @@ import styled from "styled-components";
 
 export const StyledCard = styled(Card) `
     background-color: ${({ theme }) => theme.widget.backgroundColor};
-    border-color: ${({ theme }) => theme.widget.borderColor};
     border-radius: 40px;
+    border: 2px solid ${({ theme }) => theme.widget.borderColor};
+    box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.25);
   
     .title {
       color: ${({ theme }) => theme.widget.title};

@@ -15,4 +15,24 @@ export const StyledOrders = styled(Widget) `
     bottom: 20px;
     left: 3px;
   }
+
+  .no-orders-header {
+    margin-top: 20px;
+  }
+
+  .no-orders-info {
+    font-size: 16px;
+    line-height: 30px;
+  }
+  
+  .orders-links {
+    font-size: 18px;
+    line-height: 40px;
+    text-decoration: none;
+    color: ${({ theme }) => theme.widget.rating};
+  }
+
+  .orders-links:hover {
+    font-weight: bold;
+  }
 `
