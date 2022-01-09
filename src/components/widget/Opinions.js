@@ -17,7 +17,8 @@ function ClientsOpinionsWidget(){
     useEffect(() => {
         setError(null);
         fetch(
-            'http://127.0.0.1:8000/opinions'
+            // 'http://127.0.0.1:8000/opinions'
+        'http://127.0.0.1:8000/opinions'
         ).then((response) => {
             if (response.ok) {
                 return response.json();
@@ -52,7 +53,7 @@ function ClientsOpinionsWidget(){
             setError(errorMessage);
             setIsLoading(false);
         });
-    }, [opinionsType, isLoading]);
+    }, [opinionsType]);
 
 
     function selectHandler(e) {
@@ -93,15 +94,68 @@ function ClientsOpinionsWidget(){
         return negativeOpinions;
     }
 
+    function opinionsExist() {
+        return opinionsToDisplay.length !== 0;
+    }
+
+    let noOpinionsContent = <Col className='text-center my-auto'>
+        <h1 className='fw-bold no-opinions-header'>Brak opinii</h1>
+        <p className='no-opinions-info'>Nowe opinie zostaną wyświetlone, jeśli zostaną dodane przez klientów.</p>
+    </Col>
+
+    let opinionsContent =
+    <div className="opinions-container">
+        {opinionsToDisplay.map((opinion => (
+            <Opinion
+                key={opinion.id}
+                description={opinion.description}
+                date={opinion.date}
+                rating={opinion.rating}
+            />
+
+        )))}
+    </div>;
+
+    let content = noOpinionsContent;
+
+    if (opinionsExist()) {
+        content = opinionsContent;
+    }
+
+    if (error) {
+        content =
+            <Col className='error my-auto'>
+                <p className='error'>{error}</p>
+                <Opinion
+                    key={0}
+                    description={"Opinion not available..."}
+                    date={"X/X/X"}
+                    rating={0}
+                    noOpinions={true}
+                />
+                <Opinion
+                    key={0}
+                    description={"Opinion not available..."}
+                    date={"X/X/X"}
+                    rating={0}
+                    noOpinions={true}
+                />
+            </Col>
+    }
+
+    if (isLoading) {
+        content = <Col className='text-center error my-auto'><img className='mx-auto d-block spinner' src={spinner} alt={''}/></Col>
+    }
+
     return(
         <StyledOpinions className='col-md-6'>
             <Card.Body>
                 <Card.Title className="row justify-content-center fs-3 fw-bold m-0">Clients Opinions</Card.Title>
                 <Row>
-                    <Col className='opinions-page-container'>
-                        <Link className='opinions-page' to='#'>Opinions page</Link>
+                    <Col className='col-xs-12 opinions-page-container'>
+                        <Link className='opinions-page' to='opinions'>Opinions page</Link>
                     </Col>
-                    <Col className="text-end">
+                    <Col className="col-xs-12 text-end">
                         <Dropdown align={"end"} onSelect={selectHandler}>
                             <Dropdown.Toggle className="button categoryButton">
                                 {opinionsType}
@@ -115,23 +169,7 @@ function ClientsOpinionsWidget(){
                     </Col>
                 </Row>
                 <Row>
-                    <div className="opinions-container">
-                        {!isLoading && opinionsToDisplay.map((opinion => (
-                            <Opinion
-                                key={opinion.id}
-                                description={opinion.description}
-                                date={opinion.date}
-                                rating={opinion.rating}
-                            />
-
-                        )))}
-                        {isLoading && <div><img className='mx-auto d-block spinner' src={spinner} alt={''}/></div>}
-                        {!isLoading && error &&
-                        <Col className='text-center error'>
-                            <h2 className=''>{error}</h2>
-                        </Col>
-                        }
-                    </div>
+                    {content}
                 </Row>
             </Card.Body>
         </StyledOpinions>

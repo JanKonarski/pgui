@@ -26,4 +26,8 @@ export const StyledOpinion = styled.div `
   .rating-text {
     
   }
+  
+  .no-opinions {
+    color: grey;
+  }
 `

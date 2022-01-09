@@ -2,6 +2,8 @@ import styled from "styled-components";
 import Widget from "../Widget";
 
 export const StyledOpinions = styled(Widget) `
+  min-height: 413px;
+  
   .dropdown-toggle {
     border-radius: 30px;
     width: 140px;
@@ -30,12 +32,12 @@ export const StyledOpinions = styled(Widget) `
     color: ${({ theme }) => theme.main.color};
   }
 
-  .error, .spinner {
-    margin-top: 140px;
+  .error > *, .spinner > * {
+    margin-top: 10px;
   }
 
   .opinions-page-container {
-    margin-top: 25px;
+    margin-top: 20px;
   }
   
   .opinions-page {
@@ -46,5 +48,14 @@ export const StyledOpinions = styled(Widget) `
   
   .opinions-page:hover {
     color: #0D6EFD;
+  }
+  
+  .no-opinions-header {
+    
+  }
+  
+  .no-opinions-info {
+    font-size: 16px;
+    line-height: 30px;
   }
 `

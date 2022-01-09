@@ -29,4 +29,8 @@ export const StyledCard = styled(Card) `
       width: 80px;
       height: auto;
     }
+  
+    .italics {
+      font-style: italic;    
+    }
 `
