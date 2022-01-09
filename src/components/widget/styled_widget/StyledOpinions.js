@@ -40,6 +40,7 @@ export const StyledOpinions = styled(Widget) `
     margin-top: 20px;
   }
   
+  
   .opinions-page {
     text-decoration: none;
     font-size: 25px;
@@ -57,5 +58,9 @@ export const StyledOpinions = styled(Widget) `
   .no-opinions-info {
     font-size: 16px;
     line-height: 30px;
+  }
+  
+  .spinner {
+    margin-top: 50px;
   }
 `

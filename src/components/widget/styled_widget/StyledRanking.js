@@ -2,5 +2,44 @@ import styled from "styled-components";
 import Widget from "../Widget";
 
 export const StyledRanking = styled(Widget) `
+  img {
+    height: 90px;
+    width: auto;
+    border: 2px solid ${({ theme }) => theme.widget.borderColor};
+    border-radius: 10px;
+    box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.25);
+  }
+
+  .dropdown-toggle {
+    border-radius: 30px;
+    width: 140px;
+    height: 40px;
+    margin-top: 20px;
+  }
+
+  .dropdown, .dropdown:focus  {
+    border-color: ${({ theme }) => theme.widget.buttonBorderColor};
+  }
+
+  .dropdown-menu {
+    background: ${({ theme }) => theme.widget.dropDownBackgroundColor};
+  }
+
+  .dropdownItem {
+    color: ${({ theme }) => theme.main.color};
+  }
   
+  .offer {
+    margin-top: 20px;
+  }
+
+  .description {
+    margin: 0; !important;
+    padding: 0; !important;
+  }
+  
+  .offer-title {
+    font-size: 25px;
+    font-weight: 500;
+  }
 `

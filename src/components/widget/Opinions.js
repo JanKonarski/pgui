@@ -124,7 +124,7 @@ function ClientsOpinionsWidget(){
 
     if (error) {
         content =
-            <Col className='error my-auto'>
+            <Col className='my-auto'>
                 <p className='error'>{error}</p>
                 <Opinion
                     key={0}
@@ -144,7 +144,7 @@ function ClientsOpinionsWidget(){
     }
 
     if (isLoading) {
-        content = <Col className='text-center error my-auto'><img className='mx-auto d-block spinner' src={spinner} alt={''}/></Col>
+        content = <Col className='text-center my-auto'><img className='mx-auto d-block spinner' src={spinner} alt={''}/></Col>
     }
 
     return(

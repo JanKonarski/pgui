@@ -21,7 +21,6 @@ export const StyledCard = styled(Card) `
     }
 
     .error {
-      margin-top: 150px;
       color: ${({ theme }) => theme.main.error};
     }
   
