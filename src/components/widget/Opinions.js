@@ -17,7 +17,6 @@ function ClientsOpinionsWidget(){
     useEffect(() => {
         setError(null);
         fetch(
-            // 'http://127.0.0.1:8000/opinions'
         'http://127.0.0.1:8000/opinions'
         ).then((response) => {
             if (response.ok) {
