@@ -32,6 +32,8 @@ function ClientsOpinionsWidget(){
                     id: key,
                     ...data[key]
                 };
+                let dateString = new Date(opinion.date).toLocaleString();
+                opinion.date = dateString.substr(0, dateString.length - 3);
                 opinions.push(opinion);
             }
 
@@ -154,7 +156,7 @@ function ClientsOpinionsWidget(){
                     <Col className='col-xs-12 opinions-page-container'>
                         <Link className='opinions-page' to='opinions'>Opinions page</Link>
                     </Col>
-                    <Col className="col-xs-12 text-end">
+                    <Col className="col-xs-12 text-end gx-0">
                         <Dropdown align={"end"} onSelect={selectHandler}>
                             <Dropdown.Toggle className="button categoryButton">
                                 {opinionsType}

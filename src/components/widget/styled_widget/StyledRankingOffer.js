@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Widget from "../Widget";
 
 export const StyledRankingOffer = styled.div `
   .offer {
@@ -15,6 +14,6 @@ export const StyledRankingOffer = styled.div `
     font-size: 25px;
     font-weight: 500;
     line-height: 25px;
-    margin-bottom: 25px;
+    margin-bottom: 24px;
   }
 `

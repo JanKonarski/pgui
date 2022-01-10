@@ -25,7 +25,7 @@ function Opinion({description, rating, date, noOpinions}) {
                     <span id="starsCount">{rating}/{maxRating}</span>
                 </Col>
 
-                <Col className="col-7 opinion-date text-end">
+                <Col className="col-7 opinion-date text-end gx-0">
                     {date}
                 </Col>
             </Row>

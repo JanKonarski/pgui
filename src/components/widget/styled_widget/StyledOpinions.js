@@ -17,7 +17,15 @@ export const StyledOpinions = styled(Widget) `
   }
   
   .categoryButton {
-    margin-right: 25px;
+    margin-right: 7px;
+    width: 100px;
+  }
+  
+  @media screen and (min-width: 30em){
+    .categoryButton {
+      margin-right: 25px;
+      width: 132px;
+    }
   }
 
   .dropdown, .dropdown:focus  {
@@ -43,8 +51,15 @@ export const StyledOpinions = styled(Widget) `
   
   .opinions-page {
     text-decoration: none;
-    font-size: 25px;
+    font-size: 22px;
+    line-height: 40px;
     color: ${({ theme }) => theme.widget.orderLink};
+  }
+
+  @media screen and (min-width: 48em){
+    .opinions-page {
+      font-size: 25px;
+    }
   }
   
   .opinions-page:hover {

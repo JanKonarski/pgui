@@ -48,4 +48,13 @@ export const StyledOrders = styled(Widget) `
   .error, .spinner {
     margin-top: 50px;
   }
+  
+  .ordersBody {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+
+  .digits {
+    padding-left: 22px;
+  }
 `
