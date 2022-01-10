@@ -3,7 +3,7 @@ import Widget from "../Widget";
 
 export const StyledRankingOffer = styled.div `
   .offer {
-    margin-top: 20px;
+    margin-bottom: 20px;
   }
 
   .description {
@@ -14,5 +14,7 @@ export const StyledRankingOffer = styled.div `
   .offer-title {
     font-size: 25px;
     font-weight: 500;
+    line-height: 25px;
+    margin-bottom: 25px;
   }
 `

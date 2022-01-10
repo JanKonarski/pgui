@@ -9,9 +9,9 @@ import RankingOffer from "./RankingOffer";
 export default function Ranking() {
     const errorMessage = "Something went wrong - could not load offers.";
     const t = useTranslation()[0]
-    const [sortCriteria, setSortCriteria] = useState("OftenSold");
+    const [sortCriteria, setSortCriteria] = useState("Often bought");
     const [isLoading, setIsLoading] = useState(true);
-    const [offers, setOffers] = useState([]);
+    const [displayOffers, setDisplayOffers] = useState([]);
     const [error, setError] = useState(null);
 
     // useEffect(() => {
@@ -42,54 +42,82 @@ export default function Ranking() {
                 throw new Error(errorMessage)
             }
         }).then((data) => {
-            let offers = [];
-
-            for (const key in data) {
-                const offer = {
-                    id: key,
-                    ...data[key]
-                };
-                offers.push(offer);
-            }
-
-            let filteredOffers = getFilteredOffers(offers);
-
-            filteredOffers.sort(function(o1, o2) {
-                const firstDate = new Date(o1["date"])
-                const secondDate = new Date(o2["date"])
-                return secondDate - firstDate;
-            });
-
+            let offers = getSortedOffers(data);
             const offersToDisplay = 5;
-            filteredOffers = filteredOffers.slice(0, offersToDisplay);
-
+            offers = offers.slice(0, offersToDisplay);
             setIsLoading(false);
-            setOffers(filteredOffers);
+            setDisplayOffers(offers);
         }).catch((error) => {
             setError(errorMessage);
             setIsLoading(false);
         });
     }, [sortCriteria]);
 
-    function getFilteredOffers() {
-
+    function selectHandler(e) {
+        setSortCriteria(e);
+        setIsLoading(true);
     }
+
+    function getSortedOffers(data) {
+        let offers = [];
+        for (const key in data) {
+            const offer = {
+                id: key,
+                ...data[key]
+            };
+            offers.push(offer);
+        }
+
+        if (sortCriteria === "Often bought") {
+            mostOftenBoughtSort(offers);
+        } else if (sortCriteria === "Rarely bought") {
+            leastOftenBoughtSort(offers);
+        }
+        return offers;
+    }
+
+    function mostOftenBoughtSort(offers) {
+        offers.sort(function (o1, o2) {
+            return o2['sold'] - o1['sold'] || o2['turnover'] - o2['turnover'];
+        });
+    }
+
+    function leastOftenBoughtSort(offers) {
+        offers.sort(function (o1, o2) {
+            return o1['sold'] - o2['sold'] || o2['views'] - o2['views'];
+        });
+    }
+
+    let offersContent =
+        <div className='offers-container'>
+            {displayOffers.map((offer) => (
+                <RankingOffer
+                    key={offer.id}
+                    name={offer.name}
+                    sold={offer.sold}
+                    turnover={offer.turnover}
+                    views={offer.views}
+                    sortCriteria={sortCriteria}
+                />
+            ))}
+        </div>;
 
   return(
     <StyledRanking className='col-md-6'>
       <Card.Body>
         <Card.Title className="row justify-content-center fs-3 fw-bold m-0">Offers ranking</Card.Title>
-          <Dropdown className='text-end' align={"end"}>
-              <Dropdown.Toggle className="button categoryButton">
-                  Often bought
+          <Dropdown className='text-end' align={"end"} onSelect={selectHandler}>
+              <Dropdown.Toggle className="button sortButton">
+                  {sortCriteria}
               </Dropdown.Toggle>
               <Dropdown.Menu className="dropdown">
+                  <Dropdown.Item className="dropdownItem" eventKey={"Often bought"} active={sortCriteria==="Often bought"}>Often bought</Dropdown.Item>
+                  <Dropdown.Item className="dropdownItem" eventKey={"Rarely bought"} active={sortCriteria==="Rarely bought"}>Rarely bought</Dropdown.Item>
               </Dropdown.Menu>
           </Dropdown>
-
-        <RankingOffer/>
-        <RankingOffer/>
-
+          <Row>
+              {offersContent}
+          </Row>
       </Card.Body>
     </StyledRanking>
   );

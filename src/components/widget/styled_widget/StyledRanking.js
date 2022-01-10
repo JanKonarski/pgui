@@ -28,4 +28,14 @@ export const StyledRanking = styled(Widget) `
   .dropdownItem {
     color: ${({ theme }) => theme.main.color};
   }
+  
+  .offers-container {
+    overflow-y: scroll;
+    height: 400px;
+    margin-top: 20px;
+  }
+  
+  .sortButton {
+    
+  }
 `
