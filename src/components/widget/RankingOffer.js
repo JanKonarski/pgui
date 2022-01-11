@@ -1,9 +1,8 @@
 import {Col, Row} from "react-bootstrap";
-import offerImage from "../../image/chiken.png";
 import {StyledRankingOffer} from "./styled_widget/StyledRankingOffer";
 
 
-function RankingOffer({key, name, image, sold, turnover, views, sortCriteria}) {
+function RankingOffer({key, name, photo, sold, turnover, views, sortCriteria}) {
     let secondField;
     let secondFieldName;
     if (sortCriteria === 'Often bought') {
@@ -18,7 +17,7 @@ function RankingOffer({key, name, image, sold, turnover, views, sortCriteria}) {
         <StyledRankingOffer>
             <Row className='mx-0 g-0 offer'>
                 <Col className='col-md-2'>
-                    <img src={offerImage} className='' alt={''}/>
+                    <img src={photo} className='' alt={''}/>
                 </Col>
                 <Col className='col-md-10 description'>
                     <Row className='offer-title'>{name}</Row>
