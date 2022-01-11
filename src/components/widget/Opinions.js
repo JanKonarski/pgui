@@ -124,28 +124,25 @@ function ClientsOpinionsWidget(){
     }
 
     if (error) {
+        const mockOpinion = <Opinion
+            key={0}
+            description={"Opinion not available..."}
+            date={"X/X/X"}
+            rating={0}
+            noOpinions={true}
+        />;
         content =
             <Col className='my-auto'>
                 <p className='error'>{error}</p>
-                <Opinion
-                    key={0}
-                    description={"Opinion not available..."}
-                    date={"X/X/X"}
-                    rating={0}
-                    noOpinions={true}
-                />
-                <Opinion
-                    key={0}
-                    description={"Opinion not available..."}
-                    date={"X/X/X"}
-                    rating={0}
-                    noOpinions={true}
-                />
+                {mockOpinion}
+                {mockOpinion}
+                {mockOpinion}
+                {mockOpinion}
             </Col>
     }
 
     if (isLoading) {
-        content = <Col className='text-center my-auto'><img className='mx-auto d-block spinner' src={spinner} alt={''}/></Col>
+        content = <Col className='mx-auto d-block spinner'><img className='mx-auto align-self-center d-block spinner' src={spinner} alt={''}/></Col>
     }
 
     return(
@@ -153,10 +150,10 @@ function ClientsOpinionsWidget(){
             <Card.Body>
                 <Card.Title className="row justify-content-center fs-3 fw-bold m-0">Clients Opinions</Card.Title>
                 <Row>
-                    <Col className='col-xs-12 opinions-page-container'>
+                    <Col className='col-8 opinions-page-container'>
                         <Link className='opinions-page' to='opinions'>Opinions page</Link>
                     </Col>
-                    <Col className="col-xs-12 text-end gx-0">
+                    <Col className="col-4 text-end gx-0">
                         <Dropdown align={"end"} onSelect={selectHandler}>
                             <Dropdown.Toggle className="button categoryButton">
                                 {opinionsType}

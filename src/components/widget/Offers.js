@@ -1,12 +1,13 @@
 import Widget from './Widget';
-import {StyledRanking} from "./styled_widget/StyledRanking";
+import {StyledOffers} from "./styled_widget/StyledOffers";
 import {Card, Col, Dropdown, Row} from "react-bootstrap";
-import offerImage from "../../image/chiken.png"
 import {useTranslation} from "react-i18next";
 import {useEffect, useState} from "react";
-import RankingOffer from "./RankingOffer";
+import Offer from "./Offer";
+import Opinion from "./Opinion";
+import spinner from "../../image/spinner.gif";
 
-export default function Ranking() {
+export default function Offers() {
     const errorMessage = "Something went wrong - could not load offers.";
     const t = useTranslation()[0]
     const [sortCriteria, setSortCriteria] = useState("Often bought");
@@ -17,7 +18,7 @@ export default function Ranking() {
     useEffect(() => {
         setError(null);
         fetch(
-            'http://127.0.0.1:8000/offers'
+            'http://127.0.0.1:8000/no_offers'
         ).then((response) => {
             if (response.ok) {
                 return response.json();
@@ -71,11 +72,14 @@ export default function Ranking() {
         });
     }
 
+    function offersExist() {
+        return displayOffers.length !== 0;
+    }
+
     let offersContent =
-        <div className='box'>
             <div className='offers-container'>
                 {displayOffers.map((offer) => (
-                    <RankingOffer
+                    <Offer
                         key={offer.id}
                         photo={offer.photoBytes}
                         name={offer.name}
@@ -85,11 +89,34 @@ export default function Ranking() {
                         sortCriteria={sortCriteria}
                     />
                 ))}
-            </div>
+
         </div>;
 
+    let noOffersContent =
+        <Col className='text-center my-auto'>
+            <h1 className='fw-bold'>Brak ofert</h1>
+            <p className='no-opinions-info'>Nowe oferty zostaną wyświetlone, jeśli wystawisz produkty na sprzedaż.</p>
+        </Col>;
+
+    let content = noOffersContent;
+
+    if (offersExist()) {
+        content = offersContent;
+    }
+
+    if (error) {
+        content =
+            <Col className='my-auto text-center error'>
+                <h2 className='my-auto'>{error}</h2>
+            </Col>
+    }
+
+    if (isLoading) {
+        content = <img className='mx-auto align-self-center d-block spinner' src={spinner} alt={''}/>
+    }
+
   return(
-    <StyledRanking className='col-md-6'>
+    <StyledOffers className='col-md-6'>
       <Card.Body>
         <Card.Title className="row justify-content-center fs-3 fw-bold m-0">Offers ranking</Card.Title>
           <Dropdown className='text-end ' align={"end"} onSelect={selectHandler}>
@@ -102,9 +129,11 @@ export default function Ranking() {
               </Dropdown.Menu>
           </Dropdown>
           <Row>
-              {offersContent}
+              <div className='d-flex align-items-center box'>
+                {content}
+              </div>
           </Row>
       </Card.Body>
-    </StyledRanking>
+    </StyledOffers>
   );
 }

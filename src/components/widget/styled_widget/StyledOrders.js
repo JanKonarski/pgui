@@ -45,13 +45,13 @@ export const StyledOrders = styled(Widget) `
     font-weight: bold;
   }
 
-  .error, .spinner {
+  .spinner {
     margin-top: 50px;
   }
   
   .ordersBody {
-    padding-right: 40px;
-    padding-left: 40px;
+    padding-right: 25px;
+    padding-left: 25px;
   }
 
   .digits {

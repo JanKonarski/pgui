@@ -9,7 +9,7 @@ export const StyledOpinion = styled.div `
   .opinion-date {
     color: #95938B;
     font-style: italic;
-    margin-top: 3px;
+    margin-top: 4px;
     font-size: 15px;
   }
   

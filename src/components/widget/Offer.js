@@ -1,8 +1,8 @@
 import {Col, Row} from "react-bootstrap";
-import {StyledRankingOffer} from "./styled_widget/StyledRankingOffer";
+import {StyledOffer} from "./styled_widget/StyledOffer";
 
 
-function RankingOffer({key, name, photo, sold, turnover, views, sortCriteria}) {
+function Offer({key, name, photo, sold, turnover, views, sortCriteria}) {
     let secondField;
     let secondFieldName;
     if (sortCriteria === 'Often bought') {
@@ -14,20 +14,20 @@ function RankingOffer({key, name, photo, sold, turnover, views, sortCriteria}) {
     }
 
     return (
-        <StyledRankingOffer className>
+        <StyledOffer className>
             <Row className='mx-0 g-0 offer'>
-                <Col className='col-md-2'>
+                <Col className='col-sm-4 col-md-2'>
                     <img src={photo} className='' alt={''}/>
                 </Col>
-                <Col className='col-md-10 description'>
+                <Col className='col-sm-8 col-md-10 description'>
                     <Row className='offer-title'>{name}</Row>
                     <Row>Sold: {sold}</Row>
                     <Row>{secondFieldName} {secondField}</Row>
                 </Col>
             </Row>
-        </StyledRankingOffer>
+        </StyledOffer>
 
     );
 }
 
-export default RankingOffer;
+export default Offer;

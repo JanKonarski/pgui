@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledRankingOffer = styled.div `
+export const StyledOffer = styled.div `
   .offer {
     margin-bottom: 20px;
   }

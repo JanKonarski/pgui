@@ -6,7 +6,7 @@ export const lightTheme = {
         backgroundColor: '#FFFFFF',
         color: '#000000',
         toggleColor: '#FFFFFF',
-        error: '#000000',
+        error: '#ED4337',
     },
 
     navbar: {

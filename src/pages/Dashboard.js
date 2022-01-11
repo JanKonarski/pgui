@@ -4,7 +4,7 @@ import SalesQuality from '../components/widget/SalesQuality';
 import DailyTips from '../components/widget/DailyTips';
 import Orders from '../components/widget/Orders';
 import SalesChart from '../components/widget/SalesChart';
-import Ranking from '../components/widget/Ranking';
+import Ranking from '../components/widget/Offers';
 import {useTranslation} from "react-i18next";
 import Opinions from "../components/widget/Opinions";
 

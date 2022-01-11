@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Widget from "../Widget";
 
 export const StyledOpinions = styled(Widget) `
-  min-height: 413px;
+  min-height: 571px;
   
   .dropdown-toggle {
     border-radius: 30px;
