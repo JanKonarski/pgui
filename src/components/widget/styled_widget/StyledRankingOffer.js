@@ -4,7 +4,7 @@ export const StyledRankingOffer = styled.div `
   .offer {
     margin-bottom: 20px;
   }
-
+  
   .description {
     margin: 0; !important;
     padding: 0; !important;

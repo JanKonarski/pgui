@@ -14,7 +14,7 @@ function RankingOffer({key, name, photo, sold, turnover, views, sortCriteria}) {
     }
 
     return (
-        <StyledRankingOffer>
+        <StyledRankingOffer className>
             <Row className='mx-0 g-0 offer'>
                 <Col className='col-md-2'>
                     <img src={photo} className='' alt={''}/>
@@ -26,6 +26,7 @@ function RankingOffer({key, name, photo, sold, turnover, views, sortCriteria}) {
                 </Col>
             </Row>
         </StyledRankingOffer>
+
     );
 }
 

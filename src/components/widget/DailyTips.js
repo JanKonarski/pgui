@@ -28,7 +28,7 @@ export default function DailyTips() {
             setError(errorMessage);
             setIsLoading(false);
         });
-    });
+    }, []);
 
     const getTips=(data)=> {
         let tips = [];

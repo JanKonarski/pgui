@@ -72,25 +72,27 @@ export default function Ranking() {
     }
 
     let offersContent =
-        <div className='offers-container'>
-            {displayOffers.map((offer) => (
-                <RankingOffer
-                    key={offer.id}
-                    photo={offer.photoBytes}
-                    name={offer.name}
-                    sold={offer.sold}
-                    turnover={offer.turnover}
-                    views={offer.views}
-                    sortCriteria={sortCriteria}
-                />
-            ))}
+        <div className='box'>
+            <div className='offers-container'>
+                {displayOffers.map((offer) => (
+                    <RankingOffer
+                        key={offer.id}
+                        photo={offer.photoBytes}
+                        name={offer.name}
+                        sold={offer.sold}
+                        turnover={offer.turnover}
+                        views={offer.views}
+                        sortCriteria={sortCriteria}
+                    />
+                ))}
+            </div>
         </div>;
 
   return(
     <StyledRanking className='col-md-6'>
       <Card.Body>
         <Card.Title className="row justify-content-center fs-3 fw-bold m-0">Offers ranking</Card.Title>
-          <Dropdown className='text-end' align={"end"} onSelect={selectHandler}>
+          <Dropdown className='text-end ' align={"end"} onSelect={selectHandler}>
               <Dropdown.Toggle className="button sortButton">
                   {sortCriteria}
               </Dropdown.Toggle>

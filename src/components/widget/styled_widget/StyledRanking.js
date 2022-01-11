@@ -5,7 +5,7 @@ export const StyledRanking = styled(Widget) `
   img {
     height: 90px;
     width: 90px;
-    border: 2px solid ${({ theme }) => theme.widget.photoBorder};
+    border: 2px solid ${({ theme }) => theme.widget.title};
     border-radius: 10px;
     box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.25);
   }
@@ -29,13 +29,24 @@ export const StyledRanking = styled(Widget) `
     color: ${({ theme }) => theme.main.color};
   }
   
+  .box {
+    padding: 0;
+    margin-top: 20px;
+    overflow: hidden;
+    border-radius: 15px;
+    border: 2px solid ${({ theme }) => theme.widget.borderColor};
+    background-color: #363636;
+  }
+  
   .offers-container {
     overflow-y: scroll;
     height: 400px;
-    margin-top: 20px;
+    padding: 20px;
+    padding-bottom: 0;
+    background-color: ${({ theme }) => theme.widget.offerContainer};
   }
   
   .sortButton {
-    
+    margin-right: -12px;
   }
 `
