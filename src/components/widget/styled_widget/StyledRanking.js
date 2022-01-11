@@ -5,7 +5,7 @@ export const StyledRanking = styled(Widget) `
   img {
     height: 90px;
     width: 90px;
-    border: 2px solid ${({ theme }) => theme.widget.borderColor};
+    border: 2px solid ${({ theme }) => theme.widget.photoBorder};
     border-radius: 10px;
     box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.25);
   }
