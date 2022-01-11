@@ -14,23 +14,6 @@ export default function Ranking() {
     const [displayOffers, setDisplayOffers] = useState([]);
     const [error, setError] = useState(null);
 
-    // useEffect(() => {
-    //     let photo;
-    //     fetch(
-    //         'http://127.0.0.1:8000/photo'
-    //     ).then(response => {
-    //         if (!response.ok) {
-    //             throw new Error(errorMessage);
-    //         }
-    //         response.blob().then(blobResponse => {
-    //             photo = URL.createObjectURL(blobResponse);
-    //         })
-    //     }).catch((error) => {
-    //         setError(errorMessage);
-    //         setIsLoading(false);
-    //     });
-    // }, []);
-
     useEffect(() => {
         setError(null);
         fetch(
@@ -93,6 +76,7 @@ export default function Ranking() {
             {displayOffers.map((offer) => (
                 <RankingOffer
                     key={offer.id}
+                    photo={offer.photoBytes}
                     name={offer.name}
                     sold={offer.sold}
                     turnover={offer.turnover}
