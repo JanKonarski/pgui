@@ -18,6 +18,7 @@ export const lightTheme = {
     widget: {
         backgroundColor: '#FFFFFF',
         borderColor: '#0D6EFD',
+        photoBorder: '#0D6EFD',
         title: '#0D6EFD',
         rating: '#0D6EFD',
         buttonColor: '#0275d8',
@@ -41,10 +42,11 @@ export const darkTheme = {
     },
 
     widget: {
-        backgroundColor: '#495057',
+        backgroundColor: '#54595E',
         borderColor: '#FFFFFF',
-        title: '#FFFFFF',
-        rating: '#FFFFFF',
+        photoBorder: '#30009C',
+        title: '#02DAC5',
+        rating: '#02DAC5',
         buttonColor: '#343A40',
         buttonBorderColor: '#CED4DA',
         dropDownBackgroundColor: '#343A40',
