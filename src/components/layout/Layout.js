@@ -3,8 +3,7 @@ import NavBar from './NavBar'
 import Footer from './Footer'
 
 const Main = styled.main`
-  padding-top: 56px;
-  padding-bottom: 40px;
+  padding: 56px 40px 40px 40px;
 `;
 
 export default function Layout(props) {
