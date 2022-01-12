@@ -3,63 +3,98 @@ import Container from 'react-bootstrap/Container';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import { PlusCircle, MoonFill, SunFill } from 'react-bootstrap-icons';
+import {PlusCircle, MoonFill, SunFill} from 'react-bootstrap-icons';
 import {StyledNavbar} from "./StyledNavBar";
 import {StyledOffcanvas} from "./StyledOffcanvas";
 import {Link} from "react-router-dom";
+import {useState} from "react";
 
 export default function NavBar(props) {
-  const t = props.t;
-  const set_t = props.set_t;
+    const t = props.t;
+    const i18n = props.set_t;
 
-  let moon =  <MoonFill className='me-2 text-dark' size={15} onClick={props.toggleTheme}/>;
-  let sun =   <SunFill className='me-2 text-dark' size={15} onClick={props.toggleTheme}/>;
-  const icon = props.theme === "light" ? moon : sun;
+    let moon = <MoonFill className='me-2 text-dark' size={15} onClick={props.toggleTheme}/>;
+    let sun = <SunFill className='me-2 text-dark' size={15} onClick={props.toggleTheme}/>;
+    const icon = props.theme === "light" ? moon : sun;
 
-  return(
-    <header>
-      <StyledNavbar expand={false} className='fixed-top'>
-        <Container fluid>
-          <Navbar.Brand><Link className='home-link' to="/">{t('navbarName')}</Link></Navbar.Brand>
-          <Navbar.Toggle aria-controls='offcanvasNavbar' />
+    const languages = ['English', 'Polski']
+    const [selectedLanguage, setSelectedLanguage] = useState(() => {
+        if (localStorage.getItem('i18nextLng') === "pl") {
+            return languages[1]
+        }
+        return languages[0]
+    })
 
-          <Navbar.Offcanvas
-            id='offcanvasNavbar'
-            aria-labelledby='offcanvasNavbarLabel'
-            placement='end'
-          >
 
-            <Offcanvas.Header closeButton>
-              <Offcanvas.Title id='offcanvasNavbarLabel'>{t('navbarSettings')}</Offcanvas.Title>
-            </Offcanvas.Header>
-            <Offcanvas.Body>
-              <Nav className='justify-content-end flex-grow-1 pe-3'>
-                <Nav.Link href=''>{t('navbarAccountDetails')}</Nav.Link>
-                <NavDropdown title={t('navbarSwitchAccount')} id='offcanvasNavbarDropdownAccount'>
-                  <NavDropdown.Item href=''>Megan Thee Stalion</NavDropdown.Item>
-                  <NavDropdown.Item href=''>Magda Gesler</NavDropdown.Item>
-                  <NavDropdown.Item href=''>Harry Potter</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href=''>
-                    <PlusCircle className='me-2' />
-                    {t('navbarAddAccount')}
-                  </NavDropdown.Item>
-                </NavDropdown>
-                <hr />
-                <Nav.Link href='' className='text-danger'>{t('navbarLogout')}</Nav.Link>
-                <hr />
-                <NavDropdown title={t('navbarLanguage')} id='offcanvasNavbarDropdownLanguage'>
-                  <NavDropdown.Item href=''>English</NavDropdown.Item>
-                  <NavDropdown.Item href=''>Polish</NavDropdown.Item>
-                </NavDropdown>
-                <Nav.Link href=''>
-                  Theme - {icon}
-                </Nav.Link>
-              </Nav>
-            </Offcanvas.Body>
-          </Navbar.Offcanvas>
-        </Container>
-      </StyledNavbar>
-    </header>
-  );
+    function setAppLanguage(e) {
+        if (e === 'English') {
+            localStorage.setItem('i18nextLng', 'eng');
+            i18n.changeLanguage(localStorage.getItem('i18nextLng')).then(r => {
+                return true
+            })
+
+        }
+        if (e === 'Polski') {
+            localStorage.setItem('i18nextLng', 'pl');
+            i18n.changeLanguage(localStorage.getItem('i18nextLng')).then(r => {
+                return true
+            })
+
+        }
+        setSelectedLanguage(e);
+    }
+
+    return (
+        <header>
+            <StyledNavbar expand={false} className='fixed-top'>
+                <Container fluid>
+                    <Navbar.Brand><Link className='home-link' to="/">{t('navbarName')}</Link></Navbar.Brand>
+                    <Navbar.Toggle aria-controls='offcanvasNavbar'/>
+
+                    <Navbar.Offcanvas
+                        id='offcanvasNavbar'
+                        aria-labelledby='offcanvasNavbarLabel'
+                        placement='end'
+                    >
+
+                        <Offcanvas.Header closeButton>
+                            <Offcanvas.Title id='offcanvasNavbarLabel'>{t('navbarSettings')}</Offcanvas.Title>
+                        </Offcanvas.Header>
+                        <Offcanvas.Body>
+                            <Nav className='justify-content-end flex-grow-1 pe-3'>
+                                <Nav.Link href=''>{t('navbarAccountDetails')}</Nav.Link>
+                                <NavDropdown title={t('navbarSwitchAccount')} id='offcanvasNavbarDropdownAccount'>
+                                    <NavDropdown.Item href=''>Megan Thee Stalion</NavDropdown.Item>
+                                    <NavDropdown.Item href=''>Magda Gesler</NavDropdown.Item>
+                                    <NavDropdown.Item href=''>Harry Potter</NavDropdown.Item>
+                                    <NavDropdown.Divider/>
+                                    <NavDropdown.Item href=''>
+                                        <PlusCircle className='me-2'/>
+                                        {t('navbarAddAccount')}
+                                    </NavDropdown.Item>
+
+
+                                </NavDropdown>
+                                <hr/>
+                                <Nav.Link href='' className='text-danger'>{t('navbarLogout')}</Nav.Link>
+                                <hr/>
+
+                                <NavDropdown title={selectedLanguage} onSelect={setAppLanguage}  >
+
+                                        {languages.map(l =>
+                                            <NavDropdown.Item className='language-item' eventKey={l} key={l}
+                                                              active={l === selectedLanguage} onSelect={setAppLanguage}>{l}</NavDropdown.Item>
+                                        )}
+
+                                </NavDropdown>
+                                <Nav.Link href=''>
+                                    Theme - {icon}
+                                </Nav.Link>
+                            </Nav>
+                        </Offcanvas.Body>
+                    </Navbar.Offcanvas>
+                </Container>
+            </StyledNavbar>
+        </header>
+    );
 }
