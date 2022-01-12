@@ -9,6 +9,7 @@ export default function DailyTips() {
     const [error, setError] = useState(null);
     const [tips,setTips] = useState(null)
     const [isLoading, setIsLoading] = useState(true);
+    const [language,setLanguage] = useState("pl")
 
   useEffect(()=> {
         setError(null);
@@ -21,9 +22,8 @@ export default function DailyTips() {
                 throw new Error(errorMessage)
             }
         }).then((data) => {
-
+            console.log(data)
             setTips(getTips(data))
-            console.log(tips)
         }).catch((error) => {
             setError(errorMessage);
             setIsLoading(false);
@@ -33,13 +33,12 @@ export default function DailyTips() {
     const getTips=(data)=> {
         let tips = [];
         for (const key in data) {
-            const tip = {
-                id: key,
-                ...data[key]
-            };
+            console.log(data[key])
+            const tip =data[key].tip
+                
             tips.push(tip);
         }
-
+        console.log(tips)
         return tips;
     }
 
@@ -51,11 +50,13 @@ export default function DailyTips() {
 
       </Container>
       <Container className='daily-tips'>
-          {/*{tips.map((t) =>(*/}
-          {/*<Container className='pt-2' fluid>*/}
-          {/*    {t}*/}
-          {/*</Container>*/}
-          {/*    ))}*/}
+          {tips.map((t) =>(
+          <Container className='pt-2 text-center' fluid>
+            {t}
+          </Container>
+              ))}
+              
+         
 
 
       </Container>
