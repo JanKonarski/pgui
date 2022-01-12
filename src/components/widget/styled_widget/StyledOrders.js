@@ -2,6 +2,8 @@ import styled from "styled-components";
 import Widget from "../Widget";
 
 export const StyledOrders = styled(Widget) `
+  
+  
   .orders {
     margin: 20px 0 0;
   }

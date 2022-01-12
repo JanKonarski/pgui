@@ -7,6 +7,7 @@ import SalesChart from '../components/widget/SalesChart';
 import Ranking from '../components/widget/Offers';
 import {useTranslation} from "react-i18next";
 import Opinions from "../components/widget/Opinions";
+import i18n from "../translations/i18n";
 
 export default function Dashboard() {
     const {t} = useTranslation();
@@ -15,7 +16,7 @@ export default function Dashboard() {
     <div>
       <Container className='pt-4 px-0 row m-0' fluid>
         <SalesQuality t={t} />
-        <DailyTips t={t} />
+        <DailyTips t={t} language={i18n.language} />
         <Orders t={t}/>
       </Container>
       <Container className='row px-0 m-0' fluid>

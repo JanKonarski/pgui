@@ -3,18 +3,19 @@ import Container from 'react-bootstrap/Container';
 import Widget from './Widget';
 import {StyledDailyTips} from "./styled_widget/StyledDailyTips";
 import {useEffect, useState} from "react";
+import i18n from "../../translations/i18n";
 
-export default function DailyTips() {
+export default function DailyTips(props) {
     const errorMessage = "Something went wrong - could not load daily tips.";
     const [error, setError] = useState(null);
     const [tips,setTips] = useState(null)
     const [isLoading, setIsLoading] = useState(true);
-    const [language,setLanguage] = useState("pl")
+
 
   useEffect(()=> {
         setError(null);
         fetch(
-            'http://127.0.0.1:8000/tips/eng'
+            'http://127.0.0.1:8000/tips/'+props.language
         ).then((response) => {
             if (response.ok) {
                 return response.json();
@@ -28,14 +29,14 @@ export default function DailyTips() {
             setError(errorMessage);
             setIsLoading(false);
         });
-    }, []);
+    }, [props.language]);
 
     const getTips=(data)=> {
         let tips = [];
         for (const key in data) {
             console.log(data[key])
             const tip =data[key].tip
-                
+
             tips.push(tip);
         }
         console.log(tips)
@@ -55,6 +56,8 @@ export default function DailyTips() {
             {t}
           </Container>
               ))}
+
+
               
          
 
