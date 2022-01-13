@@ -25,6 +25,7 @@ export default function DailyTips(props) {
         }).then((data) => {
             console.log(data)
             setTips(getTips(data))
+            setIsLoading(false);
         }).catch((error) => {
             setError(errorMessage);
             setIsLoading(false);
@@ -42,6 +43,17 @@ export default function DailyTips(props) {
         console.log(tips)
         return tips;
     }
+    let displayTips;
+    if (tips !== null) {
+        displayTips =
+            <div>
+                {tips.map((tip) =>(
+                    <Container className='pt-2 text-center' fluid>
+                        {tip}
+                    </Container>
+                ))}
+            </div>;
+    }
 
 
   return(
@@ -51,11 +63,7 @@ export default function DailyTips(props) {
 
       </Container>
       <Container className='daily-tips'>
-          {tips.map((t) =>(
-          <Container className='pt-2 text-center' fluid>
-            {t}
-          </Container>
-              ))}
+          {displayTips}
 
 
               
