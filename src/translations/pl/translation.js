@@ -30,7 +30,24 @@ const TRANSLATION_PL = {
   salesQuality : {
     annualMsg : 'Twój roczny wynik jakości sprzedaży',
     improvement : 'Nad czym musisz popracować?'
+  },
+
+
+
+  opinionsWidget : "Opinie klientów",
+  opinions :{
+    a : 'Wszystkie',
+    p :'Pozytywne',
+    n : 'Negatywne',
+    page : 'Strona opinii',
+    header :'Brak opinii',
+    info : "Nowe opinie zostaną wyświetlone, jeśli zostaną dodane przez klientów",
+    error :"Cos poszło nie tak - nie mozna załadować opinii"
+
   }
 };
+
+
+
 
 export default TRANSLATION_PL;

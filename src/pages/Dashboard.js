@@ -23,8 +23,8 @@ export default function Dashboard() {
         <SalesChart t={t} language={i18n.language} id={0} />
       </Container>
       <Container className='pb-6 px-0 row m-0' fluid>
-        <Opinions />
-        <Ranking />
+        <Opinions t={t} />
+        <Ranking t={t} />
       </Container>
     </div>
   );
