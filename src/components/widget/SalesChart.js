@@ -9,6 +9,7 @@ import {StyledSalesChart} from "./styled_widget/StyledSalesChart";
 import moment from "moment";
 import 'moment/locale/en-au';
 import 'moment/locale/pl';
+import spinner from "../../image/spinner.gif";
 
 export default function SalesChart(props) {
 
@@ -22,6 +23,7 @@ export default function SalesChart(props) {
                                 };
     const availableFilters = {"Revenue" : "revenue", 'Sold items' :'turnover'}
     const [isLoading, setIsLoading] = useState(true);
+    let content = null
 
 
 
@@ -35,34 +37,20 @@ export default function SalesChart(props) {
     const [days,setDays] = useState(null)
     const [hours,setHour] = useState(null)
 
+    const [chartData,setChartData] =useState(null)
 
-    const getConvertedChartData=(data,labels)=> {
-        console.log("here")
-        console.log(labels)
-        console.log(data)
-        let d = [];
-        let index =0
-        // for (let i in labels) {
-        //    d.push({
-        //     {
-        //
-        //
-        //         key : ,
-        //         value: i
-        //     }
-        //    })
-        //     console.log('data'+data[1])
-        //     console.log('label'+labels[i])
-        //     index = index+1
-        // }
-        console.log(d)
-        return d
-
+    function getTimeLabels() {
+            if (timePeriod ==='Today'){
+                return hours;
+            }
+            if(timePeriod==='This week'){
+                return days
+            }
+            return months
     }
 
-
     const fetchData=(filter, timePeriod)=>{
-        // setIsLoading(true);
+        setIsLoading(true);
         fetch(
             'http://127.0.0.1:8000/chart/'+availableFilters[filter]+'/'+availableTimePeriods[timePeriod]+'/?id='+props.id+'&date=2022-1-7T23:40:00.000'
         ).then((response) => {
@@ -72,19 +60,32 @@ export default function SalesChart(props) {
                 throw new Error('Could not load data')
             }
         }).then((data) => {
-            // setIsLoading(false);
-
-            setChartData(data)
-
+            setTimeout(function(){
+                console.log("Loading chart data");
+            },5000);
+            console.log("convert")
+            // console.log(data)
+            // console.log(getTimeLabels())
+            console.log(convert(data,getTimeLabels()))
+            // setChartData(convert(data,getTimeLabels()))
+            setIsLoading(false)
 
         }).catch((error) => {
-
+            setIsLoading(false)
         });
     }
 
-    const [chartData,setChartData] =useState(null)
 
 
+    const convert=(data,labels)=>{
+        let k =0
+        let d = {}
+        for (let key in data){
+            {d[labels[k]] = data[key]}
+            k+=1
+        }
+        return d
+    }
 
 
     useEffect(()=> {
@@ -98,24 +99,23 @@ export default function SalesChart(props) {
         )
         setMonths(moment.months())
         setDays(moment.weekdays())
+
+        fetchData(filter,timePeriod)
+
     }, [props.language]);
-
-
 
     const onChartTypeChangeHandler = (e) => {
         setChartType(e);
-
-
     };
 
     const onTimePeriodChangeHandler = (e) => {
         setTimePeriod(e)
-        fetchData(filter,timePeriod)
+        fetchData(filter,e)
     }
 
     const onFilterChangeHandler = (e) => {
         setFilter(e)
-        fetchData(filter,timePeriod)
+        fetchData(e,timePeriod)
     }
 
     const data=["elo","eo"]
@@ -142,6 +142,12 @@ export default function SalesChart(props) {
         }
     }
 
+    if (isLoading) {
+        content =
+            <Col className='mx-auto d-block spinner'><img className='mx-auto align-self-center d-block spinner'
+                                                          src={spinner} alt={''}/></Col>
+    }
+
     return (
         < StyledSalesChart>
             <Container className="container">
@@ -160,12 +166,16 @@ export default function SalesChart(props) {
                         />
                     </Col>
                     <Col xs={9} className={"chart"}>
+                        {chartData}
+                        {/*{fetchChart(chartType)}*/}
 
-                        {fetchChart(chartType)}
                     </Col>
 
                 </Row>
-                {chartData}
+                <Row>
+                    {content}
+                </Row>
+
 
 
 
