@@ -2,24 +2,26 @@ import {Col, Row} from "react-bootstrap";
 import {StyledOffer} from "./styled_widget/StyledOffer";
 
 
-function Offer({key, name, photo, sold, turnover, views, sortCriteria}) {
+function Offer({key, name, photo, sold, turnover, views, offerType}) {
     let secondField;
     let secondFieldName;
-    if (sortCriteria === 'Often bought') {
+    if (offerType === 'Most often') {
         secondField = turnover;
         secondFieldName = 'Turnover:'
-    } else if (sortCriteria === 'Rarely bought') {
+    } else if (offerType === 'Least often') {
         secondField = views;
         secondFieldName = 'Unique views:'
     }
 
     return (
-        <StyledOffer className>
-            <Row className='mx-0 g-0 offer'>
-                <Col className='col-sm-4 col-md-2'>
-                    <img src={photo} className='' alt={''}/>
+        <StyledOffer>
+            <Row className='offer'>
+                <Col className='col-5 col-md-2 fixed'>
+                    <div className='photoContainer'>
+                        <img src={photo} className='' alt={''}/>
+                    </div>
                 </Col>
-                <Col className='col-sm-8 col-md-10 description'>
+                <Col className='col-7 col-md-10 description'>
                     <Row className='offer-title'>{name}</Row>
                     <Row>Sold: {sold}</Row>
                     <Row>{secondFieldName} {secondField}</Row>

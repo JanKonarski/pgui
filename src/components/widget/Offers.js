@@ -1,6 +1,6 @@
 import Widget from './Widget';
 import {StyledOffers} from "./styled_widget/StyledOffers";
-import {Card, Col, Dropdown, Row} from "react-bootstrap";
+import {Button, ButtonGroup, Card, Col, Dropdown, Row, ToggleButton} from "react-bootstrap";
 import {useTranslation} from "react-i18next";
 import {useEffect, useState} from "react";
 import Offer from "./Offer";
@@ -10,7 +10,8 @@ import spinner from "../../image/spinner.gif";
 export default function Offers() {
     const errorMessage = "Something went wrong - could not load offers.";
     const t = useTranslation()[0]
-    const [sortCriteria, setSortCriteria] = useState("Often bought");
+    const [offerType, setOfferType] = useState("Most often");
+    const [sortCriteria, setSortCriteria] = useState("Sold");
     const [isLoading, setIsLoading] = useState(true);
     const [displayOffers, setDisplayOffers] = useState([]);
     const [error, setError] = useState(null);
@@ -18,7 +19,7 @@ export default function Offers() {
     useEffect(() => {
         setError(null);
         fetch(
-            'http://127.0.0.1:8000/no_offers'
+            'http://127.0.0.1:8000/offers'
         ).then((response) => {
             if (response.ok) {
                 return response.json();
@@ -35,11 +36,21 @@ export default function Offers() {
             setError(errorMessage);
             setIsLoading(false);
         });
-    }, [sortCriteria]);
+    }, [offerType, sortCriteria]);
 
-    function selectHandler(e) {
-        setSortCriteria(e);
-        setIsLoading(true);
+    function sortCriteriaHandler(e) {
+        if (e !== sortCriteria) {
+            setSortCriteria(e);
+            setIsLoading(true);
+        }
+    }
+
+    function offerTypeHandler(selectedOfferType) {
+        if (selectedOfferType !== offerType) {
+            setOfferType(selectedOfferType);
+            setIsLoading(true);
+            setSortCriteria("Sold");
+        }
     }
 
     function getSortedOffers(data) {
@@ -52,28 +63,59 @@ export default function Offers() {
             offers.push(offer);
         }
 
-        if (sortCriteria === "Often bought") {
-            mostOftenBoughtSort(offers);
-        } else if (sortCriteria === "Rarely bought") {
-            leastOftenBoughtSort(offers);
+        if (sortCriteria === "Sold" && offerType === "Most often") {
+            soldDecreaseSort(offers);
+        } else if (sortCriteria === "Turnover") {
+            turnoverDecreaseSort(offers);
+        } else if (sortCriteria === "Sold" && offerType === "Least often") {
+            soldIncreaseSort(offers);
+        } else if (sortCriteria === "Views") {
+            viewsDecreaseSort(offers);
         }
         return offers;
     }
 
-    function mostOftenBoughtSort(offers) {
+    function soldDecreaseSort(offers) {
         offers.sort(function (o1, o2) {
-            return o2['sold'] - o1['sold'] || o2['turnover'] - o2['turnover'];
+            return o2['sold'] - o1['sold'];
         });
     }
 
-    function leastOftenBoughtSort(offers) {
+    function turnoverDecreaseSort(offers) {
         offers.sort(function (o1, o2) {
-            return o1['sold'] - o2['sold'] || o2['views'] - o2['views'];
+            return o2['turnover'] - o2['turnover'];
+        });
+    }
+
+    function soldIncreaseSort(offers) {
+        offers.sort(function (o1, o2) {
+            return o1['sold'] - o2['sold'];
+        });
+    }
+
+    function viewsDecreaseSort(offers) {
+        offers.sort(function (o1, o2) {
+            return o2['views'] - o1['views'];
         });
     }
 
     function offersExist() {
         return displayOffers.length !== 0;
+    }
+
+    let dropDownMenuContent;
+    if (offerType === "Most often") {
+        dropDownMenuContent =
+            <Dropdown.Menu className='menu'>
+                <Dropdown.Item className="dropdownItem" eventKey={"Sold"} active={sortCriteria==="Sold"}>Sold</Dropdown.Item>
+                <Dropdown.Item className="dropdownItem" eventKey={"Turnover"} active={sortCriteria==="Turnover"}>Turnover</Dropdown.Item>
+            </Dropdown.Menu>;
+    } else if (offerType === "Least often") {
+        dropDownMenuContent =
+            <Dropdown.Menu className='menu'>
+                <Dropdown.Item className="dropdownItem" eventKey={"Sold"} active={sortCriteria==="Sold"}>Sold</Dropdown.Item>
+                <Dropdown.Item className="dropdownItem" eventKey={"Unique views"} active={sortCriteria==="Unique views"}>Unique views</Dropdown.Item>
+            </Dropdown.Menu>;
     }
 
     let offersContent =
@@ -86,11 +128,11 @@ export default function Offers() {
                         sold={offer.sold}
                         turnover={offer.turnover}
                         views={offer.views}
-                        sortCriteria={sortCriteria}
+                        offerType={offerType}
                     />
                 ))}
 
-        </div>;
+            </div>;
 
     let noOffersContent =
         <Col className='text-center my-auto'>
@@ -119,15 +161,25 @@ export default function Offers() {
     <StyledOffers className='col-md-6'>
       <Card.Body>
         <Card.Title className="row justify-content-center fs-3 fw-bold m-0">Offers ranking</Card.Title>
-          <Dropdown className='text-end ' align={"end"} onSelect={selectHandler}>
-              <Dropdown.Toggle className="button sortButton">
-                  {sortCriteria}
-              </Dropdown.Toggle>
-              <Dropdown.Menu className="dropdown">
-                  <Dropdown.Item className="dropdownItem" eventKey={"Often bought"} active={sortCriteria==="Often bought"}>Often bought</Dropdown.Item>
-                  <Dropdown.Item className="dropdownItem" eventKey={"Rarely bought"} active={sortCriteria==="Rarely bought"}>Rarely bought</Dropdown.Item>
-              </Dropdown.Menu>
-          </Dropdown>
+          <Row className='align-items-end controls'>
+              <Col className='col-12 col-md-4 text-center text-md-start px-0 mx-0'>
+                  <ButtonGroup toggle className="buttons">
+                      <ToggleButton id="button1" type="radio" className="button toggleButton text-nowrap" value="Most often" checked={offerType === "Most often"}
+                                    name="offerType" onClick={() => offerTypeHandler("Most often")}>Most often</ToggleButton>
+                      <ToggleButton id="button2" type="radio" className="button toggleButton text-nowrap" value="Least often" checked={offerType === "Least often"}
+                                    name="offerType" onClick={() => offerTypeHandler("Least often")}>Least often</ToggleButton>
+                  </ButtonGroup>
+              </Col>
+              <Col className='col-12 col-md-8 px-0 mx-0 sortButton'>
+                  <Dropdown className='text-end' align={"end"} onSelect={sortCriteriaHandler}>
+                      <Dropdown.Toggle className="button">
+                          {sortCriteria}
+                      </Dropdown.Toggle>
+                      {dropDownMenuContent}
+                  </Dropdown>
+              </Col>
+          </Row>
+
           <Row>
               <div className='d-flex align-items-center box'>
                 {content}
