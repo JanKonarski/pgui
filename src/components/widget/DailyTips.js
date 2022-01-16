@@ -15,7 +15,7 @@ export default function DailyTips(props) {
   useEffect(()=> {
         setError(null);
         fetch(
-            'http://127.0.0.1:8000/tips/'+props.language
+            'http://127.0.0.1:8000/tips/'+props.language+"/0"
         ).then((response) => {
             if (response.ok) {
                 return response.json();

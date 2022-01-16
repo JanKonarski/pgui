@@ -15,7 +15,7 @@ export default function Orders() {
       setError(null);
       fetch(
           // 'http://127.0.0.1:8000/orders'
-           'http://127.0.0.1:8000/orders'
+           'http://127.0.0.1:8000/orders/0'
       ).then((response) => {
           if (response.ok) {
               return response.json();

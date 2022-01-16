@@ -19,7 +19,7 @@ export default function Offers() {
     useEffect(() => {
         setError(null);
         fetch(
-            'http://127.0.0.1:8000/offers'
+            'http://127.0.0.1:8000/offers/0'
         ).then((response) => {
             if (response.ok) {
                 return response.json();
