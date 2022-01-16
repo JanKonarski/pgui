@@ -33,8 +33,26 @@ export default function SalesChart(props) {
 
     const color = ["#8884d8", "#82ca9d", "orange", "pink"]
 
-    const [months,setMonths] = useState(null)
-    const [days,setDays] = useState(null)
+    const [months,setMonths] = useState(()=>{
+        if (props.language === 'eng'){
+            moment.locale('en-au')
+        }else{
+            moment.locale('pl')
+        }
+
+        return moment.months()
+
+    })
+    const [days,setDays] = useState(()=>{
+        if (props.language === 'eng'){
+            moment.locale('en-au')
+        }else{
+            moment.locale('pl')
+        }
+
+        return moment.weekdays()
+
+    })
     const [hours,setHour] = useState(null)
 
     const [chartData,setChartData] =useState(null)
@@ -68,6 +86,7 @@ export default function SalesChart(props) {
             let tmp = convert(data,getTimeLabels())
             setChartData(tmp)
             setIsLoading(false)
+            alert(data)
         }).catch((error) => {
             setIsLoading(false)
         });
