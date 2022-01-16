@@ -69,7 +69,7 @@ export default function Offers() {
             turnoverDecreaseSort(offers);
         } else if (sortCriteria === "Sold" && offerType === "Least often") {
             soldIncreaseSort(offers);
-        } else if (sortCriteria === "Views") {
+        } else if (sortCriteria === "Unique views") {
             viewsDecreaseSort(offers);
         }
         return offers;
@@ -83,7 +83,7 @@ export default function Offers() {
 
     function turnoverDecreaseSort(offers) {
         offers.sort(function (o1, o2) {
-            return o2['turnover'] - o2['turnover'];
+            return o2['turnover'] - o1['turnover'];
         });
     }
 

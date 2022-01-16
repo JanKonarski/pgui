@@ -18,7 +18,7 @@ export const StyledOpinions = styled(Widget) `
   
   .categoryButton {
     margin-right: 7px;
-    width: 100px;
+    width: 120px;
   }
   
   @media screen and (min-width: 30em){

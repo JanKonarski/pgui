@@ -18,7 +18,7 @@ export const StyledNavbar = styled(Navbar)`
     letter-spacing: 0.1em;
     text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     font-weight: 500;
-    font-size: 28px;
-    line-height: 28px;
+    font-size: 27px;
+    line-height: 27px;
   }
 `;
