@@ -53,6 +53,20 @@ const TRANSLATION_EN = {
     views : 'Unique views',
     mo : 'Most often',
     lo: 'Least often'
+  },
+
+
+  chart :{
+    line : 'Line Chart',
+    bar : 'Bar chart',
+    sold : 'Sold items',
+    turnover : 'Turnover',
+    today : "Today",
+    week : 'This week',
+    year : 'This year',
+    timePeriodMsg : 'Select time period',
+    chartMsg : 'Select chart type you want to display',
+    filter :'Select filter'
   }
 
 

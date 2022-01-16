@@ -18,7 +18,7 @@ export default function SalesChart(props) {
     const availableTimePeriods = {
                                     "Today" : "day",
                                     "This week" : "week",
-                                    "Last year" : "year"
+                                    "This year" : "year"
                                 };
     const availableFilters = {"Revenue" : "revenue", 'Sold items' :'turnover'}
     const [isLoading, setIsLoading] = useState(true);
@@ -165,9 +165,6 @@ export default function SalesChart(props) {
                     </Col>
 
                 </Row>
-                {/*<ul>*/}
-                {/*    {isLoading ? <div>loading</div> : {chartData}}*/}
-                {/*</ul>*/}
                 {chartData}
 
 

@@ -57,6 +57,19 @@ const TRANSLATION_PL = {
     views : 'Wyświetlane',
     mo : 'Najczęściej',
     lo: 'Najrzadziej'
+  },
+
+  chart :{
+    line : 'Wykres Liniowy',
+    bar : 'Wykres Słupkowy',
+    sold : 'Sprzedane sztuki',
+    turnover : 'Obró†',
+    today : "Dziś",
+    week : 'Ten tydzień',
+    year : 'Ten rok',
+    timePeriodMsg : 'Wybierz okres czasu',
+    chartMsg : 'Wybierz rodzaj wykresu',
+    filter :'Wybierz filtr'
   }
 
 };
