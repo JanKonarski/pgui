@@ -41,6 +41,18 @@ const TRANSLATION_EN = {
     header :'No opinions',
     info : "when clients add opinions we will display them",
     error :"Something went wrong - could not load opinions"
+  },
+
+  offersRankingWidget : "Offers ranking",
+  offers : {
+    error : 'Something went wrong - could not load offers',
+    info : 'New offers will be displayed once you put something on sale',
+    noOffers : 'No offers',
+    sold : 'Sold',
+    turnover : 'Turnover',
+    views : 'Unique views',
+    mo : 'Most often',
+    lo: 'Least often'
   }
 
 

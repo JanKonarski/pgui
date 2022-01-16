@@ -7,8 +7,8 @@ import Offer from "./Offer";
 import Opinion from "./Opinion";
 import spinner from "../../image/spinner.gif";
 
-export default function Offers() {
-    const errorMessage = "Something went wrong - could not load offers.";
+export default function Offers(props) {
+
     const t = useTranslation()[0]
     const [offerType, setOfferType] = useState("Most often");
     const [sortCriteria, setSortCriteria] = useState("Sold");
@@ -24,7 +24,7 @@ export default function Offers() {
             if (response.ok) {
                 return response.json();
             } else {
-                throw new Error(errorMessage)
+                throw new Error(props.t('offers.error'))
             }
         }).then((data) => {
             let offers = getSortedOffers(data);
@@ -33,7 +33,7 @@ export default function Offers() {
             setIsLoading(false);
             setDisplayOffers(offers);
         }).catch((error) => {
-            setError(errorMessage);
+            setError(props.t('offers.error'));
             setIsLoading(false);
         });
     }, [offerType, sortCriteria]);
@@ -107,14 +107,14 @@ export default function Offers() {
     if (offerType === "Most often") {
         dropDownMenuContent =
             <Dropdown.Menu className='menu'>
-                <Dropdown.Item className="dropdownItem" eventKey={"Sold"} active={sortCriteria==="Sold"}>Sold</Dropdown.Item>
-                <Dropdown.Item className="dropdownItem" eventKey={"Turnover"} active={sortCriteria==="Turnover"}>Turnover</Dropdown.Item>
+                <Dropdown.Item className="dropdownItem" eventKey={"Sold"} active={sortCriteria==="Sold"}>{props.t('offers.sold')}</Dropdown.Item>
+                <Dropdown.Item className="dropdownItem" eventKey={"Turnover"} active={sortCriteria==="Turnover"}>{props.t('offers.turnover')}</Dropdown.Item>
             </Dropdown.Menu>;
     } else if (offerType === "Least often") {
         dropDownMenuContent =
             <Dropdown.Menu className='menu'>
-                <Dropdown.Item className="dropdownItem" eventKey={"Sold"} active={sortCriteria==="Sold"}>Sold</Dropdown.Item>
-                <Dropdown.Item className="dropdownItem" eventKey={"Unique views"} active={sortCriteria==="Unique views"}>Unique views</Dropdown.Item>
+                <Dropdown.Item className="dropdownItem" eventKey={"Sold"} active={sortCriteria==="Sold"}>{props.t('offers.sold')}</Dropdown.Item>
+                <Dropdown.Item className="dropdownItem" eventKey={"Unique views"} active={sortCriteria==="Unique views"}>{props.t('offers.views')}</Dropdown.Item>
             </Dropdown.Menu>;
     }
 
@@ -136,8 +136,8 @@ export default function Offers() {
 
     let noOffersContent =
         <Col className='text-center my-auto'>
-            <h1 className='fw-bold'>Brak ofert</h1>
-            <p className='no-opinions-info'>Nowe oferty zostaną wyświetlone, jeśli wystawisz produkty na sprzedaż.</p>
+            <h1 className='fw-bold'>{props.t('offers.noOffers')}</h1>
+            <p className='no-opinions-info'>{props.t('offers.info')}</p>
         </Col>;
 
     let content = noOffersContent;
@@ -157,23 +157,31 @@ export default function Offers() {
         content = <img className='mx-auto align-self-center d-block spinner' src={spinner} alt={''}/>
     }
 
-  return(
+    function getSortCriteria() {
+            if (sortCriteria === 'Sold'){
+                return props.t('offers.sold')
+            }else{
+                return props.t('offers.turnover')
+            }
+    }
+
+    return(
     <StyledOffers className='col-md-6'>
       <Card.Body>
-        <Card.Title className="row justify-content-center fs-3 fw-bold m-0">Offers ranking</Card.Title>
+        <Card.Title className="row justify-content-center fs-3 fw-bold m-0">{props.t('offersRankingWidget')}</Card.Title>
           <Row className=' controls'>
               <Col className='col-12 col-md-4 text-center text-md-start px-0 mx-0'>
                   <ButtonGroup toggle className="buttons">
                       <ToggleButton id="button1" type="radio" className="button toggleButton text-nowrap" value="Most often" checked={offerType === "Most often"}
-                                    name="offerType" onClick={() => offerTypeHandler("Most often")}>Most often</ToggleButton>
+                                    name="offerType" onClick={() => offerTypeHandler("Most often")}>{props.t('offers.mo')}</ToggleButton>
                       <ToggleButton id="button2" type="radio" className="button toggleButton text-nowrap" value="Least often" checked={offerType === "Least often"}
-                                    name="offerType" onClick={() => offerTypeHandler("Least often")}>Least often</ToggleButton>
+                                    name="offerType" onClick={() => offerTypeHandler("Least often")}>{props.t('offers.lo')}</ToggleButton>
                   </ButtonGroup>
               </Col>
               <Col className='col-12 col-md-8 px-0 mx-0 sortButton'>
                   <Dropdown className='text-end' align={"end"} onSelect={sortCriteriaHandler}>
                       <Dropdown.Toggle className="button">
-                          {sortCriteria}
+                          {getSortCriteria()}
                       </Dropdown.Toggle>
                       {dropDownMenuContent}
                   </Dropdown>

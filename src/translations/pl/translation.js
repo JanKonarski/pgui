@@ -44,7 +44,21 @@ const TRANSLATION_PL = {
     info : "Nowe opinie zostaną wyświetlone, jeśli zostaną dodane przez klientów",
     error :"Cos poszło nie tak - nie mozna załadować opinii"
 
+  },
+
+
+  offersRankingWidget : "Ranking ofert",
+  offers : {
+    error : 'Cos poszło nie tak - nie mozna załadować ofert',
+    info : 'Nowe oferty zostaną wyświetlone, jeśli wystawisz produkty na sprzedaż',
+    noOffers : 'Brak ofert',
+    sold : 'Sprzedane',
+    turnover : 'Obró†',
+    views : 'Wyświetlane',
+    mo : 'Najczęściej',
+    lo: 'Najrzadziej'
   }
+
 };
 
 
