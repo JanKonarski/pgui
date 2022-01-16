@@ -23,8 +23,8 @@ function Offer({key, name, photo, sold, turnover, views, offerType}) {
                 </Col>
                 <Col className='col-7 col-md-10 description'>
                     <Row className='offer-title'>{name}</Row>
-                    <Row>Sold: {sold}</Row>
-                    <Row>{secondFieldName} {secondField}</Row>
+                    <Row><Col className="g-0 p-0">Sold: <span className='fw-bold offer-amount'>{sold}</span></Col></Row>
+                    <Row><Col className="g-0 p-0">{secondFieldName} <span className='fw-bold offer-amount'>{secondField}</span></Col></Row>
                 </Col>
             </Row>
         </StyledOffer>

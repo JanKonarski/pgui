@@ -2,7 +2,10 @@ import styled from "styled-components";
 
 export const StyledOffer = styled.div `
   .offer {
-    margin-bottom: 20px;
+    margin-left: 5px;
+    margin-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
 
   img:not(.spinner) {
@@ -41,6 +44,7 @@ export const StyledOffer = styled.div `
     display: block;
   }
   
-  
- 
+  .offer-amount {
+    color: ${({theme}) => theme.widget.borderColor};
+  }
 `

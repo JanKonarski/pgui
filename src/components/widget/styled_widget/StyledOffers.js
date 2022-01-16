@@ -57,7 +57,6 @@ export const StyledOffers = styled(Widget) `
   .offers-container {
     overflow-y: scroll;
     height: 400px;
-    padding: 20px 20px 0;
     width: 100%;
   }
 
@@ -78,5 +77,9 @@ export const StyledOffers = styled(Widget) `
   .button[type="radio"]:checked+label {
     background-color: ${({ theme }) => theme.widget.buttonColor};
     border-color: ${({ theme }) => theme.widget.buttonBorderColor};
+  }
+  
+  .offers-container > div:nth-child(2n) {
+    background-color: ${({ theme }) => theme.widget.rankingColor};
   }
 `
