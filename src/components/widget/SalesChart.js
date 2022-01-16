@@ -62,14 +62,12 @@ export default function SalesChart(props) {
         }).then((data) => {
             setTimeout(function(){
                 console.log("Loading chart data");
-            },5000);
-            console.log("convert")
-            // console.log(data)
-            // console.log(getTimeLabels())
-            console.log(convert(data,getTimeLabels()))
-            // setChartData(convert(data,getTimeLabels()))
-            setIsLoading(false)
 
+            },2000);
+
+            let tmp = convert(data,getTimeLabels())
+            setChartData(tmp)
+            setIsLoading(false)
         }).catch((error) => {
             setIsLoading(false)
         });
@@ -79,9 +77,15 @@ export default function SalesChart(props) {
 
     const convert=(data,labels)=>{
         let k =0
-        let d = {}
+        let d = []
+        if (data===null | labels ===null ){return null}
         for (let key in data){
-            {d[labels[k]] = data[key]}
+            d.push({
+
+                    name : JSON.stringify(labels[k]),
+                    value:JSON.stringify(data[key])
+
+            })
             k+=1
         }
         return d
@@ -99,7 +103,7 @@ export default function SalesChart(props) {
         )
         setMonths(moment.months())
         setDays(moment.weekdays())
-
+        alert(months)
         fetchData(filter,timePeriod)
 
     }, [props.language]);
@@ -166,7 +170,7 @@ export default function SalesChart(props) {
                         />
                     </Col>
                     <Col xs={9} className={"chart"}>
-                        {chartData}
+                        {JSON.stringify(chartData)}
                         {/*{fetchChart(chartType)}*/}
 
                     </Col>
