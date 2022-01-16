@@ -12,16 +12,14 @@ export const StyledOffers = styled(Widget) `
     border-radius: 30px;
     width: 100%;
     height: 40px;
+    margin-top: 15px;
   }
 
   @media screen and (min-width: 48em){
     .dropdown-toggle {
       width: 140px;
+      margin-top: 0;
     }
-  }
-
-  .sortButton {
-    margin-top: 15px;
   }
   
   .menu {
@@ -31,12 +29,6 @@ export const StyledOffers = styled(Widget) `
   @media screen and (min-width: 48em){
     .menu {
       width: auto;
-    }
-  }
-
-  @media screen and (min-width: 48em){
-    .dropdown-toggle {
-      margin-top: 0;
     }
   }
   

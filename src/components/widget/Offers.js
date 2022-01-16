@@ -161,7 +161,7 @@ export default function Offers() {
     <StyledOffers className='col-md-6'>
       <Card.Body>
         <Card.Title className="row justify-content-center fs-3 fw-bold m-0">Offers ranking</Card.Title>
-          <Row className='align-items-end controls'>
+          <Row className=' controls'>
               <Col className='col-12 col-md-4 text-center text-md-start px-0 mx-0'>
                   <ButtonGroup toggle className="buttons">
                       <ToggleButton id="button1" type="radio" className="button toggleButton text-nowrap" value="Most often" checked={offerType === "Most often"}
