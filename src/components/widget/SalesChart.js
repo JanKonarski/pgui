@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import ChartMenu from "./ChartMenu";
 
 import React from "react";
@@ -28,7 +28,8 @@ export default function SalesChart(props) {
 
 
     const [chartType, setChartType] = useState(availableChartTypes[0]);
-    const [timePeriod, setTimePeriod] = useState(Object.keys(availableTimePeriods)[0])
+    const [timePeriod, setTimePeriod] = useState(Object.keys(availableTimePeriods)[0]);
+
     const [filter, setFilter] = useState(Object.keys(availableFilters)[0])
 
     const color = ["#8884d8", "#82ca9d", "orange", "pink"]
@@ -50,24 +51,27 @@ export default function SalesChart(props) {
             moment.locale('pl')
         }
 
+        console.log(moment.weekdays())
         return moment.weekdays()
 
     })
+
     const [hours,setHour] = useState(null)
 
     const [chartData,setChartData] =useState(null)
 
-    function getTimeLabels() {
-            if (timePeriod ==='Today'){
-                return hours;
-            }
-            if(timePeriod==='This week'){
-                return days
-            }
-            return months
-    }
+    const getTimeLabels = () => {
+        if (timePeriod ==='Today'){
+            return hours;
+        }
+        if(timePeriod==='This week'){
+            return days
+        }
+        return months
+    };
 
     const fetchData=(filter, timePeriod)=>{
+
         setIsLoading(true);
         fetch(
             'http://127.0.0.1:8000/chart/'+availableFilters[filter]+'/'+availableTimePeriods[timePeriod]+'/?id='+props.id+'&date=2022-1-7T23:40:00.000'
@@ -82,11 +86,11 @@ export default function SalesChart(props) {
                 console.log("Loading chart data");
 
             },2000);
-
+            console.log(data);
             let tmp = convert(data,getTimeLabels())
-            setChartData(tmp)
+            console.log(tmp);
+            setChartData(tmp);
             setIsLoading(false)
-            alert(data)
         }).catch((error) => {
             setIsLoading(false)
         });
@@ -97,7 +101,7 @@ export default function SalesChart(props) {
     const convert=(data,labels)=>{
         let k =0
         let d = []
-        if (data===null | labels ===null ){return null}
+        if (data===null || labels ===null ){return null}
         for (let key in data){
             d.push({
 
@@ -122,10 +126,9 @@ export default function SalesChart(props) {
         )
         setMonths(moment.months())
         setDays(moment.weekdays())
-        alert(months)
         fetchData(filter,timePeriod)
 
-    }, [props.language]);
+    }, [props.language, timePeriod, filter]);
 
     const onChartTypeChangeHandler = (e) => {
         setChartType(e);
