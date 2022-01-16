@@ -6,5 +6,6 @@ export const StyledDailyTips = styled(Widget) `
   .daily-tips {
     margin-top: 20px;
     font-size: medium;
+    
   }
 `

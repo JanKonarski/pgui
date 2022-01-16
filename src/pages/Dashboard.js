@@ -20,7 +20,7 @@ export default function Dashboard() {
         <Orders t={t}/>
       </Container>
       <Container className='row px-0 m-0' fluid>
-        <SalesChart t={t} />
+        <SalesChart t={t} language={i18n.language} id={0} />
       </Container>
       <Container className='pb-6 px-0 row m-0' fluid>
         <Opinions />
