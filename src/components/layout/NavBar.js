@@ -76,7 +76,11 @@ export default function NavBar(props) {
 
                                 </NavDropdown>
                                 <hr/>
-                                <Nav.Link href='' className='text-danger'>{t('navbarLogout')}</Nav.Link>
+                                <Nav.Link href='' className='text-danger' onClick={() => {
+                                    window.localStorage.removeItem('user');
+                                    window.localStorage.removeItem('users');
+                                    window.location.href='/login';
+                                }}>{t('navbarLogout')}</Nav.Link>
                                 <hr/>
 
                                 <NavDropdown title={selectedLanguage} onSelect={setAppLanguage}  >

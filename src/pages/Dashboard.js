@@ -16,6 +16,9 @@ export default function Dashboard() {
   const user = JSON.parse(window.localStorage.getItem('user'));
   const users = JSON.parse(window.localStorage.getItem('users'));
 
+  if (user === null)
+    window.location.href='/login';
+
   return (
     <div className='min-vh-100'>
       <Container className='pt-4 px-0 row m-0' fluid>
