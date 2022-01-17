@@ -7,10 +7,10 @@ export const StyledOffer = styled.div `
     padding-top: 20px;
     padding-bottom: 20px;
   }
-
+  
   img:not(.spinner) {
-    height: 100%;
-    width: auto;
+    height: 90px;
+    width: 90px;
     border: 2px solid ${({theme}) => theme.widget.title};
     border-radius: 10px;
     box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.25);
@@ -24,7 +24,8 @@ export const StyledOffer = styled.div `
   
   .photoContainer {
     height: 90px;
-    //width: 90px;
+    float: left;
+    margin-left: 20px;
   }
   
   .fixed {

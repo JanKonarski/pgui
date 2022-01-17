@@ -15,13 +15,11 @@ function Offer({key, name, photo, sold, turnover, views, offerType}) {
 
     return (
         <StyledOffer>
-            <Row className='offer'>
-                <Col className='col-5 col-md-4 fixed'>
-                    <div className='photoContainer'>
+                    <div className='photoContainer offer'>
                         <img src={photo} className='' alt={''}/>
                     </div>
-                </Col>
-                <Col className='col-7 col-md-8 description'>
+            <Row className='offer'>
+                <Col className='col-12 description'>
                     <Row className='offer-title'>{name}</Row>
                     <Row><Col className="g-0 p-0">Sold: <span className='fw-bold offer-amount'>{sold}</span></Col></Row>
                     <Row><Col className="g-0 p-0">{secondFieldName} <span className='fw-bold offer-amount'>{secondField}</span></Col></Row>
