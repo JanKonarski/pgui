@@ -22,8 +22,9 @@ export default function SalesChart(props) {
                                     "This year" : "year"
                                 };
     const availableFilters = {"Revenue" : "revenue", 'Sold items' :'turnover'}
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     let content = null
+    let chart =null
 
 
 
@@ -72,6 +73,7 @@ export default function SalesChart(props) {
 
     const fetchData=(filter, timePeriod)=>{
 
+        let tmp
         setIsLoading(true);
         fetch(
             'http://127.0.0.1:8000/chart/'+availableFilters[filter]+'/'+availableTimePeriods[timePeriod]+'/?id='+props.id+'&date=2022-1-7T23:40:00.000'
@@ -81,17 +83,23 @@ export default function SalesChart(props) {
             } else {
                 throw new Error('Could not load data')
             }
-        }).then((data) => {
+        }).then(data => {
             setTimeout(function(){
                 console.log("Loading chart data");
 
             },2000);
-            console.log(data);
-            let tmp = convert(data,getTimeLabels())
-            console.log(tmp);
+
+            tmp = convert(data,getTimeLabels())
+
+        }).then(()=>{
+
             setChartData(tmp);
+
+            }
+
+        ).catch((error) => {
             setIsLoading(false)
-        }).catch((error) => {
+        }).finally(()=>{
             setIsLoading(false)
         });
     }
@@ -116,6 +124,7 @@ export default function SalesChart(props) {
 
 
     useEffect(()=> {
+
         if (props.language === 'eng'){
             moment.locale('en-au')
         }else{
@@ -124,14 +133,21 @@ export default function SalesChart(props) {
         setHour([0,1,2,3,4,5,6,7,8,9,10,10,12,13,14,15,16,17,18,19,20,21,22,23]
 
         )
-        setMonths(moment.months())
-        setDays(moment.weekdays())
-        fetchData(filter,timePeriod)
+
+
+            setMonths(moment.months())
+            setDays(moment.weekdays())
+
+        fetchData(filter, timePeriod)
+
+
+
 
     }, [props.language, timePeriod, filter]);
 
     const onChartTypeChangeHandler = (e) => {
         setChartType(e);
+        fetchData(filter,timePeriod)
     };
 
     const onTimePeriodChangeHandler = (e) => {
@@ -151,8 +167,8 @@ export default function SalesChart(props) {
             display: "inline-block",
             marginRight: "5px",
             borderRadius: "10px",
-            width: "10px",
-            height: "10px",
+            width: "5px",
+            height: "5px",
             backgroundColor: props.color
         }}></span>{name} : {value}</span>
         return [nameJSX];
@@ -160,11 +176,11 @@ export default function SalesChart(props) {
     const fetchChart = (type) => {
         switch (type) {
             case availableChartTypes[0]:
-                return <MyLineChart data= {data} key={type} color={color} modifyFormatter={modifyFormatter}/>
+                return <MyLineChart data= {chartData} key={type} color={color} modifyFormatter={modifyFormatter}/>
             case availableChartTypes[1]:
-                return <MyBarChart  data= {data} key={type} color={color} modifyFormatter={modifyFormatter}/>
+                return <MyBarChart  data= {chartData} key={type} color={color} modifyFormatter={modifyFormatter}/>
             default:
-                return <MyLineChart data= {data} key={type} color={color} modifyFormatter={modifyFormatter}/>
+                return <MyLineChart data= {chartData} key={type} color={color} modifyFormatter={modifyFormatter}/>
         }
     }
 
@@ -174,11 +190,18 @@ export default function SalesChart(props) {
                                                           src={spinner} alt={''}/></Col>
     }
 
+    if(chartData===null){
+        chart = null
+    }else{
+        chart = fetchChart(chartType)
+    }
+
     return (
         < StyledSalesChart>
-            <Container className="container">
-                <Row>
+            <Container fluid >
+                <Row className={'chart'}>
                     <Col>
+
                         <ChartMenu
                             availableChartTypes={availableChartTypes}
                             availableTimePeriods={Object.keys(availableTimePeriods)}
@@ -191,16 +214,15 @@ export default function SalesChart(props) {
                             onFilterChangeHandler={onFilterChangeHandler}
                         />
                     </Col>
-                    <Col xs={9} className={"chart"}>
-                        {JSON.stringify(chartData)}
-                        {/*{fetchChart(chartType)}*/}
+                    <Col xs={10} className={"chart"}>
+                        {/*{JSON.stringify(chartData)}*/}
+
+                        {chart}
 
                     </Col>
 
                 </Row>
-                <Row>
-                    {content}
-                </Row>
+
 
 
 

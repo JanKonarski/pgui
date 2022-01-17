@@ -16,16 +16,16 @@ export default function MyLineChart (props) {
     }
 
         return (
-            <ResponsiveContainer width="95%" height="100%">
+            <ResponsiveContainer width="=80%" height="100%">
             <LineChart
                 data={data}
-                margin={{ top: 5}}
+                margin={ { top: 10, left :30, bottom :40, right :30}}
             >
-                <CartesianGrid strokeDasharray="3 3" horizontal={false} vertical={false}/>
-                <XAxis dataKey={Object.keys(data[0])[0]}/>
+                <CartesianGrid strokeDasharray="3 3" horizontal={false} vertical={false} fill='red'/>
+                <XAxis dataKey={Object.keys(data[0])[0]}  angle={-45} interval={0} dy={25} tick={{ fontSize: 14, spacing :30 }} />
                 <YAxis/>
                 <Tooltip/>
-                <Legend/>
+                {/*<Legend/>*/}
                 {getLineChart()}
             </LineChart>
              </ResponsiveContainer>

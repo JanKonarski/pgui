@@ -23,16 +23,16 @@ export default function MyBarChart (props) {
 
 
         return (
-            <ResponsiveContainer width="95%" height="100%">
+            <ResponsiveContainer width="100%" height="85%">
             <BarChart
                 data={data}
-                margin={{ top: 5}}
+                margin={{ top: 10}}
             >
-                <CartesianGrid strokeDasharray="3 3" horizontal={false} vertical={false}/>
-                <XAxis dataKey={Object.keys(data[0])[0]}/>
+                <CartesianGrid strokeDasharray="2 2" horizontal={false} vertical={false}/>
+                <XAxis dx={15} dataKey={Object.keys(data[0])[0]} angle={-60} interval={0} dy={30}  />
                 <YAxis/>
                 <Tooltip/>
-                <Legend/>
+                {/*<Legend/>*/}
                 {getBar()}
             </BarChart>
             </ResponsiveContainer>

@@ -21,15 +21,15 @@ export default function Dashboard() {
 
   return (
     <div className='min-vh-100'>
-      <Container className='pt-4 px-0 row m-0' fluid>
+      <Container className='pt-4 px-0 row m-0 ' fluid>
         <SalesQuality t={t} />
         <DailyTips t={t} language={i18n.language} />
         <Orders t={t}/>
       </Container>
-      <Container className='row px-0 m-0' fluid>
+      <Container className='row sm-5 px-0 m-0' fluid>
         <SalesChart t={t} language={i18n.language} id={0} />
       </Container>
-      <Container className='pb-6 px-0 row m-0' fluid>
+      <Container className='pb-4 px-0 row m-0' fluid>
         <Opinions t={t} />
         <Ranking t={t} />
       </Container>
