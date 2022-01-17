@@ -45,7 +45,7 @@ export default function DailyTips(props) {
 
 
   return(
-    <StyledDailyTips className='col-md-4'>
+    <StyledDailyTips className='col-lg-4'>
       <Container className='row justify-content-center fs-3 fw-bold m-0 title' fluid>
           {props.t('dailyTipsWidget')}
 

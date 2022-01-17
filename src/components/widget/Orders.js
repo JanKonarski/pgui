@@ -106,7 +106,7 @@ export default function Orders() {
     }
 
   return(
-    <StyledOrders className='col-md-4'>
+    <StyledOrders className='col-lg-4'>
       <Card.Title className='row justify-content-center fs-3 fw-bold m-0 title' fluid>
         Orders
       </Card.Title>

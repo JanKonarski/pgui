@@ -162,7 +162,7 @@ export default function ClientsOpinionsWidget(props) {
 
 
         return (
-            <StyledOpinions className='col-md-6'>
+            <StyledOpinions className='col-lg-6'>
                 <Card.Body>
                     <Card.Title
                         className="row justify-content-center fs-3 fw-bold m-0">{props.t('opinionsWidget')}</Card.Title>

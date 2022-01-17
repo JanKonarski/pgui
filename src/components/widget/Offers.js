@@ -166,7 +166,7 @@ export default function Offers(props) {
     }
 
     return(
-    <StyledOffers className='col-md-6'>
+    <StyledOffers className='col-lg-6'>
       <Card.Body>
         <Card.Title className="row justify-content-center fs-3 fw-bold m-0">{props.t('offersRankingWidget')}</Card.Title>
           <Row className=' controls'>

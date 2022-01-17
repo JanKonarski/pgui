@@ -1,16 +1,51 @@
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import Container from 'react-bootstrap/Container';
 import Alert from 'react-bootstrap/Alert';
 import Form from 'react-bootstrap/Form';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
+import { useHistory } from 'react-router-dom';
 
 export default function Login(props) {
+  const errorMessage = "Something went wrong - could not load orders.";
+  const [users, setUsers] = useState({});
+  const [user, setUser] = useState({id: null, name: null});
   const t = props.t;
   const [state, setState] = useState(false);
 
+  useEffect(() => {
+    fetch(
+      'http://127.0.0.1:8000/user'
+    ).then((response) => {
+      if (response.ok)
+        return response.json();
+      else
+        throw new Error(errorMessage);
+    }).then((data) => {
+      const usr = data;
+      setUsers(usr);
+    }).catch((error) => {
+
+    })
+  }, []);
+
   const handleSubmit = (event) => {
-    setState(event.target[1].value === '' ? true : false);
+    const email = event.target[0].value;
+    const password = event.target[1].value;
+
+    users.forEach((element, index, array) => {
+      if (email === element['username'] && password === element['password']) {
+        window.localStorage.setItem('user', JSON.stringify({id: element['id'], name: element['name']}));
+        let usersData = new Array();
+        users.forEach((element, index, array) => {
+          usersData.push({id: element['id'], name: element['name']});
+        });
+        window.localStorage.setItem('users', JSON.stringify(usersData));
+        window.location.href='/';
+      }
+    })
+
+    setState(user === {});
     event.preventDefault();
   }
 

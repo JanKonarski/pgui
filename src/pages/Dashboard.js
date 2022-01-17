@@ -8,12 +8,16 @@ import Ranking from '../components/widget/Offers';
 import {useTranslation} from "react-i18next";
 import Opinions from "../components/widget/Opinions";
 import i18n from "../translations/i18n";
+import {useState} from "react";
 
 export default function Dashboard() {
-    const {t} = useTranslation();
+  const {t} = useTranslation();
+
+  const user = JSON.parse(window.localStorage.getItem('user'));
+  const users = JSON.parse(window.localStorage.getItem('users'));
 
   return (
-    <div>
+    <div className='min-vh-100'>
       <Container className='pt-4 px-0 row m-0' fluid>
         <SalesQuality t={t} />
         <DailyTips t={t} language={i18n.language} />

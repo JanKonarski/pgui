@@ -10,6 +10,7 @@ export const StyledNavbar = styled(Navbar)`
   
   .navbar-toggler {
     background-color: #FAFAFA;
+    background-color: ${({ theme }) => theme.navbar.toggleButtonColor};
   }
   
   .home-link {

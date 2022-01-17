@@ -5,7 +5,7 @@ import {StyledSalesQuality} from "./styled_widget/StyledSalesQuality";
 
 export default function SalesQuality(props) {
   return(
-    <StyledSalesQuality className='col-md-4'>
+    <StyledSalesQuality className='col-lg-4'>
       <Container className='row justify-content-center fs-3 fw-bold m-0 title' fluid>
           {props.t('salesQualityWidget')}
       </Container>

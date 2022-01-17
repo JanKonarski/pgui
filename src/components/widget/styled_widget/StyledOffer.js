@@ -10,7 +10,7 @@ export const StyledOffer = styled.div `
 
   img:not(.spinner) {
     height: 100%;
-    width: 100%;
+    width: auto;
     border: 2px solid ${({theme}) => theme.widget.title};
     border-radius: 10px;
     box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.25);

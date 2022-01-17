@@ -12,7 +12,8 @@ export const lightTheme = {
     navbar: {
         backgroundColor: '#3D8BFD',
         color: '#FFFFFF',
-        borderColor: '#CED4DA'
+        borderColor: '#CED4DA',
+        toggleButtonColor: '#FAFAFA'
     },
 
     widget: {
@@ -40,7 +41,8 @@ export const darkTheme = {
     navbar: {
         backgroundColor: '#495057',
         color: '#343A40',
-        borderColor: '#CED4DA'
+        borderColor: '#CED4DA',
+        toggleButtonColor: '#868686'
     },
 
     widget: {
