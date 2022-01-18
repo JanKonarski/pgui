@@ -47,18 +47,6 @@ export default function NavBar(props) {
         setSelectedLanguage(e);
     }
 
-    const tt = (
-      <>
-          <NavDropdown.Item href=''>Megan Thee Stalion</NavDropdown.Item>
-          <NavDropdown.Item href=''>Magda Gesler</NavDropdown.Item>
-          <NavDropdown.Item href=''>Harry Potter</NavDropdown.Item>
-      </>
-    );
-
-    var ttt = users.forEach((element, index, array) => {
-        return <NavDropdown.Item href=''>element['id']</NavDropdown.Item>
-    });
-
     return (
         <header>
             <StyledNavbar expand={false} className='fixed-top'>
