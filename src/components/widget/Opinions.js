@@ -7,7 +7,7 @@ import spinner from "../../image/spinner.gif"
 import {Link} from "react-router-dom";
 
 export default function ClientsOpinionsWidget(props) {
-
+    const user = JSON.parse(window.localStorage.getItem('user'));
 
     const [opinionsType, setOpinionsType] = useState("All");
     const [isLoading, setIsLoading] = useState(true);
@@ -17,7 +17,7 @@ export default function ClientsOpinionsWidget(props) {
     useEffect(() => {
         setError(null);
         fetch(
-            'http://127.0.0.1:8000/opinions/0'
+            'http://127.0.0.1:8000/opinions/' + user['id']
         ).then((response) => {
             if (response.ok) {
                 return response.json();

@@ -13,9 +13,6 @@ export default function NavBar(props) {
     const t = props.t;
     const i18n = props.set_t;
 
-    const user = JSON.parse(window.localStorage.getItem('user'));
-    const users = JSON.parse(window.localStorage.getItem('users'));
-
     let moon = <MoonFill className='me-2 text-dark' size={15} onClick={props.toggleTheme}/>;
     let sun = <SunFill className='me-2 text-dark' size={15} onClick={props.toggleTheme}/>;
     const icon = props.theme === "light" ? moon : sun;
