@@ -24,7 +24,7 @@ export const lightTheme = {
         rating: '#0D6EFD',
         buttonColor: '#0275d8',
         buttonBorderColor: '#0275d8',
-        orderLink: '#BB86FC',
+        orderLink: '#0D6EFD',
         offerContainer: '#FFFFFF',
         rankingColor: '#F8F8F8'
     },
@@ -42,19 +42,19 @@ export const darkTheme = {
         backgroundColor: '#495057',
         color: '#343A40',
         borderColor: '#CED4DA',
-        toggleButtonColor: '#868686'
+        toggleButtonColor: '#b4b4b4'
     },
 
     widget: {
         backgroundColor: '#54595E',
         borderColor: '#FFFFFF',
         photoBorder: '#30009C',
-        title: '#02DAC5',
-        rating: '#02DAC5',
+        title: '#CED4DA',
+        rating: '#78a2d7',
         buttonColor: '#343A40',
         buttonBorderColor: '#CED4DA',
         dropDownBackgroundColor: '#343A40',
-        orderLink: '#BB86FC',
+        orderLink: '#78a2d7',
         offerContainer: '#343A40',
         rankingColor: '#3f464d'
     },

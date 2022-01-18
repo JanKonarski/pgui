@@ -8,7 +8,6 @@ import Ranking from '../components/widget/Offers';
 import {useTranslation} from "react-i18next";
 import Opinions from "../components/widget/Opinions";
 import i18n from "../translations/i18n";
-import {useState} from "react";
 
 export default function Dashboard() {
   const {t} = useTranslation();

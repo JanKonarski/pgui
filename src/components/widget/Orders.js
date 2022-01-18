@@ -35,9 +35,9 @@ export default function Orders() {
     function ordersExist() {
       return !Object.values(orders).every(orderType => orderType === 0);
     }
-
+/* 3 -> 1 */
     function twoLeadingZeros(num) {
-        return String(num).padStart(3, '0');
+        return String(num).padStart(1, '0');
     }
 
     const noOrdersContent =
@@ -82,7 +82,7 @@ export default function Orders() {
                 </Container>
             </Container>
             <Container className='col-md-6 col-xs-12 text-center'>
-                <Container className='fw-bold pending-orders' style={{fontSize: '100px'}}>{twoLeadingZeros(orders['pending'])}</Container>
+                <Container className='fw-bold pending-orders' style={{fontSize: '65px'}}>{twoLeadingZeros(orders['pending'])}</Container>
                 <Container className='pending-orders-text' style={{fontSize: '20px'}}>All pending orders</Container>
             </Container>
         </Row>

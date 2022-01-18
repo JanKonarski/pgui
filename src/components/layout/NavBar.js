@@ -13,6 +13,9 @@ export default function NavBar(props) {
     const t = props.t;
     const i18n = props.set_t;
 
+    const user = JSON.parse(window.localStorage.getItem('user'));
+    const users = JSON.parse(window.localStorage.getItem('users'));
+
     let moon = <MoonFill className='me-2 text-dark' size={15} onClick={props.toggleTheme}/>;
     let sun = <SunFill className='me-2 text-dark' size={15} onClick={props.toggleTheme}/>;
     const icon = props.theme === "light" ? moon : sun;
@@ -44,6 +47,18 @@ export default function NavBar(props) {
         setSelectedLanguage(e);
     }
 
+    const tt = (
+      <>
+          <NavDropdown.Item href=''>Megan Thee Stalion</NavDropdown.Item>
+          <NavDropdown.Item href=''>Magda Gesler</NavDropdown.Item>
+          <NavDropdown.Item href=''>Harry Potter</NavDropdown.Item>
+      </>
+    );
+
+    var ttt = users.forEach((element, index, array) => {
+        return <NavDropdown.Item href=''>element['id']</NavDropdown.Item>
+    });
+
     return (
         <header>
             <StyledNavbar expand={false} className='fixed-top'>
@@ -64,9 +79,25 @@ export default function NavBar(props) {
                             <Nav className='justify-content-end flex-grow-1 pe-3'>
                                 <Nav.Link href=''>{t('navbarAccountDetails')}</Nav.Link>
                                 <NavDropdown title={t('navbarSwitchAccount')} id='offcanvasNavbarDropdownAccount'>
-                                    <NavDropdown.Item href=''>Megan Thee Stalion</NavDropdown.Item>
-                                    <NavDropdown.Item href=''>Magda Gesler</NavDropdown.Item>
-                                    <NavDropdown.Item href=''>Harry Potter</NavDropdown.Item>
+                                    <NavDropdown.Item href='' onClick={() => {
+                                        localStorage.setItem('user', JSON.stringify({id: 0, name: 'Megan Thee Stalion'}));
+                                        window.location.reload();
+                                    }}>
+                                        Megan Thee Stalion
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item href='' onClick={() => {
+                                        localStorage.setItem('user', JSON.stringify({id: 1, name: 'Magda Gesler'}));
+                                        window.location.reload();
+                                    }}>
+                                        Magda Gesler
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item href='' onClick={() => {
+                                        localStorage.setItem('user', JSON.stringify({id: 2, name: 'Harry Potter'}));
+                                        window.location.reload();
+                                    }}>
+                                        Harry Potter
+                                    </NavDropdown.Item>
+
                                     <NavDropdown.Divider/>
                                     <NavDropdown.Item href=''>
                                         <PlusCircle className='me-2'/>
