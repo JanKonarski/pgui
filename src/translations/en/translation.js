@@ -64,9 +64,9 @@ const TRANSLATION_EN = {
     today : "Today",
     week : 'This week',
     year : 'This year',
-    timePeriodMsg : 'Select time period',
-    chartMsg : 'Select chart type you want to display',
-    filter :'Select filter'
+    timePeriodMsg : 'Time period',
+    chartMsg : 'Chart type',
+    filter :'Filter'
   }
 
 

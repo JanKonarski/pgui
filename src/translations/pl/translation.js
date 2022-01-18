@@ -67,9 +67,9 @@ const TRANSLATION_PL = {
     today : "Dziś",
     week : 'Ten tydzień',
     year : 'Ten rok',
-    timePeriodMsg : 'Wybierz okres czasu',
-    chartMsg : 'Wybierz rodzaj wykresu',
-    filter :'Wybierz filtr'
+    timePeriodMsg : 'Okres czasu',
+    chartMsg : 'Rodzaj wykresu',
+    filter :'Filtr danych'
   }
 
 };

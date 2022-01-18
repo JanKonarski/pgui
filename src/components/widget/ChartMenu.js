@@ -1,5 +1,6 @@
-import {Dropdown} from "react-bootstrap";
+import {Col, Dropdown, Row} from "react-bootstrap";
 import {useTranslation} from "react-i18next";
+import Container from "react-bootstrap/Container";
 
 export default function ChartMenu(props) {
     const t = useTranslation()[0]
@@ -34,11 +35,12 @@ export default function ChartMenu(props) {
     }
 
     return (
-        <div>
-            <div>
-                <div>{t('chart.filter')}</div>
+        <div className="text-center">
+            <Row>
+                <Col className="col-12 ">
+                <div className="dropdown-label text-md-nowrap">{t('chart.filter')}</div>
                 <Dropdown onSelect={props.onFilterChangeHandler}>
-                    <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                    <Dropdown.Toggle className="custom-dropdown text-wrap" variant="primary" id="dropdown-basic">
                         {displayFilter(props.filter)}
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
@@ -49,12 +51,13 @@ export default function ChartMenu(props) {
                         ))}
                     </Dropdown.Menu>
                 </Dropdown>
+                </Col>
 
-            </div>
-            <div>
-                <div>{t('chart.chartMsg')}</div>
+
+                <Col className="col-12">
+                <div className="dropdown-label text-md-nowrap">{t('chart.chartMsg')}</div>
                 <Dropdown onSelect={props.onChartTypeChangeHandler}>
-                    <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                    <Dropdown.Toggle className="custom-dropdown text-wrap" variant="primary" id="dropdown-basic">
                         {displayChartType(props.chartType)}
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
@@ -65,11 +68,13 @@ export default function ChartMenu(props) {
                         ))}
                     </Dropdown.Menu>
                 </Dropdown>
-            </div>
-            <div>
-                <div>{t('chart.timePeriodMsg')}</div>
+                </Col>
+
+
+                <Col className="col-12 ">
+                <div className="dropdown-label text-md-nowrap">{t('chart.timePeriodMsg')}</div>
                 <Dropdown onSelect={props.onTimePeriodChangeHandler}>
-                    <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                    <Dropdown.Toggle className="custom-dropdown text-wrap" variant="primary" id="dropdown-basic">
                         {displayTimePeriod(props.timePeriod)}
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
@@ -80,10 +85,10 @@ export default function ChartMenu(props) {
                         ))}
                     </Dropdown.Menu>
                 </Dropdown>
+                </Col>
 
-            </div>
 
-
+            </Row>
         </div>
     );
 }

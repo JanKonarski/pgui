@@ -1,5 +1,6 @@
 import React from "react";
 import {CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis} from "recharts";
+import {Container} from "react-bootstrap";
 
 export default function MyLineChart (props) {
 
@@ -16,19 +17,22 @@ export default function MyLineChart (props) {
     }
 
         return (
-            <ResponsiveContainer width="=80%" height="100%">
-            <LineChart
-                data={data}
-                margin={ { top: 10, left :30, bottom :40, right :30}}
-            >
-                <CartesianGrid strokeDasharray="3 3" horizontal={false} vertical={false} fill='red'/>
-                <XAxis dataKey={Object.keys(data[0])[0]}  angle={-45} interval={0} dy={25} tick={{ fontSize: 14, spacing :30 }} />
-                <YAxis/>
-                <Tooltip/>
-                {/*<Legend/>*/}
-                {getLineChart()}
-            </LineChart>
+            <Container className="text-center">
+            <ResponsiveContainer width="100%" aspect={2.2}>
+                <LineChart
+
+                    data={data}
+                    margin={ { top: 10, left :20, bottom :20, right :70}}
+                >
+                    <CartesianGrid strokeDasharray="3 3" horizontal={false} vertical={false} />
+                    <XAxis dataKey={Object.keys(data[0])[0]}  dy={5}  />
+                    <YAxis allowDataOverflow={true}/>
+                    <Tooltip/>
+                    {/*<Legend/>*/}
+                    {getLineChart()}
+                </LineChart>
              </ResponsiveContainer>
+            </Container>
         );
 
 }

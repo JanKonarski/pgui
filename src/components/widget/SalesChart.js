@@ -2,7 +2,7 @@ import {useCallback, useEffect, useState} from "react";
 import ChartMenu from "./ChartMenu";
 
 import React from "react";
-import {Col, Container, Row} from "react-bootstrap";
+import {Card, Col, Container, Row} from "react-bootstrap";
 import MyBarChart from "./charts/MyBarChart";
 import MyLineChart from "./charts/MyLineChart";
 import {StyledSalesChart} from "./styled_widget/StyledSalesChart";
@@ -42,6 +42,7 @@ export default function SalesChart(props) {
             moment.locale('pl')
         }
 
+
         return moment.months()
 
     })
@@ -52,8 +53,8 @@ export default function SalesChart(props) {
             moment.locale('pl')
         }
 
-        console.log(moment.weekdays())
-        return moment.weekdays()
+
+        return moment.weekdays(true)
 
     })
 
@@ -135,7 +136,7 @@ export default function SalesChart(props) {
         )
 
 
-            setMonths(moment.months())
+            setMonths(moment.months());
             setDays(moment.weekdays())
 
         fetchData(filter, timePeriod)
@@ -197,10 +198,20 @@ export default function SalesChart(props) {
     }
 
     return (
-        < StyledSalesChart>
-            <Container fluid >
-                <Row className={'chart'}>
-                    <Col>
+        <StyledSalesChart>
+            <Card.Body>
+            <Card.Title className="row justify-content-center fs-3 fw-bold m-0">Wykres sprzedaży</Card.Title>
+
+
+                <Row className='chart'>
+
+                    <Col className="col-12 px-0 mx-0 gx-0 col-sm-12 col-md-9 chart">
+                        {/*{JSON.stringify(chartData)}*/}
+
+                        {chart}
+
+                    </Col>
+                    <Col className="col-12 col-sm-12 col-md-3">
 
                         <ChartMenu
                             availableChartTypes={availableChartTypes}
@@ -214,22 +225,16 @@ export default function SalesChart(props) {
                             onFilterChangeHandler={onFilterChangeHandler}
                         />
                     </Col>
-                    <Col xs={10} className={"chart"}>
-                        {/*{JSON.stringify(chartData)}*/}
-
-                        {chart}
-
-                    </Col>
 
                 </Row>
 
+            </Card.Body>
 
 
 
 
 
 
-            </Container>
         </StyledSalesChart>
     )
 

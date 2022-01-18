@@ -2,11 +2,39 @@ import styled from "styled-components";
 import Widget from "../Widget";
 
 export const StyledSalesChart = styled(Widget) `
-  .chart{
+  .chart {
+    margin-top: 20px;
+    margin-left: 0;
     
-    background-color:yellow;
-   
   }
   
+  @media screen and (min-width: 48em){
+    .chart {
+      
+    }
+  }
+  
+  .dropdown-label {
+    margin-top: 20px;
+  }
 
+  .custom-dropdown {
+    width: 100%;
+  }
+
+  @media screen and (min-width: 48em){
+    .custom-dropdown {
+      width: auto;
+    }
+  }
+  
+  //.responsive-container {
+  //  height: 50px;
+  //}
+  //
+  //@media screen and (min-width: 48em){
+  //  .responsive-container {
+  //    height: 100%;
+  //  }
+  //}
 `
