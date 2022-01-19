@@ -4,7 +4,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import {PlusCircle, MoonFill, SunFill} from 'react-bootstrap-icons';
-import {StyledNavbar} from "./StyledNavBar";
+import {StyledNavbar, StyledOffCanvas} from "./StyledNavBar";
 import {StyledOffcanvas} from "./StyledOffcanvas";
 import {Link} from "react-router-dom";
 import {useState} from "react";
@@ -12,9 +12,6 @@ import {useState} from "react";
 export default function NavBar(props) {
     const t = props.t;
     const i18n = props.set_t;
-
-    const user = JSON.parse(window.localStorage.getItem('user'));
-    const users = JSON.parse(window.localStorage.getItem('users'));
 
     let moon = <MoonFill className='me-2 text-dark' size={15} onClick={props.toggleTheme}/>;
     let sun = <SunFill className='me-2 text-dark' size={15} onClick={props.toggleTheme}/>;
@@ -96,7 +93,7 @@ export default function NavBar(props) {
                     window.localStorage.removeItem('users');
                     window.location.href='/login';
                 }}>{t('navbarLogout')}</Nav.Link>
-
+                <hr/>
                     </div>
         )
 
@@ -111,7 +108,7 @@ export default function NavBar(props) {
                     <Navbar.Brand><Link className='home-link' to="/">{t('navbarName')}</Link></Navbar.Brand>
                     <Navbar.Toggle aria-controls='offcanvasNavbar'/>
 
-                    <Navbar.Offcanvas
+                    <StyledOffCanvas
                         id='offcanvasNavbar'
                         aria-labelledby='offcanvasNavbarLabel'
                         placement='end'
@@ -139,7 +136,7 @@ export default function NavBar(props) {
                                 </Nav.Link>
                             </Nav>
                         </Offcanvas.Body>
-                    </Navbar.Offcanvas>
+                    </StyledOffCanvas>
                 </Container>
             </StyledNavbar>
         </header>

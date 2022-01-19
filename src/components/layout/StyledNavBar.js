@@ -9,7 +9,6 @@ export const StyledNavbar = styled(Navbar)`
   }
   
   .navbar-toggler {
-//    background-color: #FAFAFA;
     background-color: ${({ theme }) => theme.navbar.toggleButtonColor};
   }
   
@@ -21,5 +20,13 @@ export const StyledNavbar = styled(Navbar)`
     font-weight: 500;
     font-size: 27px;
     line-height: 27px;
+  }
+`;
+
+export const StyledOffCanvas = styled(Navbar.Offcanvas)`
+  background-color: ${({ theme }) => theme.main.backgroundColor};
+  
+  svg {
+    color: ${({ theme }) => theme.navbar.iconColor} !important;
   }
 `;
