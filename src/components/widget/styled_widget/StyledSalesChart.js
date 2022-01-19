@@ -19,12 +19,12 @@ export const StyledSalesChart = styled(Widget) `
   }
 
   .custom-dropdown {
-    width: 100%;
+    width: 70%;
   }
 
   @media screen and (min-width: 48em){
     .custom-dropdown {
-      width: auto;
+      width: 175px;
     }
   }
   
