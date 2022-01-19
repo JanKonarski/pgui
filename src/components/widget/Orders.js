@@ -38,7 +38,7 @@ export default function Orders() {
     }
 /* 3 -> 1 */
     function twoLeadingZeros(num) {
-        return String(num).padStart(3, '0');
+        return String(num).padStart(1, '0');
     }
 
     const noOrdersContent =
@@ -107,7 +107,7 @@ export default function Orders() {
     }
 
   return(
-    <StyledOrders className='col-lg-4'>
+    <StyledOrders className='col-lg-12 col-xxl-4'>
       <Card.Title className='row justify-content-center fs-3 fw-bold m-0 title' fluid>
         Orders
       </Card.Title>
