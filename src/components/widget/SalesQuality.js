@@ -21,9 +21,9 @@ export default function SalesQuality(props) {
         <Container className='row text-center pt-0 m-0 to-improve-container' fluid>
             <span className='to-improve'> {props.t('salesQuality.improvement')}</span>
             <Row className="px-0 gx-0 text-nowrap">
-                <Col className="rating">Courtesy time</Col>
-                <Col className="rating">Management</Col>
-                <Col className="rating">Meticulousness</Col>
+                <Col className="rating">{props.t('meticulousness')}</Col>
+                <Col className="rating">{props.t('management')}</Col>
+                <Col className="rating" >{props.t('courtesy')}</Col>
             </Row>
         </Container>
     </StyledSalesQuality>

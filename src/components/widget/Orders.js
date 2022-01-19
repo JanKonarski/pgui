@@ -5,7 +5,7 @@ import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import spinner from "../../image/spinner.gif";
 
-export default function Orders() {
+export default function Orders(props) {
     const errorMessage = "Something went wrong - could not load orders.";
     const [orders, setOrders] = useState({});
     const [isLoading, setIsLoading] = useState(true);
@@ -70,21 +70,21 @@ export default function Orders() {
         <Row>
             <Container sm={6} className='col-md-6 col-xs-12 fs-4 digits text-center'>
                 <Container className='row p-0 orders text-nowrap' fluid>
-                    <Container className='col-8 text-center'><Link className='order-link' to='not_paid'>Not paid</Link></Container>
+                    <Container className='col-8 text-center'><Link className='order-link' to='not_paid'> {props.t('orders.notPaid')}</Link></Container>
                     <Container className='col-4 text-start digit'>{orders['unpaid']}</Container>
                 </Container>
                 <Container className='row m-0 p-0 text-nowrap' fluid>
-                    <Container className='col-8'><Link className='order-link' to='not_sent'>Not sent</Link></Container>
+                    <Container className='col-8'><Link className='order-link' to='not_sent'> {props.t('orders.notSent')}</Link></Container>
                     <Container className='col-4 text-start digit'>{orders['unsent']}</Container>
                 </Container>
                 <Container className='row m-0 p-0 text-nowrap' fluid>
-                    <Container className='col-8'><Link className='order-link' to='refunds'>Refunds</Link></Container>
+                    <Container className='col-8'><Link className='order-link' to='refunds'> {props.t('orders.returns')}</Link></Container>
                     <Container className='col-4 text-start digit'>{orders['refunds']}</Container>
                 </Container>
             </Container>
             <Container className='col-md-6 col-xs-12 text-center text-nowrap'>
                 <Container className='fw-bold pending-orders px-0' style={{fontSize: '77px'}}>{twoLeadingZeros(orders['pending'])}</Container>
-                <Container className='pending-orders-text px-0' style={{fontSize: '20px'}}>All pending orders</Container>
+                <Container className='pending-orders-text px-0' style={{fontSize: '20px'}}> {props.t('orders.pending')}</Container>
             </Container>
         </Row>
     </Card.Body>;
@@ -109,7 +109,7 @@ export default function Orders() {
   return(
     <StyledOrders className='col-lg-12 col-xxl-4'>
       <Card.Title className='row justify-content-center fs-3 fw-bold m-0 title' fluid>
-        Orders
+          {props.t('ordersWidget')}
       </Card.Title>
       {content}
     </StyledOrders>

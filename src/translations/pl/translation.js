@@ -71,7 +71,12 @@ const TRANSLATION_PL = {
     timePeriodMsg : 'Okres czasu',
     chartMsg : 'Rodzaj wykresu',
     filter :'Filtr danych'
-  }
+  },
+
+
+  meticulousness : "dokładność",
+  management: "zarządzanie",
+  courtesy :"uprzejmość"
 
 };
 

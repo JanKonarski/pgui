@@ -130,6 +130,7 @@ export default function Offers(props) {
                         turnover={offer.turnover}
                         views={offer.views}
                         offerType={offerType}
+                        t={t}
                     />
                 ))}
 

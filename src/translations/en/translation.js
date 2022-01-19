@@ -67,7 +67,11 @@ const TRANSLATION_EN = {
     timePeriodMsg : 'Time period',
     chartMsg : 'Chart type',
     filter :'Filter'
-  }
+  },
+
+  meticulousness : "meticulousness",
+  management: "management",
+  courtesy :"courtesy"
 
 
 
