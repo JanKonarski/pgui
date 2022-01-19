@@ -95,5 +95,6 @@ export const StyledOffers = styled(Widget) `
 
   .btn-check:checked + .btn-primary {
     background-color: ${({ theme }) => theme.widget.checkedBtnColor};
+    border-color: ${({ theme }) => theme.widget.borderColor};
   }
 `
