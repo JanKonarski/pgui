@@ -7,7 +7,7 @@ function Offer({key, name, photo, sold, turnover, views, offerType,t}) {
     let secondFieldName;
     if (offerType === 'Most often') {
         secondField = turnover;
-        secondFieldName = 'Turnover:'
+        secondFieldName = t('offers.turnover')
     } else if (offerType === 'Least often') {
         secondField = views;
         secondFieldName = t('offers.views')

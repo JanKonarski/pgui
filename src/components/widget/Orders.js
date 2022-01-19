@@ -68,23 +68,23 @@ export default function Orders(props) {
 
     const ordersContent = <Card.Body className='ordersBody'>
         <Row>
-            <Container sm={6} className='col-md-6 col-xs-12 fs-4 digits text-center'>
+            <Container className='col-md-6 col-xs-12 status digits'>
                 <Container className='row p-0 orders text-nowrap' fluid>
-                    <Container className='col-8 text-center'><Link className='order-link' to='not_paid'> {props.t('orders.notPaid')}</Link></Container>
-                    <Container className='col-4 text-start digit'>{orders['unpaid']}</Container>
+                    <Container className='col-8 col-md-10 text-center text-md-start text-lg-center text-xl-center '><Link className='order-link' to='not_paid'> {props.t('orders.notPaid')}</Link></Container>
+                    <Container className='col-4 col-md-2 text-start digit'>{orders['unpaid']}</Container>
                 </Container>
                 <Container className='row m-0 p-0 text-nowrap' fluid>
-                    <Container className='col-8'><Link className='order-link' to='not_sent'> {props.t('orders.notSent')}</Link></Container>
-                    <Container className='col-4 text-start digit'>{orders['unsent']}</Container>
+                    <Container className='col-8 col-md-10 text-center text-md-start text-lg-center text-xl-center '><Link className='order-link' to='not_sent'> {props.t('orders.notSent')}</Link></Container>
+                    <Container className='col-4 col-md-2 text-start digit'>{orders['unsent']}</Container>
                 </Container>
                 <Container className='row m-0 p-0 text-nowrap' fluid>
-                    <Container className='col-8'><Link className='order-link' to='refunds'> {props.t('orders.returns')}</Link></Container>
-                    <Container className='col-4 text-start digit'>{orders['refunds']}</Container>
+                    <Container className='col-8 col-md-10 text-center text-lg-center text-xl-center text-md-start'><Link className='order-link' to='refunds'> {props.t('orders.returns')}</Link></Container>
+                    <Container className='col-4 col-md-2 text-start digit'>{orders['refunds']}</Container>
                 </Container>
             </Container>
             <Container className='col-md-6 col-xs-12 text-center text-nowrap'>
-                <Container className='fw-bold pending-orders px-0' style={{fontSize: '77px'}}>{twoLeadingZeros(orders['pending'])}</Container>
-                <Container className='pending-orders-text px-0' style={{fontSize: '20px'}}> {props.t('orders.pending')}</Container>
+                <Container className='fw-bold pending-orders px-0' style={{fontSize: '70px'}}>{twoLeadingZeros(orders['pending'])}</Container>
+                <Container className='pending-orders-text px-0' style={{fontSize: '16px'}}> {props.t('orders.pending')}</Container>
             </Container>
         </Row>
     </Card.Body>;

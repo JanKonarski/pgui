@@ -42,4 +42,12 @@ export const StyledSalesChart = styled(Widget) `
     stroke: ${({ theme }) => theme.widget.chartLineColor};
     stroke-width: 3;
   }
+  
+  .xAxis {
+    
+  }
+  
+  .recharts-layer {
+    stroke: green;
+  }
 `

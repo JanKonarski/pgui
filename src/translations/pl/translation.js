@@ -22,7 +22,7 @@ const TRANSLATION_PL = {
     notPaid : 'Niezapłacone',
     notSent : 'Niewysłane ',
     returns : 'Zwroty',
-    pending : 'Wszytkie oczekujące zamówienia'
+    pending : 'Oczekujące zamówienia'
   },
 
   dailyTipsWidget : 'Codzienne porady',
@@ -54,7 +54,7 @@ const TRANSLATION_PL = {
     noOffers : 'Brak ofert',
     sold : 'Sprzedane',
     turnover : 'Obró†',
-    views : 'Wyświetlane',
+    views : 'Wyświetlenia',
     mo : 'Najczęściej',
     lo: 'Najrzadziej'
   },
@@ -64,7 +64,7 @@ const TRANSLATION_PL = {
     line : 'Wykres Liniowy',
     bar : 'Wykres Słupkowy',
     sold : 'Sprzedane sztuki',
-    turnover : 'Obró†',
+    turnover : 'Obrót',
     today : "Dziś",
     week : 'Ten tydzień',
     year : 'Ten rok',
@@ -74,9 +74,9 @@ const TRANSLATION_PL = {
   },
 
 
-  meticulousness : "dokładność",
-  management: "zarządzanie",
-  courtesy :"uprzejmość"
+  meticulousness : "Dokładność",
+  management: "Zarządzanie",
+  courtesy :"Uprzejmość"
 
 };
 

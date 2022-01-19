@@ -3,11 +3,14 @@ import Widget from "../Widget";
 
 export const StyledOrders = styled(Widget) `
   
-  
   .orders {
     margin: 20px 0 0;
   }
 
+  .status {
+    font-size: 20px;
+  }
+  
   .pending-orders {
     color: ${({ theme }) => theme.widget.rating};
   }
@@ -56,7 +59,7 @@ export const StyledOrders = styled(Widget) `
     padding-left: 25px;
   }
 
-  .digits {
-    padding-left: 22px;
-  }
+  
+  
+
 `

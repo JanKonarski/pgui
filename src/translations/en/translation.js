@@ -22,7 +22,7 @@ const TRANSLATION_EN = {
     notPaid : 'Not Paid',
     notSent : 'Not Sent',
     returns : 'Returns',
-    pending : 'All pending orders'
+    pending : 'Pending orders'
   },
 
   dailyTipsWidget : 'Daily Tips',
@@ -50,7 +50,7 @@ const TRANSLATION_EN = {
     noOffers : 'No offers',
     sold : 'Sold',
     turnover : 'Turnover',
-    views : 'Unique views',
+    views : 'Views',
     mo : 'Most often',
     lo: 'Least often'
   },
@@ -69,9 +69,9 @@ const TRANSLATION_EN = {
     filter :'Filter'
   },
 
-  meticulousness : "meticulousness",
-  management: "management",
-  courtesy :"courtesy"
+  meticulousness : "Meticulousness",
+  management: "Management",
+  courtesy :"Mourtesy"
 
 
 
