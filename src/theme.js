@@ -27,7 +27,8 @@ export const lightTheme = {
         buttonBorderColor: '#0275d8',
         orderLink: '#BB86FC',
         offerContainer: '#FFFFFF',
-        rankingColor: '#F8F8F8'
+        rankingColor: '#F8F8F8',
+        opinionDate: '#95938B',
     },
 }
 
@@ -58,7 +59,8 @@ export const darkTheme = {
         dropDownBackgroundColor: '#343A40',
         orderLink: '#BB86FC',
         offerContainer: '#343A40',
-        rankingColor: '#3f464d'
+        rankingColor: '#3f464d',
+        opinionDate: '#CED4DA',
     },
 
     inputColor: '#5c5c5c',
