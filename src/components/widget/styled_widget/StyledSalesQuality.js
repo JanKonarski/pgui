@@ -3,7 +3,7 @@ import Widget from "../Widget";
 
 export const StyledSalesQuality = styled(Widget) `
   .score-info {
-    margin-top: 10px;
+    margin-top: 30px;
   }
   
   .rating {

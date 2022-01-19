@@ -7,7 +7,7 @@ export const StyledOpinion = styled.div `
   }
   
   .opinion-date {
-    color: #95938B;
+    color: ${({ theme }) => theme.widget.opinionDate};
     font-style: italic;
     margin-top: 4px;
     font-size: 15px;
@@ -18,7 +18,7 @@ export const StyledOpinion = styled.div `
     position: relative;
     top: 2.5px;
     left: 4px;
-    color: #95938B;
+    color: ${({ theme }) => theme.widget.opinionDate};
     font-style: italic;
     margin-top: 3px;
   }
