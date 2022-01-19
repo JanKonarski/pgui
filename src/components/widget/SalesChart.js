@@ -205,13 +205,13 @@ export default function SalesChart(props) {
 
                 <Row className='chart'>
 
-                    <Col className="col-12 px-0 mx-0 gx-0 col-sm-12 col-md-9 chart">
+                    <Col className="col-12 px-0 mx-0 gx-0 col-sm-12 col-md-8 chart">
                         {/*{JSON.stringify(chartData)}*/}
 
                         {chart}
 
                     </Col>
-                    <Col className="col-12 col-sm-12 col-md-3">
+                    <Col className="col-12 col-sm-12 col-md-4">
 
                         <ChartMenu
                             availableChartTypes={availableChartTypes}
