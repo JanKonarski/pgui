@@ -27,6 +27,16 @@ export const StyledSalesChart = styled(Widget) `
       width: 175px;
     }
   }
+
+  .menu {
+    width: 70%;
+  }
+
+  @media screen and (min-width: 48em) {
+    .menu {
+      width: 175px;
+    }
+  }
   
   //.responsive-container {
   //  height: 50px;
@@ -44,10 +54,6 @@ export const StyledSalesChart = styled(Widget) `
   }
   
   .xAxis {
-    
-  }
-  
-  .recharts-layer {
-    stroke: green;
+    fill: green;
   }
 `

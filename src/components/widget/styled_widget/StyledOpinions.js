@@ -20,6 +20,8 @@ export const StyledOpinions = styled(Widget) `
     margin-right: 7px;
     width: 120px;
   }
+
+ 
   
   @media screen and (min-width: 30em){
     .categoryButton {
@@ -27,7 +29,7 @@ export const StyledOpinions = styled(Widget) `
       width: 132px;
     }
   }
-
+  
   .dropdown, .dropdown:focus  {
     border-color: ${({ theme }) => theme.widget.buttonBorderColor};
   }

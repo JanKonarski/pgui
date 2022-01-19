@@ -43,7 +43,7 @@ export default function ChartMenu(props) {
                     <Dropdown.Toggle className="custom-dropdown text-wrap button" variant="primary" id="dropdown-basic">
                         {displayFilter(props.filter)}
                     </Dropdown.Toggle>
-                    <Dropdown.Menu>
+                    <Dropdown.Menu className="menu">
                         {props.availableFilters.map((k) => (
                             <Dropdown.Item eventKey={k} key={k} active={k === props.filter}>
                                 {displayFilter(k)}
@@ -60,7 +60,7 @@ export default function ChartMenu(props) {
                     <Dropdown.Toggle className="custom-dropdown text-wrap button" variant="primary" id="dropdown-basic">
                         {displayChartType(props.chartType)}
                     </Dropdown.Toggle>
-                    <Dropdown.Menu>
+                    <Dropdown.Menu className="menu">
                         {props.availableChartTypes.map((k) => (
                             <Dropdown.Item eventKey={k} key={k} active={k === props.chartType}>
                                 {displayChartType(k)}
@@ -77,7 +77,7 @@ export default function ChartMenu(props) {
                     <Dropdown.Toggle className="custom-dropdown text-wrap button" variant="primary" id="dropdown-basic">
                         {displayTimePeriod(props.timePeriod)}
                     </Dropdown.Toggle>
-                    <Dropdown.Menu>
+                    <Dropdown.Menu className="menu">
                         {props.availableTimePeriods.map((k) => (
                             <Dropdown.Item eventKey={k} key={k} active={k === props.timePeriod}>
                                 {displayTimePeriod(k)}

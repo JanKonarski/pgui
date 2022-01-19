@@ -53,7 +53,7 @@ const TRANSLATION_PL = {
     info : 'Nowe oferty zostaną wyświetlone, jeśli wystawisz produkty na sprzedaż',
     noOffers : 'Brak ofert',
     sold : 'Sprzedane',
-    turnover : 'Obró†',
+    turnover : 'Obrót',
     views : 'Wyświetlenia',
     mo : 'Najczęściej',
     lo: 'Najrzadziej'

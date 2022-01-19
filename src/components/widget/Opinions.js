@@ -167,10 +167,10 @@ export default function ClientsOpinionsWidget(props) {
                     <Card.Title
                         className="row justify-content-center fs-3 fw-bold m-0">{props.t('opinionsWidget')}</Card.Title>
                     <Row>
-                        <Col className='col-md-7 opinions-page-container'>
+                        <Col className='col-md-8 opinions-page-container'>
                             <Link className='opinions-page' to='opinions'>{props.t('opinions.page')}</Link>
                         </Col>
-                        <Col className="col-md-5 text-end px-0 mx-0">
+                        <Col className="col-md-4 text-end px-0 mx-0">
                             <Dropdown align={"end"} onSelect={selectHandler}>
                                 <Dropdown.Toggle className="button categoryButton">
                                     {getActiveOptionsType()}

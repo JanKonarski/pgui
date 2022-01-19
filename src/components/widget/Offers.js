@@ -174,9 +174,9 @@ export default function Offers(props) {
           <Row className=' controls'>
               <Col className='col-12 col-md-4 text-center text-md-start px-0 mx-0'>
                   <ButtonGroup toggle className="buttons">
-                      <StyledToggleButton id="button1" type="radio" className=" toggleButton text-nowrap Btn-Blue-BG button" value="Most often" checked={offerType === "Most often"}
+                      <StyledToggleButton id="button1" type="radio" className="toggleButton text-nowrap Btn-Blue-BG button" value="Most often" checked={offerType === "Most often"}
                                     name="offerType" onClick={() => offerTypeHandler("Most often")}>{props.t('offers.mo')}</StyledToggleButton>
-                      <StyledToggleButton id="button2" type="radio" className=" button toggleButton text-nowrap Btn-Blue-BG" value="Least often" checked={offerType === "Least often"}
+                      <StyledToggleButton id="button2" type="radio" className="button toggleButton text-nowrap Btn-Blue-BG" value="Least often" checked={offerType === "Least often"}
                                     name="offerType" onClick={() => offerTypeHandler("Least often")}>{props.t('offers.lo')}</StyledToggleButton>
                   </ButtonGroup>
               </Col>
