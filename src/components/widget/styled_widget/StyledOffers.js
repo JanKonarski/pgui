@@ -3,11 +3,11 @@ import Widget from "../Widget";
 
 export const StyledOffers = styled(Widget) `
   min-height: 571px;
-  
+
   .controls {
     margin-top: 20px;
   }
-  
+
   .dropdown-toggle {
     border-radius: 30px;
     width: 100%;
@@ -15,23 +15,23 @@ export const StyledOffers = styled(Widget) `
     margin-top: 15px;
   }
 
-  @media screen and (min-width: 48em){
+  @media screen and (min-width: 48em) {
     .dropdown-toggle {
       width: 140px;
       margin-top: 0;
     }
   }
-  
+
   .menu {
     width: 100%;
   }
 
-  @media screen and (min-width: 48em){
+  @media screen and (min-width: 48em) {
     .menu {
       width: auto;
     }
   }
-  
+
   .dropdown, .dropdown:focus {
     border-color: ${({theme}) => theme.widget.buttonBorderColor};
   }
@@ -61,25 +61,39 @@ export const StyledOffers = styled(Widget) `
   }
 
   .button .button:focus, .button:active {
-    outline: none; !important;
-    box-shadow: none; !important;
+    outline: none;
+  !important;
+    box-shadow: none;
+  !important;
   }
-  
+
   .button {
     border-radius: 30px;
     height: 40px;
   }
-  
+
   .buttons {
     width: 100%;
   }
 
-  .button[type="radio"]:checked+label {
-    background-color: ${({ theme }) => theme.widget.buttonColor};
-    border-color: ${({ theme }) => theme.widget.buttonBorderColor};
+  .button[type="radio"]:checked + label {
+    background-color: ${({theme}) => theme.widget.buttonColor};
+    border-color: ${({theme}) => theme.widget.buttonBorderColor};
   }
-  
+
   .offers-container > div:nth-child(2n) {
-    background-color: ${({ theme }) => theme.widget.rankingColor};
+    background-color: ${({theme}) => theme.widget.rankingColor};
+  }
+
+  .btn-ckeck {
+
+  }
+
+  .btn-check + .btn-primary {
+    background-color: ${({ theme }) => theme.widget.normalBtnColor};
+  }
+
+  .btn-check:checked + .btn-primary {
+    background-color: ${({ theme }) => theme.widget.checkedBtnColor};
   }
 `

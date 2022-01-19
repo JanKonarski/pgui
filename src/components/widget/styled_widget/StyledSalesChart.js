@@ -37,4 +37,9 @@ export const StyledSalesChart = styled(Widget) `
   //    height: 100%;
   //  }
   //}
+  
+  .recharts-line-curve {
+    stroke: ${({ theme }) => theme.widget.chartLineColor};
+    stroke-width: 3;
+  }
 `

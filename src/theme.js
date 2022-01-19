@@ -29,6 +29,9 @@ export const lightTheme = {
         offerContainer: '#FFFFFF',
         rankingColor: '#F8F8F8',
         opinionDate: '#95938B',
+        normalBtnColor: '#71a1dc',
+        checkedBtnColor: '#0c54b1',
+        chartLineColor: '#000'
     },
 }
 
@@ -61,6 +64,9 @@ export const darkTheme = {
         offerContainer: '#343A40',
         rankingColor: '#3f464d',
         opinionDate: '#CED4DA',
+        normalBtnColor: '#646a79',
+        checkedBtnColor: '#373b44',
+        chartLineColor: '#FFF'
     },
 
     inputColor: '#5c5c5c',
