@@ -13,7 +13,8 @@ export const lightTheme = {
         backgroundColor: '#3D8BFD',
         color: '#FFFFFF',
         borderColor: '#CED4DA',
-        toggleButtonColor: '#FAFAFA'
+        toggleButtonColor: '#FAFAFA',
+        iconColor: "#343A40"
     },
 
     widget: {
@@ -42,7 +43,8 @@ export const darkTheme = {
         backgroundColor: '#495057',
         color: '#343A40',
         borderColor: '#CED4DA',
-        toggleButtonColor: '#b4b4b4'
+        toggleButtonColor: '#b4b4b4',
+        iconColor: "#CED4DA"
     },
 
     widget: {
