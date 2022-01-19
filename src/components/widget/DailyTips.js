@@ -46,13 +46,12 @@ export default function DailyTips(props) {
     }
 
     if(tips!==null){
-       displayTips= (
+       displayTips=
             tips.map((t) =>(
-        <Container className='pt-2 text-center' fluid>
-          {t}
-        </Container>
+                <Container className='pt-2 text-center' fluid>
+                  {t}
+                </Container>
             ))
-        )
     }
 
   return(

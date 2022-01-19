@@ -2,6 +2,7 @@ import Container from 'react-bootstrap/Container';
 
 import Widget from './Widget';
 import {StyledSalesQuality} from "./styled_widget/StyledSalesQuality";
+import {Col, Row} from "react-bootstrap";
 
 export default function SalesQuality(props) {
   return(
@@ -10,17 +11,21 @@ export default function SalesQuality(props) {
           {props.t('salesQualityWidget')}
       </Container>
       <Container className='row pt-2 m-0' fluid>
-        <Container className='col-4 text-center score-info' style={{fontSize: '22px'}} fluid>
+          <Container className='col-12  col-lg-11 col-xl-12 col-xxl-7 text-center score-info d-flex justify-content-center' style={{fontSize: '20px'}} fluid>
             {props.t('salesQuality.annualMsg')}
         </Container>
-        <Container className='col-6 fw-bold text-center rating' style={{fontSize: '72px'}} fluid>
+          <Container className='col-12 col-lg-12 col-xl-12 col-xxl-5 fw-bold text-center rating text-nowrap' style={{fontSize: '80px'}} fluid>
           4/5
         </Container>
       </Container>
-      <Container className='row text-center pt-4 m-0' fluid>
-        <span className='to-improve'> {props.t('salesQuality.improvement')}
-            courtesy time management meticulousness</span>
-      </Container>
+        <Container className='row text-center pt-0 m-0 to-improve-container' fluid>
+            <span className='to-improve'> {props.t('salesQuality.improvement')}</span>
+            <Row className="px-0 gx-0 text-nowrap">
+                <Col className="rating">Courtesy time</Col>
+                <Col className="rating">Management</Col>
+                <Col className="rating">Meticulousness</Col>
+            </Row>
+        </Container>
     </StyledSalesQuality>
   );
 }

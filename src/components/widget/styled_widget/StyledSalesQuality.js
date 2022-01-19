@@ -10,7 +10,9 @@ export const StyledSalesQuality = styled(Widget) `
     color: ${({ theme }) => theme.widget.rating};
   }
   
-  .to-improve {
-    margin-top: 10px;
+ 
+  
+  .to-improve-container {
+    
   }
 `
