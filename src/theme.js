@@ -29,6 +29,7 @@ export const lightTheme = {
         offerContainer: '#FFFFFF',
         rankingColor: '#F8F8F8',
         opinionDate: '#95938B',
+        activeToggle: '#95938B',
     },
 }
 
@@ -61,6 +62,7 @@ export const darkTheme = {
         offerContainer: '#343A40',
         rankingColor: '#3f464d',
         opinionDate: '#CED4DA',
+        activeToggle: '#BB86F'
     },
 
     inputColor: '#5c5c5c',
