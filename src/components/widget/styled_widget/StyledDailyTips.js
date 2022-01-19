@@ -8,4 +8,5 @@ export const StyledDailyTips = styled(Widget) `
     font-size: medium;
     
   }
+  
 `
