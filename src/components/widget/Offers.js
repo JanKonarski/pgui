@@ -1,11 +1,12 @@
 import Widget from './Widget';
 import {StyledOffers} from "./styled_widget/StyledOffers";
-import {Button, ButtonGroup, Card, Col, Dropdown, Row, ToggleButton} from "react-bootstrap";
+import {Button, ButtonGroup, Card, Col, Dropdown, Row } from "react-bootstrap";
 import {useTranslation} from "react-i18next";
 import {useEffect, useState} from "react";
 import Offer from "./Offer";
 import Opinion from "./Opinion";
 import spinner from "../../image/spinner.gif";
+import {StyledToggleButton} from "./styled_element/StyledToggleButton";
 
 export default function Offers(props) {
 
@@ -172,10 +173,10 @@ export default function Offers(props) {
           <Row className=' controls'>
               <Col className='col-12 col-md-4 text-center text-md-start px-0 mx-0'>
                   <ButtonGroup toggle className="buttons">
-                      <ToggleButton id="button1" type="radio" className="button toggleButton text-nowrap" value="Most often" checked={offerType === "Most often"}
-                                    name="offerType" onClick={() => offerTypeHandler("Most often")}>{props.t('offers.mo')}</ToggleButton>
-                      <ToggleButton id="button2" type="radio" className="button toggleButton text-nowrap" value="Least often" checked={offerType === "Least often"}
-                                    name="offerType" onClick={() => offerTypeHandler("Least often")}>{props.t('offers.lo')}</ToggleButton>
+                      <StyledToggleButton id="button1" type="radio" className=" toggleButton text-nowrap Btn-Blue-BG button" value="Most often" checked={offerType === "Most often"}
+                                    name="offerType" onClick={() => offerTypeHandler("Most often")}>{props.t('offers.mo')}</StyledToggleButton>
+                      <StyledToggleButton id="button2" type="radio" className=" button toggleButton text-nowrap Btn-Blue-BG" value="Least often" checked={offerType === "Least often"}
+                                    name="offerType" onClick={() => offerTypeHandler("Least often")}>{props.t('offers.lo')}</StyledToggleButton>
                   </ButtonGroup>
               </Col>
               <Col className='col-12 col-md-8 px-0 mx-0 sortButton'>
