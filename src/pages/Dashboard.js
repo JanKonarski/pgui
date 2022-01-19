@@ -26,7 +26,7 @@ export default function Dashboard() {
         <Orders t={t}/>
       </Container>
       <Container className='row sm-5 px-0 m-0' fluid>
-        <SalesChart t={t} language={i18n.language} id={0} />
+        <SalesChart t={t} language={i18n.language} id={user["id"]} />
       </Container>
       <Container className='pb-4 px-0 row m-0' fluid>
         <Opinions t={t} />

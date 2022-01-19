@@ -10,6 +10,9 @@ import moment from "moment";
 import 'moment/locale/en-au';
 import 'moment/locale/pl';
 import spinner from "../../image/spinner.gif";
+import i18n from "../../translations/i18n";
+
+
 
 export default function SalesChart(props) {
 
@@ -27,7 +30,7 @@ export default function SalesChart(props) {
     let chart =null
 
 
-
+    const [current, setCurrent] = useState(i18n.language)
     const [chartType, setChartType] = useState(availableChartTypes[0]);
     const [timePeriod, setTimePeriod] = useState(Object.keys(availableTimePeriods)[0]);
 
@@ -58,7 +61,7 @@ export default function SalesChart(props) {
 
     })
 
-    const [hours,setHour] = useState(null)
+    const [hours,setHour] = useState([0,1,2,3,4,5,6,7,8,9,10,10,12,13,14,15,16,17,18,19,20,21,22,23])
 
     const [chartData,setChartData] =useState(null)
 
@@ -72,7 +75,10 @@ export default function SalesChart(props) {
         return months
     };
 
-    const fetchData=(filter, timePeriod)=>{
+
+
+
+      function fetchData(filter, timePeriod){
 
         let tmp
         setIsLoading(true);
@@ -123,23 +129,23 @@ export default function SalesChart(props) {
         return d
     }
 
-
-    useEffect(()=> {
-
+    function setLabels(){
         if (props.language === 'eng'){
             moment.locale('en-au')
         }else{
             moment.locale('pl')
         }
-        setHour([0,1,2,3,4,5,6,7,8,9,10,10,12,13,14,15,16,17,18,19,20,21,22,23]
-
-        )
 
 
-            setMonths(moment.months());
-            setDays(moment.weekdays())
 
-        fetchData(filter, timePeriod)
+        setMonths(moment.months());
+        setDays(moment.weekdays())
+    }
+
+
+    useEffect(()=> {
+      setLabels()
+      fetchData(filter, timePeriod)
 
 
 
@@ -161,7 +167,6 @@ export default function SalesChart(props) {
         fetchData(e,timePeriod)
     }
 
-    const data=["elo","eo"]
 
     const modifyFormatter = (value, name, props) => {
         const nameJSX = <span><span style={{
@@ -192,9 +197,18 @@ export default function SalesChart(props) {
     }
 
     if(chartData===null){
-        chart = null
+        chart =   <Col className='mx-auto d-block spinner'><img className='mx-auto align-self-center d-block spinner'
+                                                                src={spinner} alt={''}/></Col>
     }else{
         chart = fetchChart(chartType)
+    }
+
+
+    function handleLanguageChange() {
+        if(current!=i18n.language){
+            setCurrent(i18n.language)
+            setLabels()
+        }
     }
 
     return (
@@ -212,7 +226,7 @@ export default function SalesChart(props) {
 
                     </Col>
                     <Col className="col-12 col-sm-12 col-md-4">
-
+                        {handleLanguageChange()}
                         <ChartMenu
                             availableChartTypes={availableChartTypes}
                             availableTimePeriods={Object.keys(availableTimePeriods)}
