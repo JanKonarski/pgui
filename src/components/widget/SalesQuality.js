@@ -6,15 +6,15 @@ import {Col, Row} from "react-bootstrap";
 
 export default function SalesQuality(props) {
   return(
-    <StyledSalesQuality className='col-lg-4'>
+    <StyledSalesQuality sm={6} className='col-lg-4'>
       <Container className='row justify-content-center fs-3 fw-bold m-0 title' fluid>
           {props.t('salesQualityWidget')}
       </Container>
       <Container className='row pt-2 m-0' fluid>
-        <Container className='col-4 text-center score-info' style={{fontSize: '22px'}} fluid>
+        <Container className='col-12 col-md-7 text-center score-info d-flex justify-content-center' style={{fontSize: '20px'}} fluid>
             {props.t('salesQuality.annualMsg')}
         </Container>
-        <Container className='col-6 fw-bold text-center rating' style={{fontSize: '80px'}} fluid>
+        <Container className='col-12 col-md-5 fw-bold text-center rating' style={{fontSize: '80px'}} fluid>
           4/5
         </Container>
       </Container>

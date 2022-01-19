@@ -38,7 +38,7 @@ export default function Orders() {
     }
 /* 3 -> 1 */
     function twoLeadingZeros(num) {
-        return String(num).padStart(3, '0');
+        return String(num).padStart(1, '0');
     }
 
     const noOrdersContent =
@@ -68,7 +68,7 @@ export default function Orders() {
 
     const ordersContent = <Card.Body className='ordersBody'>
         <Row>
-            <Container className='col-md-6 col-xs-12 fs-4 digits text-center'>
+            <Container sm={6} className='col-md-6 col-xs-12 fs-4 digits text-center'>
                 <Container className='row p-0 orders' fluid>
                     <Container className='col-8 text-center'><Link className='order-link' to='not_paid'>Not paid</Link></Container>
                     <Container className='col-4 text-start digit'>{orders['unpaid']}</Container>
