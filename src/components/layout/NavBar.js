@@ -47,6 +47,63 @@ export default function NavBar(props) {
         setSelectedLanguage(e);
     }
 
+    function getTitle(){
+        if(localStorage.getItem("user") ===null){
+           return t('navbarSwitchAccount')
+        }else{
+           return   JSON.parse(localStorage.getItem("user"))["name"]
+        }
+    }
+
+    function getSwitchAccounts(){
+        if(localStorage.getItem("user") !=null) {
+           return(
+<div>
+            <Nav.Link href=''>{t('navbarAccountDetails')}</Nav.Link>
+            <NavDropdown title={
+                getTitle()
+            } id='offcanvasNavbarDropdownAccount'>
+                <NavDropdown.Item href='' onClick={() => {
+                    localStorage.setItem('user', JSON.stringify({id: 0, name: 'Megan Thee Stalion'}));
+                    window.location.reload();
+                }}>
+                    Megan Thee Stalion
+                </NavDropdown.Item>
+                <NavDropdown.Item href='' onClick={() => {
+                    localStorage.setItem('user', JSON.stringify({id: 1, name: 'Magda Gesler'}));
+                    window.location.reload();
+                }}>
+                    Magda Gesler
+                </NavDropdown.Item>
+                <NavDropdown.Item href='' onClick={() => {
+                    localStorage.setItem('user', JSON.stringify({id: 2, name: 'Harry Potter'}));
+                    window.location.reload();
+                }}>
+                    Harry Potter
+                </NavDropdown.Item>
+
+                <NavDropdown.Divider/>
+                <NavDropdown.Item href=''>
+                    <PlusCircle className='me-2'/>
+                    {t('navbarAddAccount')}
+                </NavDropdown.Item>
+
+
+            </NavDropdown>
+                <hr/>
+                <Nav.Link href='' className='text-danger' onClick={() => {
+                    window.localStorage.removeItem('user');
+                    window.localStorage.removeItem('users');
+                    window.location.href='/login';
+                }}>{t('navbarLogout')}</Nav.Link>
+
+                    </div>
+        )
+
+        }
+
+    }
+
     return (
         <header>
             <StyledNavbar expand={false} className='fixed-top'>
@@ -65,42 +122,9 @@ export default function NavBar(props) {
                         </Offcanvas.Header>
                         <Offcanvas.Body>
                             <Nav className='justify-content-end flex-grow-1 pe-3'>
-                                <Nav.Link href=''>{t('navbarAccountDetails')}</Nav.Link>
-                                <NavDropdown title={t('navbarSwitchAccount')} id='offcanvasNavbarDropdownAccount'>
-                                    <NavDropdown.Item href='' onClick={() => {
-                                        localStorage.setItem('user', JSON.stringify({id: 0, name: 'Megan Thee Stalion'}));
-                                        window.location.reload();
-                                    }}>
-                                        Megan Thee Stalion
-                                    </NavDropdown.Item>
-                                    <NavDropdown.Item href='' onClick={() => {
-                                        localStorage.setItem('user', JSON.stringify({id: 1, name: 'Magda Gesler'}));
-                                        window.location.reload();
-                                    }}>
-                                        Magda Gesler
-                                    </NavDropdown.Item>
-                                    <NavDropdown.Item href='' onClick={() => {
-                                        localStorage.setItem('user', JSON.stringify({id: 2, name: 'Harry Potter'}));
-                                        window.location.reload();
-                                    }}>
-                                        Harry Potter
-                                    </NavDropdown.Item>
 
-                                    <NavDropdown.Divider/>
-                                    <NavDropdown.Item href=''>
-                                        <PlusCircle className='me-2'/>
-                                        {t('navbarAddAccount')}
-                                    </NavDropdown.Item>
+                                {getSwitchAccounts()}
 
-
-                                </NavDropdown>
-                                <hr/>
-                                <Nav.Link href='' className='text-danger' onClick={() => {
-                                    window.localStorage.removeItem('user');
-                                    window.localStorage.removeItem('users');
-                                    window.location.href='/login';
-                                }}>{t('navbarLogout')}</Nav.Link>
-                                <hr/>
 
                                 <NavDropdown title={selectedLanguage} onSelect={setAppLanguage}  >
 

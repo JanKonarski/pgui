@@ -59,6 +59,7 @@ const TRANSLATION_PL = {
     lo: 'Najrzadziej'
   },
 
+  chartWidget : 'Wykres sprzedaży',
   chart :{
     line : 'Wykres Liniowy',
     bar : 'Wykres Słupkowy',

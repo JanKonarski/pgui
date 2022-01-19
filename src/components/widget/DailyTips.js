@@ -10,9 +10,11 @@ export default function DailyTips(props) {
     const [error, setError] = useState(null);
     const [tips,setTips] = useState(null)
     const [isLoading, setIsLoading] = useState(true);
+    let displayTips = null
 
 
-  useEffect(()=> {
+
+        useEffect(()=> {
         setError(null);
         fetch(
             'http://127.0.0.1:8000/tips/'+props.language+"/0"
@@ -43,6 +45,15 @@ export default function DailyTips(props) {
         return tips;
     }
 
+    if(tips!==null){
+       displayTips= (
+            tips.map((t) =>(
+        <Container className='pt-2 text-center' fluid>
+          {t}
+        </Container>
+            ))
+        )
+    }
 
   return(
     <StyledDailyTips className='col-lg-4'>
@@ -51,17 +62,7 @@ export default function DailyTips(props) {
 
       </Container>
       <Container className='daily-tips'>
-          {/*{tips.map((t) =>(*/}
-          {/*<Container className='pt-2 text-center' fluid>*/}
-          {/*  {t}*/}
-          {/*</Container>*/}
-          {/*    ))}*/}
-
-          {tips}
-              
-         
-
-
+          {displayTips}
       </Container>
 
     </StyledDailyTips>

@@ -114,7 +114,7 @@ export default function SalesChart(props) {
         for (let key in data){
             d.push({
 
-                    name : JSON.stringify(labels[k]),
+                    name : labels[k],
                     value:JSON.stringify(data[key])
 
             })
@@ -200,7 +200,7 @@ export default function SalesChart(props) {
     return (
         <StyledSalesChart>
             <Card.Body>
-            <Card.Title className="row justify-content-center fs-3 fw-bold m-0">Wykres sprzedaży</Card.Title>
+            <Card.Title className="row justify-content-center fs-3 fw-bold m-0">{props.t('chartWidget')}</Card.Title>
 
 
                 <Row className='chart'>

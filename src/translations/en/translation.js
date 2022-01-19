@@ -55,7 +55,7 @@ const TRANSLATION_EN = {
     lo: 'Least often'
   },
 
-
+  chartWidget : 'Sales chart',
   chart :{
     line : 'Line Chart',
     bar : 'Bar chart',
