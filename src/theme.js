@@ -7,6 +7,8 @@ export const lightTheme = {
         color: '#000000',
         toggleColor: '#FFFFFF',
         error: '#ED4337',
+        dropDownSelectedBg: '#3D8BFD',
+        dropDownHoverBg: '#E9ECEF'
     },
 
     navbar: {
@@ -42,7 +44,9 @@ export const darkTheme = {
         backgroundColor: '#363537',
         color: '#FAFAFA',
         toggleColor: '#FFFFFF',
-        error: '#ED4337'
+        error: '#ED4337',
+        dropDownSelectedBg: '#71a1dc',
+        dropDownHoverBg: '#a4b4b4',
     },
 
     navbar: {
@@ -50,7 +54,7 @@ export const darkTheme = {
         color: '#343A40',
         borderColor: '#CED4DA',
         toggleButtonColor: '#b4b4b4',
-        iconColor: "#CED4DA"
+        iconColor: '#CED4DA'
     },
 
     widget: {

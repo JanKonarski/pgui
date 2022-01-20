@@ -13,6 +13,7 @@ export const StyledSalesChart = styled(Widget) `
 
   .custom-dropdown {
     width: 70%;
+    border-radius: 30px;
   }
 
   @media screen and (min-width: 48em){

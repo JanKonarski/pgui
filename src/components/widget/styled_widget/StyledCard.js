@@ -32,4 +32,27 @@ export const StyledCard = styled(Card) `
     .italics {
       font-style: italic;    
     }
+
+    .dropdown-menu {
+      background-color: ${({ theme }) => theme.main.backgroundColor}; !important;
+      border: 1px solid ${({ theme }) => theme.widget.borderColor}; !important;
+    }
+  
+    .dropdownItem {
+      
+    }
+
+    a[aria-selected=true] {
+      color: white; !important;
+      background-color: ${({ theme }) => theme.main.dropDownSelectedBg}; !important;
+      border: 1px solid ${({ theme }) => theme.widget.borderColor}; !important;
+    }
+  
+    a[aria-selected=false] {
+      color: ${({ theme }) => theme.main.color}; !important;
+    }
+  
+    a.dropdown-item:hover:not(a[aria-selected=true]) {
+      background-color: ${({ theme }) => theme.main.dropDownHoverBg}; !important;
+    }
 `
