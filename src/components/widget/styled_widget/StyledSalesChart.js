@@ -38,22 +38,16 @@ export const StyledSalesChart = styled(Widget) `
     }
   }
   
-  //.responsive-container {
-  //  height: 50px;
-  //}
-  //
-  //@media screen and (min-width: 48em){
-  //  .responsive-container {
-  //    height: 100%;
-  //  }
-  //}
-  
   .recharts-line-curve {
     stroke: ${({ theme }) => theme.widget.chartLineColor};
-    stroke-width: 3;
+    stroke-width: 2;
   }
-  
-  .xAxis {
-    fill: green;
+
+  text {
+    fill: ${({ theme }) => theme.widget.chartTickColor};
+  }
+
+  line {
+    stroke: ${({ theme }) => theme.widget.chartAxisColor} !important;
   }
 `

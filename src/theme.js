@@ -31,7 +31,9 @@ export const lightTheme = {
         opinionDate: '#95938B',
         normalBtnColor: '#71a1dc',
         checkedBtnColor: '#0c54b1',
-        chartLineColor: '#000'
+        chartLineColor: '#363537',
+        chartTickColor: '#000',
+        chartAxisColor: '#0D6EFD'
     },
 }
 
@@ -66,7 +68,9 @@ export const darkTheme = {
         opinionDate: '#CED4DA',
         normalBtnColor: '#646a79',
         checkedBtnColor: '#373b44',
-        chartLineColor: '#FFF'
+        chartLineColor: '#FFF',
+        chartTickColor: '#FFF',
+        chartAxisColor: '#78a2d7'
     },
 
     inputColor: '#5c5c5c',
