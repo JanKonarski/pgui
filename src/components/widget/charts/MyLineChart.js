@@ -6,15 +6,30 @@ export default function MyLineChart (props) {
 
     const data = props.data
     const color = props.color
-    const[max,setMax] = useState(1)
+
+
+
+    const findMax = ()=>{
+
+        let max =props.max
+        data.forEach((item) => {
+            console.log(max+'<'+item["value"]+"->"+(max < item["value"]))
+            console.log(typeof (item["value"]))
+            if(parseFloat(max) < parseFloat(item["value"])) {
+                max =item["value"]
+                console.log("max:"+max)
+            }
+
+        })
+
+
+        return max
+    }
 
     const getLineChart = () => {
         const keysArr = Object.keys(data[0]).slice(1);
         const lineArr = [];
         keysArr.forEach((item, index) => {
-            if(max < item){
-                setMax(item["name"])
-            }
             lineArr.push(<Line type="monotone" dataKey={item} stroke={color[index]}/>)
         })
         return lineArr;
@@ -30,7 +45,7 @@ export default function MyLineChart (props) {
                 >
                     <CartesianGrid strokeDasharray="3 3" horizontal={false} vertical={false}  />
                     <XAxis dataKey={Object.keys(data[0])[0]}  dy={5}  />
-                    <YAxis allowDataOverflow={true}/>
+                    <YAxis domain={[0,findMax()]} allowDataOverflow={true}/>
                     <Tooltip/>
                     {/*<Legend/>*/}
                     {getLineChart()}

@@ -5,8 +5,22 @@ import Container from "react-bootstrap/Container";
 export default function MyBarChart (props) {
     const data = props.data
     const color = props.color
-    const[max,setMax] = useState(1)
 
+    const findMax = ()=>{
+
+        let max =props.max
+        data.forEach((item) => {
+
+            if(max < parseFloat(item["value"])) {
+                max =item["value"]
+                console.log("max:"+max)
+            }
+
+        })
+
+
+        return max
+    }
 
     const getBar = () => {
         const {stacked} = props;
@@ -16,11 +30,9 @@ export default function MyBarChart (props) {
         const keysArr = Object.keys(data[0]).slice(1);
         const barArr = [];
         keysArr.forEach((item, index) => {
-            if(max < item){
-                setMax(item["name"])
-            }
             barArr.push(<Bar dataKey={item} stackId={stacked ? "a" : null} fill={color[index]}/>)
         })
+
         return barArr;
     }
 
@@ -39,7 +51,7 @@ export default function MyBarChart (props) {
                 >
                     <CartesianGrid strokeDasharray="2 2" horizontal={false} vertical={false}/>
                     <XAxis dataKey={Object.keys(data[0])[0]} dy={5}  />
-                    <YAxis domain={[0,max+100]} allowDataOverflow={true}/>
+                    <YAxis domain={[0,findMax]} allowDataOverflow={true}/>
                     <Tooltip/>
                     {/*<Legend/>*/}
                     {getBar()}

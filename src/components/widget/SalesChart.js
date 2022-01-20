@@ -86,7 +86,7 @@ export default function SalesChart(props) {
         let tmp
         setIsLoading(true);
         fetch(
-            'http://127.0.0.1:8000/chart/'+availableFilters[filter]+'/'+availableTimePeriods[timePeriod]+'/?id='+props.id+'&date=2021-12-9T23:30:00.000'
+            'http://127.0.0.1:8000/chart/'+availableFilters[filter]+'/'+availableTimePeriods[timePeriod]+'/?id='+props.id+'&date=2021-12-9T23:50:00.000'
         ).then((response) => {
             if (response.ok) {
                 return response.json();
@@ -185,11 +185,11 @@ export default function SalesChart(props) {
     const fetchChart = (type) => {
         switch (type) {
             case availableChartTypes[0]:
-                return <MyLineChart data= {chartData} key={type} color={color} modifyFormatter={modifyFormatter}/>
+                return <MyLineChart data= {chartData} key={type} color={color} modifyFormatter={modifyFormatter} max={0}/>
             case availableChartTypes[1]:
-                return <MyBarChart  data= {chartData} key={type} color={color} modifyFormatter={modifyFormatter}/>
+                return <MyBarChart  data= {chartData} key={type} color={color} modifyFormatter={modifyFormatter} max={0}/>
             default:
-                return <MyLineChart data= {chartData} key={type} color={color} modifyFormatter={modifyFormatter}/>
+                return <MyLineChart data= {chartData} key={type} color={color} modifyFormatter={modifyFormatter} max={0}/>
         }
     }
 
