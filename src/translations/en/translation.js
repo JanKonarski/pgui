@@ -39,7 +39,7 @@ const TRANSLATION_EN = {
     n : 'Negative',
     page : 'Opinions page',
     header :'No opinions',
-    info : "when clients add opinions we will display them",
+    info : "New opinions will be displayed if clients add them",
     error :"Something went wrong - could not load opinions"
   },
 

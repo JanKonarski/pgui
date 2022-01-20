@@ -9,6 +9,7 @@ import spinner from "../../image/spinner.gif";
 import {StyledToggleButton} from "./styled_element/StyledToggleButton";
 
 export default function Offers(props) {
+    const user = JSON.parse(window.localStorage.getItem('user'));
 
     const t = useTranslation()[0]
     const [offerType, setOfferType] = useState("Most often");
@@ -20,7 +21,7 @@ export default function Offers(props) {
     useEffect(() => {
         setError(null);
         fetch(
-            'http://127.0.0.1:8000/offers/0'
+            'http://127.0.0.1:8000/offers/' + user['id']
         ).then((response) => {
             if (response.ok) {
                 return response.json();

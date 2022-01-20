@@ -6,6 +6,8 @@ import {Link} from "react-router-dom";
 import spinner from "../../image/spinner.gif";
 
 export default function Orders(props) {
+    const user = JSON.parse(window.localStorage.getItem('user'));
+
     const errorMessage = "Something went wrong - could not load orders.";
     const [orders, setOrders] = useState({});
     const [isLoading, setIsLoading] = useState(true);
@@ -14,8 +16,7 @@ export default function Orders(props) {
     useEffect(() => {
       setError(null);
       fetch(
-          // 'http://127.0.0.1:8000/orders'
-           'http://127.0.0.1:8000/orders/0'
+           'http://127.0.0.1:8000/orders/' + user['id']
       ).then((response) => {
           if (response.ok) {
               return response.json();
