@@ -13,9 +13,10 @@ export default function MyLineChart (props) {
 
         let max =props.max
         data.forEach((item) => {
-            console.log(max+'<'+item["value"]+"->"+(max < item["value"]))
+            console.log(max+'<'+item["value"]+"->"+(parseFloat(max) < parseFloat(item["value"])))
             console.log(typeof (item["value"]))
             if(parseFloat(max) < parseFloat(item["value"])) {
+
                 max =item["value"]
                 console.log("max:"+max)
             }
@@ -45,7 +46,7 @@ export default function MyLineChart (props) {
                 >
                     <CartesianGrid strokeDasharray="3 3" horizontal={false} vertical={false}  />
                     <XAxis dataKey={Object.keys(data[0])[0]}  dy={5}  />
-                    <YAxis domain={[0,findMax()]} allowDataOverflow={true}/>
+                    <YAxis domain={[0,Math.ceil(findMax())]} allowDataOverflow={true}/>
                     <Tooltip/>
                     {/*<Legend/>*/}
                     {getLineChart()}
