@@ -220,7 +220,7 @@ export default function SalesChart(props) {
             <Card.Title className="row justify-content-center fs-3 fw-bold m-0">{props.t('chartWidget')}</Card.Title>
 
 
-                <Row className='chart'>
+                <Row className='chart-container'>
 
                     <Col className="col-12 px-0 mx-0 gx-0 col-sm-12 col-md-8 chart">
                         {/*{JSON.stringify(chartData)}*/}

@@ -2,19 +2,12 @@ import styled from "styled-components";
 import Widget from "../Widget";
 
 export const StyledSalesChart = styled(Widget) `
-  .chart {
+  .chart-container {
     margin-top: 20px;
-    margin-left: 0;
     
   }
   
-  @media screen and (min-width: 48em){
-    .chart {
-      
-    }
-  }
-  
-  .dropdown-label {
+  .next-dropdown {
     margin-top: 20px;
   }
 

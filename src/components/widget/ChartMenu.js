@@ -35,9 +35,9 @@ export default function ChartMenu(props) {
     }
 
     return (
-        <div className="text-center">
-            <Row>
-                <Col className="col-12 ">
+        <div className="">
+            <Row className="d-flex justify-content-center text-center">
+                <Col className="col-12 text-center">
                 <div className="dropdown-label text-md-nowrap">{t('chart.filter')}</div>
                 <Dropdown onSelect={props.onFilterChangeHandler}>
                     <Dropdown.Toggle className="custom-dropdown text-wrap button" variant="primary" id="dropdown-basic">
@@ -55,7 +55,7 @@ export default function ChartMenu(props) {
 
 
                 <Col className="col-12">
-                <div className="dropdown-label text-md-nowrap">{t('chart.chartMsg')}</div>
+                <div className="dropdown-label text-md-nowrap next-dropdown">{t('chart.chartMsg')}</div>
                 <Dropdown onSelect={props.onChartTypeChangeHandler}>
                     <Dropdown.Toggle className="custom-dropdown text-wrap button" variant="primary" id="dropdown-basic">
                         {displayChartType(props.chartType)}
@@ -72,7 +72,7 @@ export default function ChartMenu(props) {
 
 
                 <Col className="col-12 ">
-                <div className="dropdown-label text-md-nowrap">{t('chart.timePeriodMsg')}</div>
+                <div className="dropdown-label text-md-nowrap next-dropdown">{t('chart.timePeriodMsg')}</div>
                 <Dropdown onSelect={props.onTimePeriodChangeHandler}>
                     <Dropdown.Toggle className="custom-dropdown text-wrap button" variant="primary" id="dropdown-basic">
                         {displayTimePeriod(props.timePeriod)}
