@@ -24,9 +24,9 @@ export default function MyLineChart (props) {
                     data={data}
                     margin={ { top: 10, left :20, bottom :20, right :70}}
                 >
-                    <CartesianGrid strokeDasharray="3 3" horizontal={false} vertical={false} />
+                    <CartesianGrid strokeDasharray="3 3" horizontal={false} vertical={false}  />
                     <XAxis dataKey={Object.keys(data[0])[0]}  dy={5}  />
-                    <YAxis allowDataOverflow={true}/>
+                    <YAxis allowDataOverflow={false}/>
                     <Tooltip/>
                     {/*<Legend/>*/}
                     {getLineChart()}

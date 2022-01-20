@@ -32,7 +32,7 @@ export default function MyBarChart (props) {
                 >
                     <CartesianGrid strokeDasharray="2 2" horizontal={false} vertical={false}/>
                     <XAxis dataKey={Object.keys(data[0])[0]} dy={5}  />
-                    <YAxis/>
+                    <YAxis allowDataOverflow={false}/>
                     <Tooltip/>
                     {/*<Legend/>*/}
                     {getBar()}
