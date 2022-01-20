@@ -64,6 +64,10 @@ export const StyledOpinions = styled(Widget) `
     }
   }
   
+  .noOpinions {
+    margin-top: 18%;
+  }
+  
   .opinions-page:hover {
     color: #0D6EFD;
   }

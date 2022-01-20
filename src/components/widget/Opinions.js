@@ -113,7 +113,7 @@ export default function ClientsOpinionsWidget(props) {
         }
 
         let noOpinionsContent = <Col className='text-center my-auto'>
-            <h1 className='fw-bold no-opinions-header'>{props.t('opinions.header')}</h1>
+            <h1 className='fw-bold no-opinions-header noOpinions'>{props.t('opinions.header')}</h1>
             <p className='no-opinions-info'>{props.t('opinions.info')}</p>
         </Col>
 
