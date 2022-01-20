@@ -86,7 +86,7 @@ export default function SalesChart(props) {
         let tmp
         setIsLoading(true);
         fetch(
-            'http://127.0.0.1:8000/chart/'+availableFilters[filter]+'/'+availableTimePeriods[timePeriod]+'/?id='+props.id+'&date=2022-1-7T23:40:00.000'
+            'http://127.0.0.1:8000/chart/'+availableFilters[filter]+'/'+availableTimePeriods[timePeriod]+'/?id='+props.id+'&date=2021-12-9T23:30:00.000'
         ).then((response) => {
             if (response.ok) {
                 return response.json();

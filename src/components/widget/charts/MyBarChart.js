@@ -1,17 +1,24 @@
-import React from "react";
+import React, {useState} from "react";
 import {Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis} from "recharts";
 import Container from "react-bootstrap/Container";
 
 export default function MyBarChart (props) {
     const data = props.data
     const color = props.color
+    const[max,setMax] = useState(1)
 
 
     const getBar = () => {
         const {stacked} = props;
+
+
+
         const keysArr = Object.keys(data[0]).slice(1);
         const barArr = [];
         keysArr.forEach((item, index) => {
+            if(max < item){
+                setMax(item["name"])
+            }
             barArr.push(<Bar dataKey={item} stackId={stacked ? "a" : null} fill={color[index]}/>)
         })
         return barArr;
@@ -32,7 +39,7 @@ export default function MyBarChart (props) {
                 >
                     <CartesianGrid strokeDasharray="2 2" horizontal={false} vertical={false}/>
                     <XAxis dataKey={Object.keys(data[0])[0]} dy={5}  />
-                    <YAxis allowDataOverflow={false}/>
+                    <YAxis domain={[0,max+100]} allowDataOverflow={true}/>
                     <Tooltip/>
                     {/*<Legend/>*/}
                     {getBar()}

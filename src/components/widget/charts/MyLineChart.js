@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis} from "recharts";
 import {Container} from "react-bootstrap";
 
@@ -6,11 +6,15 @@ export default function MyLineChart (props) {
 
     const data = props.data
     const color = props.color
+    const[max,setMax] = useState(1)
 
     const getLineChart = () => {
         const keysArr = Object.keys(data[0]).slice(1);
         const lineArr = [];
         keysArr.forEach((item, index) => {
+            if(max < item){
+                setMax(item["name"])
+            }
             lineArr.push(<Line type="monotone" dataKey={item} stroke={color[index]}/>)
         })
         return lineArr;
@@ -26,7 +30,7 @@ export default function MyLineChart (props) {
                 >
                     <CartesianGrid strokeDasharray="3 3" horizontal={false} vertical={false}  />
                     <XAxis dataKey={Object.keys(data[0])[0]}  dy={5}  />
-                    <YAxis allowDataOverflow={false}/>
+                    <YAxis allowDataOverflow={true}/>
                     <Tooltip/>
                     {/*<Legend/>*/}
                     {getLineChart()}
